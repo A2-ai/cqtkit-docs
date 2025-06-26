@@ -7,7 +7,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://probable-bassoon-8jv79jz.pages.github.io/",
+	site: "https://probable-bassoon-8jv79jz.pages.github.io/cqtkit-docs",
 	base: "/cqtkit-docs",
 	markdown: {
 		rehypePlugins: [
