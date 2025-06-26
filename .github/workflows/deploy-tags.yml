@@ -43,19 +43,6 @@ jobs:
           touch site/.nojekyll
           touch site/versions/${{ steps.vars.outputs.TAG }}/.nojekyll
           
-          # Create redirect from root
-          cat > site/index.html <<EOF
-          <!doctype html>
-          <html>
-          <head>
-            <meta http-equiv="refresh" content="0; url=/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }}/">
-            <title>Redirecting…</title>
-          </head>
-          <body>
-            <p>Redirecting to documentation ${{ steps.vars.outputs.TAG }}…</p>
-          </body>
-          </html>
-
       - name: Publish to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
         with:
