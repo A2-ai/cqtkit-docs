@@ -1,0 +1,24 @@
+---
+title: fit_prespecified_model
+pagefind: true
+---
+
+import { Content as EContent } from '../../../rd_docs/fit_prespecified_model.md';
+
+<EContent />
+
+## Model Equation
+
+$$
+\begin{aligned}
+\Delta \text{QTcF}_{i,j,k} = 
+ & \left( \theta_0 + \eta_{0,i} \right ) 
+  + \left( \theta_1 + \eta_{1,i} \right ) C_{i,j,k} 
+  + \theta_2 \left( \Delta\text{QTcF}_{i,j,k=0} - \text{QTcF}_{\text{baseline}} \right ) \\
+ & + \theta_3 \text{TRTG}_j 
+  +  \theta_4 \text{TAFD}_k
+\end{aligned}
+$$
+
+## Reference
+> Garnett C, Bonate PL, Dang Q, Ferber G, Huang D, Liu J, Mehrotra D, Riley S, Sager P, Tornoe C, Wang Y. Scientific white paper on concentration-QTc modeling. J Pharmacokinet Pharmacodyn. 2018 Jun;45(3):383-397. doi: 10.1007/s10928-017-9558-5. Epub 2017 Dec 5. Erratum in: J Pharmacokinet Pharmacodyn. 2018 Jun;45(3):399. doi: 10.1007/s10928-017-9565-6. PMID: 29209907.

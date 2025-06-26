@@ -1,36 +1,42 @@
 ---
-title: Welcome to Starlight
+title: Welcome to cqtkit
 description: Get started building your docs site with Starlight.
 template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Easily perform c-QTc analyses with cqtkit
   image:
-    file: ../../assets/houston.webp
+    file: /src/assets/cqtkit.png
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: cqtkit Reference Guide
+      link: /cqtkit-docs/reference/cqtkit
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: Explore the cqtkit repository 
+      link: https://github.com/a2-ai-gilead-collab/cqtkit
       icon: external
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, Icon} from '@astrojs/starlight/components';
 
-## Next steps
+## `cqtkit` Highlights
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title = "Data Preprocessing Functions" icon = "pen">
+		<a href = "/cqtkit-docs/reference/preprocessing/preprocessing">Reference of preprocessing functions</a>
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title = "Exploratory Data Analysis Functions" icon = "seti:code-search">
+		<a href = "/cqtkit-docs/reference/eda/eda">Reference of EDA functions</a>
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title = "Compute Functions" icon = "laptop">
+		<a href = "/cqtkit-docs/reference/compute/compute">Reference of Computational functions</a>
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title = "Tabling Functions" icon = "list-format">
+		<a href = "/cqtkit-docs/reference/tabulate/tabulate">Reference of Table functions</a>
+	</Card>
+	<Card title = "Goodness of Fit Functions" icon = "approve-check">
+		<a href = "/cqtkit-docs/reference/gof/gof">Reference of GoF functions</a>
+	</Card>
+	<Card title = "Predict Functions" icon = "information">
+		<a href = "/cqtkit-docs/reference/predict/predict">Reference of Prediction functions</a>
 	</Card>
 </CardGrid>

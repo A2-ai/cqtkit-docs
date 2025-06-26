@@ -1,0 +1,19 @@
+---
+title: compute_potential_hysteresis
+pagefind: true
+---
+
+import { Code, Steps } from '@astrojs/starlight/components';
+import { Content as EContent } from '../../../rd_docs/compute_potential_hysteresis.md';
+
+<EContent />
+
+import importedCode from '../../../../assets/output/compute_potential_hysteresis.txt?raw';
+
+<Code code={importedCode} lang="r" title="compute_potential_hysteresis.R" />
+
+### Criteria for hysteresis
+<Steps>
+1. At least three time points that have $\Delta$QTc greater than 5 ms
+2. $\lvert T_{\text{max}} - U_{\text{max}} \rvert \geq 1 \text{ hr}$, where $T_{\text{max}}$ is time of maximal concentration, and $U_{\text{max}}$ is time of maximal $\Delta$QTc
+</Steps>

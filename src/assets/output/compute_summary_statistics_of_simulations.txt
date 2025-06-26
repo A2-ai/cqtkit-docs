@@ -1,0 +1,17 @@
+# A tibble: 250 × 15
+   decile   sim_num med_xdata med_pred low_pred high_pred mean_med_pred
+   <fct>      <int>     <dbl>    <dbl>    <dbl>     <dbl>         <dbl>
+ 1 [0,9.05]       1         0    -7.19    -19.0      4.35         -6.98
+ 2 [0,9.05]       2         0    -6.09    -20.6      6.07         -6.98
+ 3 [0,9.05]       3         0    -7.18    -22.2      7.24         -6.98
+ 4 [0,9.05]       4         0    -6.83    -18.3      4.06         -6.98
+ 5 [0,9.05]       5         0    -6.89    -20.5      6.16         -6.98
+ 6 [0,9.05]       6         0    -6.02    -19.9      7.60         -6.98
+ 7 [0,9.05]       7         0    -7.41    -21.1      5.22         -6.98
+ 8 [0,9.05]       8         0    -7.37    -21.2      3.63         -6.98
+ 9 [0,9.05]       9         0    -6.56    -19.5      6.32         -6.98
+10 [0,9.05]      10         0    -5.98    -19.3      6.42         -6.98
+# ℹ 240 more rows
+# ℹ 8 more variables: low_med_pred <dbl>, high_med_pred <dbl>,
+#   mean_low_pred <dbl>, low_low_pred <dbl>, high_low_pred <dbl>,
+#   mean_high_pred <dbl>, low_high_pred <dbl>, high_high_pred <dbl> 

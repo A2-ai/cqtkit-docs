@@ -1,0 +1,13 @@
+---
+title: preprocess
+pagefind: true
+---
+import { Code } from '@astrojs/starlight/components';
+import { Content as EContent } from '../../../rd_docs/preprocess.md';
+
+<EContent />
+
+import importedCode from '../../../../assets/output/preprocess.txt?raw';
+
+<Code code={importedCode} lang="r" title="preprocess.R" />
+
