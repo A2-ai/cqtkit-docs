@@ -1,4 +1,0 @@
-# A tibble: 1 × 9
-  intercept slope intercept_ci_lower intercept_ci_upper slope_ci_lower slope_ci_upper p_value_intercept p_value_slope conf_int
-      <dbl> <dbl>              <dbl>              <dbl>          <dbl>          <dbl>             <dbl>         <dbl>    <dbl>
-1      277. 0.111               273.               281.          0.108          0.115                 0     6.36e-317     0.95

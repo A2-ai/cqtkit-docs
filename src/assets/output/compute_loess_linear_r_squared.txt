@@ -1,4 +1,4 @@
 # A tibble: 1 × 3
   R_squared R_squared_adj R_partial_det
       <dbl>         <dbl>         <dbl>
-1     0.978         0.978      0.000992 
+1     0.884         0.884        0.0217 

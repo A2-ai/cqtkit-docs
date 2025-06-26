@@ -1,15 +1,15 @@
-# A tibble: 643 × 17
-      ID TRTG   DOSE DOSEU DOSEF  NTLD TAFD   CONC CONCU    RR    HR    QT  RRBL
-   <dbl> <fct> <dbl> <chr> <fct> <dbl> <chr> <dbl> <chr> <dbl> <dbl> <dbl> <dbl>
- 1  1001 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   968   62.0  381.  851 
- 2  1002 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1097.  54.7  405. 1193.
- 3  1003 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1026.  58.5  394.  923.
- 4  1004 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   862.  69.6  396.  883.
- 5  1005 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1060.  56.6  398  1126.
- 6  1006 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   998   60.2  385   999 
- 7  1007 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   919.  65.4  399.  909 
- 8  1008 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   827.  72.5  371   991 
- 9  1009 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   872.  68.9  368.  798.
-10  1010 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1070.  56.1  424. 1071 
-# ℹ 633 more rows
-# ℹ 4 more variables: HRBL <dbl>, QTBL <dbl>, HRBLM <dbl>, deltaHRBL <dbl> 
+# A tibble: 1,000 × 15
+      ID  NTLD   CONC TRTG      DOSE DOSEF TAFD    RRBL  HRBL  QTBL    RR    HR
+   <int> <dbl>  <dbl> <fct>    <dbl> <fct> <chr>  <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1     1   0.5 13611. D - A2Ai   250 250   0.5 HR 1109.  54.1  398. 1053.  57.0
+ 2     1   1   16930. D - A2Ai   250 250   1 HR   1109.  54.1  398. 1222.  49.1
+ 3     1   1.5 17686. D - A2Ai   250 250   1.5 HR 1109.  54.1  398.  992.  60.5
+ 4     1   2   17806. D - A2Ai   250 250   2 HR   1109.  54.1  398. 1130.  53.1
+ 5     1   3   17688. D - A2Ai   250 250   3 HR   1109.  54.1  398. 1084.  55.4
+ 6     1   4   17511. D - A2Ai   250 250   4 HR   1109.  54.1  398. 1039.  57.7
+ 7     1   6   17155. D - A2Ai   250 250   6 HR   1109.  54.1  398. 1183.  50.7
+ 8     1   8   16805. D - A2Ai   250 250   8 HR   1109.  54.1  398. 1043.  57.5
+ 9     1  12   16127. D - A2Ai   250 250   12 HR  1109.  54.1  398. 1125.  53.3
+10     1  24   14253. D - A2Ai   250 250   24 HR  1109.  54.1  398. 1051.  57.1
+# ℹ 990 more rows
+# ℹ 3 more variables: QT <dbl>, HRBLM <dbl>, deltaHRBL <dbl> 

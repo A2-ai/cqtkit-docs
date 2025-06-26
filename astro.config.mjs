@@ -106,7 +106,6 @@ export default defineConfig({
 								'reference/compute/compute_dataset_simulation',
 								'reference/compute/compute_summary_statistics_of_simulations',
 								'reference/compute/compute_lm_fit_df',
-								'reference/compute/compute_lme_slope_df',
 								'reference/compute/compute_engri',
 							],  
 						},
