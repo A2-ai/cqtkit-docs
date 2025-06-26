@@ -49,7 +49,7 @@ export default defineConfig({
 			social: [
 				{
 					icon: 'github',
-					href: 'https://github.com/a2-ai-tech-training/cqtkit-docs',
+					href: 'https://github.com/a2-ai-tech-training/cqtkit-version-docs',
 					label: 'GitHub repo',
 				},
 			],
