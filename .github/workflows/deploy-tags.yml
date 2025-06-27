@@ -43,9 +43,6 @@ jobs:
           # Add .nojekyll
           touch .nojekyll
           
-          # Simple redirect to latest version
-          echo "<meta http-equiv='refresh' content='0; url=/cqtkit-docs/versions/${{ env.VERSION }}/'>" > index.html
-          
           # Commit and push
           git add .
           git commit -m "Add version ${{ env.VERSION }}"
