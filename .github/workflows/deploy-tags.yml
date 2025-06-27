@@ -1,65 +1,46 @@
-name: Build & deploy docs for each Git tag
+name: Deploy versioned docs
 
 on:
   push:
-    tags: ['v*']        # fires on v0.0.1, v0.0.2, etc.
-  workflow_dispatch:    # manual back-fill if you like
+    tags: ['v*']
 
 permissions:
-  contents: write       # needed to push to gh-pages
-  pages:    write
-  id-token: write
+  contents: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Derive version slug
-        id: vars
-        run: echo "TAG=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+      
+      - name: Get version
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
       - run: npm ci
       
-      - name: Astro build for ${{ steps.vars.outputs.TAG }}
-        run: npx astro build --base=/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }} --site=https://${{ github.repository_owner }}.github.io/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }}
+      - name: Build docs
+        run: npx astro build --base=/cqtkit-docs/versions/${{ env.VERSION }}
 
-      - name: Copy version into site tree and add .nojekyll
+      - name: Deploy to GitHub Pages
         run: |
-          # Create site directory and subdirectories
-          mkdir -p site/versions/${{ steps.vars.outputs.TAG }}
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Copy build to version directory
-          cp -a dist/* site/versions/${{ steps.vars.outputs.TAG }}/
+          # Fetch gh-pages or create it
+          git fetch origin gh-pages:gh-pages || git checkout --orphan gh-pages
+          git checkout gh-pages
           
-          # Create .nojekyll files to prevent Jekyll processing
-          touch site/.nojekyll
-          touch site/versions/${{ steps.vars.outputs.TAG }}/.nojekyll
+          # Add this version
+          mkdir -p versions/${{ env.VERSION }}
+          cp -r dist/* versions/${{ env.VERSION }}/
           
-          # Create redirect from root
-          cat > site/index.html <<EOF
-          <!doctype html>
-          <html>
-          <head>
-            <meta http-equiv="refresh" content="0; url=/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }}/">
-            <title>Redirecting…</title>
-          </head>
-          <body>
-            <p>Redirecting to documentation ${{ steps.vars.outputs.TAG }}…</p>
-          </body>
-          </html>
-
-      - name: Publish to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: site
-          keep_files: true
+          # Add .nojekyll
+          touch .nojekyll
+          
+          # Commit and push
+          git add .
+          git commit -m "Add version ${{ env.VERSION }}"
+          git push origin gh-pages
