@@ -2,5 +2,5 @@ function (variable, dose)
 {
     return(hysteresis)
 }
-<bytecode: 0x10c286780>
-<environment: 0x10c286cc0> 
+<bytecode: 0x11977aa58>
+<environment: 0x11977af98> 
