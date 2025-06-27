@@ -29,7 +29,7 @@ jobs:
       - run: npm ci
       
       - name: Astro build for ${{ steps.vars.outputs.TAG }}
-        run: npx astro build --base=/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }} --site=https://${{ github.repository_owner }}.github.io/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }}
+        run: npx astro build --base=/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }}
 
       - name: Copy version into site tree and add .nojekyll
         run: |
