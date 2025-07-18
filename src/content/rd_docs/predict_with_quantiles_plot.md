@@ -10,6 +10,9 @@ predict_with_quantiles_plot(
   fit,
   conc_col,
   dv_col,
+  id_col = NULL,
+  ntime_col = NULL,
+  trt_col = NULL,
   treatment_predictors,
   control_predictors = NULL,
   reference_threshold = c(
@@ -18,15 +21,12 @@ predict_with_quantiles_plot(
   conf_int = 0.9,
   nbins = 10,
   error_bars = "CI",
-  xlabel = "Concentration (
-  ng/mL
-)",
-  ylabel = bquote(
-  Delta ~ "QTc (
-  ms
-)"
+  contrast_method = c(
+  "matched",
+  "group"
 ),
-  title = ""
+  style = list(
+)
 )
 ```
 
@@ -38,15 +38,17 @@ predict_with_quantiles_plot(
 | `fit` | a lme model to make predictions with |
 | `conc_col` | an unquoted column name of concentration measurements |
 | `dv_col` | an unquoted column name of dQTC measurements |
+| `id_col` | an unquoted column name of ID data, used when control predictors is provided to compute delta delta dv |
+| `ntime_col` | an unquoted column name of Nominal time data, used when control predictors is provided to compute delta delta dv |
+| `trt_col` | an unquoted column name of Treatment group data, used when control predictors is provided to compute delta delta dv |
 | `treatment_predictors` | list of a values for contrast. CONC will update |
 | `control_predictors` | list of b values for contrast |
 | `reference_threshold` | optional vector of numbers to add as horizontal dashed lines |
 | `conf_int` | confidence interval fraction, default = 0.9 |
 | `nbins` | number of bins for quantiles, or vector of cut points for computing average |
 | `error_bars` | a string to denote which errorbars to show, CI, SE, SD or none. |
-| `xlabel` | a string for xlabel, default "Concentration (ng/mL)" |
-| `ylabel` | a string for ylabel, default bquote(Delta~"QTc (ms)") |
-| `title` | a string for the plot title |
+| `contrast_method` | a string specifying contrast method when using control_predictors: "matched" for individual ID+time matching (crossover studies), "group" for group-wise subtraction (parallel studies) |
+| `style` | a named list of any argument that can be passed to style_plot |
 
 ## Returns
 

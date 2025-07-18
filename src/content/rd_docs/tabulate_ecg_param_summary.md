@@ -51,8 +51,16 @@ a gt table of the QTc/deltaQTc/delta delta QTc summary
 ## Examples
 
 ```r
-data <- data %>% preprocess()
- tabulate_ecg_param_summary(data, NTLD, DOSEF, QTCF, deltaQTCF, "QTc", "ms")
+data_proc <- data %>% preprocess()
+ tabulate_ecg_param_summary(
+  data_proc,
+  NTLD,
+  DOSEF,
+  QTCF,
+  deltaQTCF,
+  "QTc",
+  "ms",
+  reference_dose = "0 mg")
 ```
 
 

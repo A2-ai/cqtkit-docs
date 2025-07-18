@@ -15,11 +15,14 @@ gof_residuals_plots(
   conc_xlabel = "Concentration (
   ng/mL
 )",
-  title = "",
   dv_label = bquote(
   Delta ~ "QTc (
   ms
 )"
+),
+  residual_references = c(
+  -2,
+  2
 ),
   legend_location = c(
   "top",
@@ -28,7 +31,8 @@ gof_residuals_plots(
   "right",
   "none"
 ),
-  legend_title = "Treatment Group"
+  style = list(
+)
 )
 ```
 
@@ -43,10 +47,10 @@ gof_residuals_plots(
 | `ntime_col` | an unquoted column name of nominal times |
 | `trt_col` | an unquoted column name of treatment group, default NULL |
 | `conc_xlabel` | a string of concentration xlabel |
-| `title` | a string for plot title |
 | `dv_label` | a string of dv label default bquote(Delta ~ 'QTc (ms)') |
+| `residual_references` | numeric vector of reference residual lines to add, default -2 and 2 |
 | `legend_location` | string for moving legend position. |
-| `legend_title` | string for setting the legend title if trt_col is provided, default is Treatment Group |
+| `style` | a named list of any argument that can be passed to style_plot |
 
 ## Returns
 
@@ -55,9 +59,9 @@ a plot
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(data)
  fit <- fit_prespecified_model(
-   data,
+   data_proc,
    deltaQTCF,
    ID,
    CONC,
@@ -68,7 +72,7 @@ data <- preprocess(data)
    TRUE
  )
  gof_residuals_plots(
-   data,
+   data_proc,
    fit,
    deltaQTCF,
    CONC,

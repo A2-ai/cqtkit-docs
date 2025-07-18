@@ -14,15 +14,8 @@ gof_vpc_plot(
   nruns = 500,
   nbins = 10,
   type = 2,
-  xlabel = "Concentration (
-  ng/mL
-)",
-  ylabel = bquote(
-  Delta ~ "QTc (
-  ms
-)"
-),
-  title = ""
+  style = list(
+)
 )
 ```
 
@@ -38,9 +31,7 @@ gof_vpc_plot(
 | `nruns` | integer number of simulations to run |
 | `nbins` | integer number of bins to break independent variable into - OR - a user specified vector for non-uniform binning |
 | `type` | integer for type parameter of stats::quantile |
-| `xlabel` | a string for x label of plot, default is 'Concentration (ng/mL)' |
-| `ylabel` | a string for y label of plot, default is bquote(Delta ~ 'QTc (ms)') |
-| `title` | a string for plot title |
+| `style` | a named list of any argument that can be passed to style_plot |
 
 ## Returns
 
@@ -49,9 +40,9 @@ a plot of the VPC results
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(data)
  fit <- fit_prespecified_model(
-   data,
+   data_proc,
    deltaQTCF,
    ID,
    CONC,
@@ -62,7 +53,7 @@ data <- preprocess(data)
    TRUE
  )
  
- gof_vpc_plot(data, fit, CONC, deltaQTCF, nruns = 2)
+ gof_vpc_plot(data_proc, fit, CONC, deltaQTCF, nruns = 2)
 ```
 
 

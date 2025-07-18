@@ -16,18 +16,13 @@ eda_mean_dv_over_time(
   reference_threshold = NULL,
   conf_int = 0.9,
   scale_factor = NULL,
+  shift_factor = NULL,
   error_bars = "CI",
-  title = "",
-  ylabel = bquote(
-  "Mean " ~ Delta ~ "QTc (
-  ms
-)"
-),
   sec_ylabel = "Concentration (
   ng/mL
 )",
-  logx = FALSE,
-  legend = ""
+  style = list(
+)
 )
 ```
 
@@ -44,13 +39,11 @@ eda_mean_dv_over_time(
 | `reference_dose` | Optional - DOSE of reference (i.e. placebo, DOSE == 0) measurements |
 | `reference_threshold` | Optional - a numeric or vector of numerics to add dashed lines to plot |
 | `conf_int` | fractional confidence interval, default = 0.9 |
-| `scale_factor` | optional scale factor for secondary_data_col |
+| `scale_factor` | optional scale factor for scaling secondary_data_col |
+| `shift_factor` | optional additive factory for shifting secondary data |
 | `error_bars` | a string for setting which errorbars are shown, CI, SE, SD |
-| `title` | a string to title the plot |
-| `ylabel` | a string for ylabel default is bquote('Mean ' ~Delta~'QTc (ms)') |
 | `sec_ylabel` | a string for secondary ylabel, default is Concentration (ng/mL) |
-| `logx` | a bool for applying log transform to x axis |
-| `legend` | a string for legend label |
+| `style` | a named list of any argument that can be passed to style_plots. Shapes are mapped to grouping variables and can be controlled via the shapes parameter in style |
 
 ## Returns
 
@@ -69,7 +62,7 @@ data <- preprocess(data)
    group_col = TRTG,
    reference_dose = "0 mg",
    reference_threshold = 10,
-   ylabel = bquote('Mean '~Delta~Delta~'QTc (ms)'))
+   style = set_style(ylabel = bquote('Mean '~Delta~Delta~'QTc (ms)')))
 ```
 
 

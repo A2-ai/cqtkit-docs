@@ -1,6 +1,6 @@
 ## Description
 
-plots the observed decile-decile scatter plot of XDATA vs YDATA with linear regression.
+plots the observed decile-decile scatter plot of x-data vs y-data with linear regression.
 
 ## Usage
 
@@ -12,10 +12,8 @@ eda_quantiles_plot(
   trt_col = NULL,
   conf_int = 0.9,
   error_bars = "CI",
-  ylims = NULL,
-  xlabel = NULL,
-  ylabel = NULL,
-  legend = NULL
+  style = list(
+)
 )
 ```
 
@@ -29,10 +27,7 @@ eda_quantiles_plot(
 | `trt_col` | an unquoted column name of treatment column to stratify the data by |
 | `conf_int` | a fractional value to set confidence interval, default = 0.9 |
 | `error_bars` | a string for setting which errorbars are shown, CI, SE, SD |
-| `ylims` | optional - vector of lower and upper y limits |
-| `xlabel` | string for xlabel on plot |
-| `ylabel` | string for ylabel on plot |
-| `legend` | string for legend label if treatment_col is supplied. |
+| `style` | a named list of any argument that can be passed to style_plot |
 
 ## Returns
 
@@ -47,13 +42,15 @@ data <- preprocess(data)
    data,
    RR,
    QTCF,
+   trt_col = TRTG,
+  style = set_style(
+   legend = "Treatment Group",
    ylims = c(300, 500),
    xlabel = "RR (ms)",
    ylabel = "QTcF (ms)",
-   trt_col = TRTG,
-  legend = "Treatment Group",
- ) +
-   ggplot2::theme(legend.position = "top")
+   legend.position = "top"
+  )
+ )
 ```
 
 

@@ -15,17 +15,8 @@ eda_scatter_with_regressions(
   linear_line = TRUE,
   span = 0.99,
   conf_int = 0.9,
-  xlabel = "Concentration (
-  ng/mL
-)",
-  ylabel = bquote(
-  Delta ~ "QTc (
-  ms
-)"
-),
-  title = "",
-  logx = FALSE,
-  legend = ""
+  style = list(
+)
 )
 ```
 
@@ -42,11 +33,7 @@ eda_scatter_with_regressions(
 | `linear_line` | a bool to add a linear regression line |
 | `span` | a fractional value for LOESS span parameter in geom_smooth if LOESS is used, default 0.99 |
 | `conf_int` | a fractional numeric for setting confidence interval, default = 9 |
-| `xlabel` | a string for xlabel |
-| `ylabel` | a string for xlabel |
-| `title` | a string to give plot a title |
-| `logx` | a bool to log transform the x axis |
-| `legend` | a string for legend label |
+| `style` | a named list of any argument that can be passed to style_plot. Shapes are mapped to treatment groups and can be controlled via the shapes parameter in style |
 
 ## Returns
 
@@ -57,7 +44,12 @@ a plot
 ```r
 data <- preprocess(data)
  
- eda_scatter_with_regressions(data, deltaQTCF, CONC, TRTG, reference_threshold = 10)
+ eda_scatter_with_regressions(
+   data,
+   deltaQTCF,
+   CONC,
+   TRTG,
+   reference_threshold = 10)
 ```
 
 

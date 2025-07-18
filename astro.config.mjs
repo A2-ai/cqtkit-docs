@@ -68,10 +68,10 @@ export default defineConfig({
 							items: 
 								[
 									'reference/preprocessing/preprocessing',
-									'reference/preprocessing/compute_qtcf',
-									'reference/preprocessing/compute_qtcfblm',
-									'reference/preprocessing/compute_qtcb',
-									'reference/preprocessing/compute_qtcbblm',
+									'reference/preprocessing/compute_qtcb_qtcf',
+									'reference/preprocessing/compute_delta_qtcfblm',
+									'reference/preprocessing/compute_delta_qtcbblm',
+									'reference/preprocessing/compute_delta_hrblm',
 									'reference/preprocessing/compute_deltas',	
 									'reference/preprocessing/preprocess',
 								],
@@ -102,11 +102,11 @@ export default defineConfig({
 								'reference/compute/compute_quantiles_obs_df',
 								'reference/compute/compute_potential_hysteresis',
 								'reference/compute/compute_hysteresis_labeller',
+								'reference/compute/compute_contrast_observations',
 								'reference/compute/compute_exposure_predictions',
 								'reference/compute/compute_dataset_simulation',
 								'reference/compute/compute_summary_statistics_of_simulations',
 								'reference/compute/compute_lm_fit_df',
-								'reference/compute/compute_lme_slope_df',
 								'reference/compute/compute_engri',
 							],  
 						},
@@ -156,6 +156,25 @@ export default defineConfig({
 								'reference/predict/predict_with_quantiles_plot',
 								'reference/predict/predict_with_exposure_plot',
 							],
+						},
+						{
+							label: 'Style',
+							collapsed: true,
+							items: [
+								'reference/style/style',
+								'reference/style/add_horizontal_references',
+								'reference/style/set_style',
+								'reference/style/style_plot',
+							]
+						},
+						{
+							label: "Datasets",
+							collapsed: true,
+							items: [
+								'reference/data/datasets',
+								'reference/data/data',
+								'reference/data/bl',
+							]
 						},
 					],
 				},

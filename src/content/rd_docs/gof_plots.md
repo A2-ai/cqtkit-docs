@@ -13,7 +13,6 @@ gof_plots(
   ntime_col,
   trt_col = NULL,
   conc_xlabel = "Concentration ng/mL",
-  title = "",
   dv_label = bquote(
   Delta ~ "QTc (
   ms
@@ -26,7 +25,8 @@ gof_plots(
   "right",
   "none"
 ),
-  legend_title = "Treatment Group"
+  style = list(
+)
 )
 ```
 
@@ -41,10 +41,9 @@ gof_plots(
 | `ntime_col` | an unquoted column name of nominal times |
 | `trt_col` | an unquoted column name of treatment group, default NULL |
 | `conc_xlabel` | a string for concentration plot xlabel |
-| `title` | a string of title of plot |
 | `dv_label` | a string of dv label default bquote(Delta ~ 'QTc (ms)') |
 | `legend_location` | string for moving legend position. |
-| `legend_title` | string for setting the legend title if trt_col is provided, default is Treatment Group |
+| `style` | a named list of any argument that can be passed to style_plot |
 
 ## Returns
 
@@ -53,9 +52,9 @@ a 2x2 grid of plots
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(data)
  fit <- fit_prespecified_model(
-   data,
+   data_proc,
    deltaQTCF,
    ID,
    CONC,
@@ -67,7 +66,7 @@ data <- preprocess(data)
  )
  
  gof_plots(
-   data,
+   data_proc,
    fit,
    deltaQTCF,
    CONC,

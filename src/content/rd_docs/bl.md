@@ -5,7 +5,6 @@ datasets
 ## Description
 
 testing baseline data
- A tibble: 66 × 8
 
 ## Usage
 
@@ -15,20 +14,22 @@ bl
 
 ## Format
 
-bl 
- 
- A data frame with 390 rows and 12 columns:
- 
- ID Uniuqe subject identifier 
- TRTG Treatment Group (Drug or Placebo) 
- DOSE numeric value of dose 
- DOSEU Units of DOSE 
- TPT Timepoint of collection relative to first dose (h) 
- RR RR before dose (ms) 
- HR HR before dose (bpm) 
- QT QT before dose (ms) 
- QTCB Bazett Corected QT (ms) 
- QTCF Fridericia Corrected QT (ms)
+bl
+
+A data frame with 65 rows and 10 columns:
+
+| Column | Description |
+|--------|-------------|
+| `ID` | Uniuqe subject identifier |
+| `TRTG` | Treatment Group (Drug or Placebo) |
+| `DOSE` | numeric value of dose |
+| `DOSEU` | Units of DOSE |
+| `TPT` | Timepoint of collection relative to first dose (h) |
+| `RR` | RR before dose (ms) |
+| `HR` | HR before dose (bpm) |
+| `QT` | QT before dose (ms) |
+| `QTCB` | Bazett Corected QT (ms) |
+| `QTCF` | Fridericia Corrected QT (ms) |
 
 ## Source
 

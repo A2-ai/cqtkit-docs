@@ -14,16 +14,7 @@ eda_qtc_comparison_plot(
   qtcp_col = NULL,
   id_col = NULL,
   trt_col = NULL,
-  xlabel = "RR (
-  ms
-)",
-  legend = "",
-  legend_location = c(
-  "top",
-  "bottom",
-  "right",
-  "left"
-),
+  legend_location = "top",
   model_type = c(
   "lm",
   "lme"
@@ -31,7 +22,9 @@ eda_qtc_comparison_plot(
   show_model_results = TRUE,
   method = "REML",
   remove_rr_iiv = FALSE,
-  conf_int = 0.9
+  conf_int = 0.9,
+  style = list(
+)
 )
 ```
 
@@ -47,14 +40,13 @@ eda_qtc_comparison_plot(
 | `qtcp_col` | Optional - an unquoted column name of Population corrected QT data |
 | `id_col` | an unquoted column name of ID data |
 | `trt_col` | Optional - an unquoted column name of treatment group data |
-| `xlabel` | a string for xlabel |
-| `legend` | a string for legend label |
 | `legend_location` | string for legend location, top,bottom,left,right |
 | `model_type` | lm or lme, which model to fit for showing on plot |
 | `show_model_results` | a bool for showing regression slope on plot. |
 | `method` | method for nlme::lme fitting |
 | `remove_rr_iiv` | a boolean for removing IIV on RR slope |
 | `conf_int` | confidence interval for lm results default 0.90 |
+| `style` | named list of any argument that can be passed to style_plots |
 
 ## Returns
 

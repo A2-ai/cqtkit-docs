@@ -14,14 +14,10 @@ predict_with_exposure_plot(
   reference_threshold = c(
   10
 ),
-  tpx_cmax = NULL,
-  stpx_cmax = NULL,
+  cmaxes = NULL,
   conf_int = 0.9,
-  xlabel = "Concentration (
-  ng/mL
-)",
-  ylabel = NULL,
-  title = ""
+  style = list(
+)
 )
 ```
 
@@ -35,12 +31,9 @@ predict_with_exposure_plot(
 | `treatment_predictors` | list of a values for contrast. CONC will update |
 | `control_predictors` | list of b values for contrast |
 | `reference_threshold` | optional vector of numbers to add as horizontal dashed lines |
-| `tpx_cmax` | Optional - numeric therapeutic dose Cmax |
-| `stpx_cmax` | Optional - numeric supra therapeutic Cmax |
+| `cmaxes` | Optional - numeric vector of Cmax values to add as reference lines |
 | `conf_int` | confidence interval fraction, default = 0.9 |
-| `xlabel` | xlabel for plot |
-| `ylabel` | ylabel for plot |
-| `title` | a string of plot title. |
+| `style` | a named list of any argument that can be passed to style_plot |
 
 ## Returns
 
@@ -80,7 +73,7 @@ data <- preprocess(data)
      TRTG = "Placebo",
      TAFD = "2 HR"
    ),
-   tpx_cmax = pk_df[[1, "Cmax_gm"]], # Dose = 120
+   cmaxes = pk_df[[1, "Cmax_gm"]], # Dose = 120
  )
 ```
 

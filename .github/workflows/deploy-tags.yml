@@ -24,23 +24,25 @@ jobs:
       - name: Build docs
         run: npx astro build --base=/cqtkit-docs/versions/${{ env.VERSION }}
 
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
       - name: Deploy to GitHub Pages
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # Add this version to docs/cqtkit-docs/versions/
+          mkdir -p gh-pages/docs/cqtkit-docs/versions/${{ env.VERSION }}
+          cp -r dist/* gh-pages/docs/cqtkit-docs/versions/${{ env.VERSION }}/
           
-          # Fetch gh-pages or create it
-          git fetch origin gh-pages:gh-pages || git checkout --orphan gh-pages
-          git checkout gh-pages
-          
-          # Add this version
-          mkdir -p versions/${{ env.VERSION }}
-          cp -r dist/* versions/${{ env.VERSION }}/
-          
-          # Add .nojekyll
-          touch .nojekyll
+          # Add .nojekyll in docs folder
+          touch gh-pages/docs/.nojekyll
           
           # Commit and push
+          cd gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "Add version ${{ env.VERSION }}"
-          git push origin gh-pages
+          git push

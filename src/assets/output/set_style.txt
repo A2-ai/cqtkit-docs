@@ -1,0 +1,65 @@
+$title
+NULL
+
+$xlabel
+NULL
+
+$ylabel
+NULL
+
+$xlims
+NULL
+
+$ylims
+NULL
+
+$colors
+0 mg Placebo 
+      "grey" 
+
+$labels
+    Reference -10      Reference 10      0 mg Placebo  120 mg Verapamil 
+               NA "+/- 10 ms dQTcF"         "Placebo"       "Verapamil" 
+
+$shapes
+NULL
+
+$legend
+[1] "Treatment"
+
+$shape_legend
+NULL
+
+$color_order
+NULL
+
+$shape_order
+NULL
+
+$linetype_order
+NULL
+
+$legend.position
+NULL
+
+$logx
+NULL
+
+$logy
+NULL
+
+$fill_alpha
+NULL
+
+$fill_legend
+NULL
+
+$fill_order
+NULL
+
+$caption_hjust
+NULL
+
+$legend_nrow
+NULL
+ 

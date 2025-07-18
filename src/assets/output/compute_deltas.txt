@@ -12,6 +12,6 @@
  9  1009 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   872.  68.9  368.  798.
 10  1010 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1070.  56.1  424. 1071 
 # ℹ 633 more rows
-# ℹ 11 more variables: HRBL <dbl>, QTBL <dbl>, QTCB <dbl>, QTCBBL <dbl>,
-#   QTCF <dbl>, QTCFBL <dbl>, deltaQTCB <dbl>, deltaQTCF <dbl>, deltaRR <dbl>,
-#   deltaHR <dbl>, deltaQT <dbl> 
+# ℹ 11 more variables: HRBL <dbl>, QTBL <dbl>, QTCB <dbl>, QTCF <dbl>,
+#   QTCBBL <dbl>, QTCFBL <dbl>, deltaQTCB <dbl>, deltaQTCF <dbl>,
+#   deltaRR <dbl>, deltaHR <dbl>, deltaQT <dbl> 

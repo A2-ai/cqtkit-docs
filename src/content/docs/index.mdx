@@ -8,10 +8,10 @@ hero:
     file: /src/assets/cqtkit.png
   actions:
     - text: cqtkit Reference Guide
-      link: /reference/cqtkit
+      link: ./reference/cqtkit
       icon: right-arrow
     - text: Explore the cqtkit repository 
-      link: https://github.com/a2-ai-gilead-collab/cqtkit
+      link: https://github.com/a2-ai/cqtkit
       icon: external
       variant: minimal
 ---
@@ -21,22 +21,22 @@ import { Card, CardGrid, Icon} from '@astrojs/starlight/components';
 ## `cqtkit` Highlights
 
 <CardGrid stagger>
-	<Card title = "Data Preprocessing Functions" icon = "pen">
-		<a href = "/reference/preprocessing/preprocessing">Reference of preprocessing functions</a>
+	<Card title="Data Preprocessing Functions" icon="pen">
+		<a href={`${import.meta.env.BASE_URL}/reference/preprocessing/preprocessing`}>Reference of preprocessing functions</a>
 	</Card>
-	<Card title = "Exploratory Data Analysis Functions" icon = "seti:code-search">
-		<a href = "/reference/eda/eda">Reference of EDA functions</a>
+	<Card title="Exploratory Data Analysis Functions" icon="seti:code-search">
+		<a href={`${import.meta.env.BASE_URL}/reference/eda/eda`}>Reference of EDA functions</a>
 	</Card>
-	<Card title = "Compute Functions" icon = "laptop">
-		<a href = "/reference/compute/compute">Reference of Computational functions</a>
+	<Card title="Compute Functions" icon="laptop">
+		<a href={`${import.meta.env.BASE_URL}/reference/compute/compute`}>Reference of Computational functions</a>
 	</Card>
-	<Card title = "Tabling Functions" icon = "list-format">
-		<a href = "/reference/tabulate/tabulate">Reference of Table functions</a>
+	<Card title="Tabling Functions" icon="list-format">
+		<a href={`${import.meta.env.BASE_URL}/reference/tabulate/tabulate`}>Reference of Table functions</a>
 	</Card>
-	<Card title = "Goodness of Fit Functions" icon = "approve-check">
-		<a href = "/reference/gof/gof">Reference of GoF functions</a>
+	<Card title="Goodness of Fit Functions" icon="approve-check">
+		<a href={`${import.meta.env.BASE_URL}/reference/gof/gof`}>Reference of GoF functions</a>
 	</Card>
-	<Card title = "Predict Functions" icon = "information">
-		<a href = "/reference/predict/predict">Reference of Prediction functions</a>
+	<Card title="Predict Functions" icon="information">
+		<a href={`${import.meta.env.BASE_URL}/reference/predict/predict`}>Reference of Prediction functions</a>
 	</Card>
 </CardGrid>
