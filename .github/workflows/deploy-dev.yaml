@@ -1,3 +1,4 @@
+
 name: Deploy main docs
 
 on:
@@ -11,35 +12,28 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - uses: actions/setup-node@v4
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
 
-      - name: Build docs (main)
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build docs from main
         run: npx astro build --base=/cqtkit-docs/
 
-      - name: Checkout gh-pages
+      - name: Checkout gh-pages branch
         uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: gh-pages
 
-      - name: Deploy to GitHub Pages (main)
+      - name: Deploy to GitHub Pages (preserving versioned docs)
         run: |
-          # Overwrite top-level docs with main build
-          rm -rf gh-pages/docs/cqtkit-docs/*
-          cp -r dist/* gh-pages/docs/cqtkit-docs/
-          
-          # Add .nojekyll if not present
-          touch gh-pages/docs/.nojekyll
-          
-          # Commit and push
-          cd gh-pages
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Update main docs"
-          git push
+          # Clean only top-level docs/cqtkit-docs content, but keep 'versions'
+          mkdir -p gh-pages/docs/cqtkit-docs
+
