@@ -12,8 +12,19 @@ gof_residuals_time_boxplots(
   conc_col,
   ntime_col,
   trt_col = NULL,
-  title = "",
-  legend_location = "right"
+  residual_references = c(
+  -2,
+  2
+),
+  legend_location = c(
+  "top",
+  "bottom",
+  "left",
+  "right",
+  "none"
+),
+  style = list(
+)
 )
 ```
 
@@ -27,8 +38,9 @@ gof_residuals_time_boxplots(
 | `conc_col` | an unquoted column name of concentration measurements |
 | `ntime_col` | an unquoted column name of nominal times |
 | `trt_col` | an unquoted column name of treatment group, default NULL will use for filling boxplots |
-| `title` | a string of title of plot |
+| `residual_references` | numeric vector of reference residual lines to add, default -2 and 2 |
 | `legend_location` | location of legend ggpubr::ggarrange argument |
+| `style` | a named list of any argument that can be passed to style_plot |
 
 ## Returns
 
@@ -37,9 +49,9 @@ a plot
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(data)
  fit <- fit_prespecified_model(
-   data,
+   data_proc,
    deltaQTCF,
    ID,
    CONC,
@@ -51,7 +63,7 @@ data <- preprocess(data)
  )
  
  gof_residuals_time_boxplots(
-   data,
+   data_proc,
    fit,
    deltaQTCF,
    CONC,

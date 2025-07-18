@@ -32,7 +32,7 @@ a bool of TRUE if hysteresis detected else FALSE
 
 ```r
 data <- preprocess(data)
- data <- dplyr::filter(data, DOSEF == 250)
+ data <- dplyr::filter(data, DOSE == 120)
  
  compute_potential_hysteresis(
    data,

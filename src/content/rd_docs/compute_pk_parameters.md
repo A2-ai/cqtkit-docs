@@ -34,9 +34,9 @@ a dataframe of pk parameters
 
 ```r
 compute_pk_parameters(
-   preprocess(data) %>% dplyr::filter(DOSEF != 0),
+   preprocess(data) %>% dplyr::filter(DOSE != 0),
    ID,
-   DOSEF,
+   DOSE,
    CONC,
    NTLD)
 ```

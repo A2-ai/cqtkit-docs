@@ -40,7 +40,7 @@ data <- preprocess(data)
  data <- dplyr::mutate(data, DOSEF = as.factor(DOSEF))
  
  compute_grouped_mean_sd(
-   data, deltaQTCF, NTLD, DOSEF, reference_dose = 0
+   data, deltaQTCF, NTLD, DOSE, reference_dose = 0
  )
 ```
 

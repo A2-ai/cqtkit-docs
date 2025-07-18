@@ -41,9 +41,9 @@ a gt table
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(data)
  fit <- fit_prespecified_model(
-   data,
+   data_proc,
    deltaQTCF,
    ID,
    CONC,

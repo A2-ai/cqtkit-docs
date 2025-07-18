@@ -66,7 +66,7 @@ data_proc <- preprocess(data)
    TRUE
  )
  pk_df <- compute_pk_parameters(
-   data_proc %>% dplyr::filter(DOSEF != 0),
+   data_proc %>% dplyr::filter(DOSE != 0),
    ID,
    DOSEF,
    CONC,
@@ -80,15 +80,15 @@ data_proc <- preprocess(data)
    list(
      CONC = 10,
      deltaQTCFBL = 0,
-     TRTG = "D - A2Ai",
+     TRTG = "Verapamil HCL",
      TAFD = "2 HR"),
    list(
      CONC = 0,
      deltaQTCFBL = 0,
-     TRTG = "P - placebo",
+     TRTG = "Placebo",
      TAFD = "2 HR"),
-   doses <- c(250, 500),
-   cmaxes <- c(pk_df[[1, "Cmax_gm"]],  pk_df[[2, "Cmax_gm"]])
+   doses <- c(120),
+   cmaxes <- c(pk_df[[1, "Cmax_gm"]])
  )
 ```
 

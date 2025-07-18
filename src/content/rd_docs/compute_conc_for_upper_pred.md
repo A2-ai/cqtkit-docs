@@ -52,7 +52,7 @@ mod <- fit_prespecified_model(
    mod,
    "CONC",
    "TRTG",
-   "D - A2Ai"
+   "Verapamil HCL"
  )
 ```
 

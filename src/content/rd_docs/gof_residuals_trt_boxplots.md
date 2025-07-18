@@ -12,8 +12,12 @@ gof_residuals_trt_boxplots(
   conc_col,
   ntime_col,
   trt_col = NULL,
-  title = "",
-  xlabel = NULL
+  residual_references = c(
+  -2,
+  2
+),
+  style = list(
+)
 )
 ```
 
@@ -27,8 +31,8 @@ gof_residuals_trt_boxplots(
 | `conc_col` | an unquoted column name of concentration measurements |
 | `ntime_col` | an unquoted column name of nominal times |
 | `trt_col` | an unquoted column name of treatment group, default NULL |
-| `title` | a string of title of plot |
-| `xlabel` | a string for the x-axis label of the plots |
+| `residual_references` | numeric vector of reference residual lines to add, default -2 and 2 |
+| `style` | a named list of any argument that can be passed to style_plot |
 
 ## Returns
 
@@ -37,9 +41,9 @@ a ggarrange plot
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(data)
  fit <- fit_prespecified_model(
-   data,
+   data_proc,
    deltaQTCF,
    ID,
    CONC,
@@ -49,7 +53,7 @@ data <- preprocess(data)
    "REML",
    TRUE
  )
- gof_residuals_trt_boxplots(data, fit, deltaQTCF, CONC, NTLD, TRTG)
+ gof_residuals_trt_boxplots(data_proc, fit, deltaQTCF, CONC, NTLD, TRTG)
 ```
 
 

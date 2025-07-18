@@ -34,8 +34,9 @@ nlme::lme model
 ## Examples
 
 ```r
-qt_mod <- fit_qtc_linear_model(baseline, QT, RR, ID)
- qtcb_mod <- fit_qtc_linear_model(baseline, QTCB, RR, ID)
+qt_mod <- fit_qtc_linear_model(bl, QT, RR, ID)
+ qtcb_mod <- fit_qtc_linear_model(bl, QTCB, RR, ID)
+ qtcf_mod <- fit_qtc_linear_model(bl, QTCF, RR, ID)
 ```
 
 

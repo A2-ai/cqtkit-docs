@@ -13,16 +13,9 @@ eda_hysteresis_loop_plot(
   dosef_col,
   group_col = NULL,
   reference_dose = NULL,
-  xlabel = "Mean Plasma Concentration (
-  ng/mL
-)",
-  ylabel = bquote(
-  "Mean " ~ Delta ~ "QTc (
-  ms
-)"
-),
-  title = "",
-  show_hysteresis_warning = TRUE
+  show_hysteresis_warning = TRUE,
+  style = list(
+)
 )
 ```
 
@@ -37,10 +30,8 @@ eda_hysteresis_loop_plot(
 | `dosef_col` | an unquoted column name of DOSE factors. |
 | `group_col` | an unquoted column name of additional grouping column |
 | `reference_dose` | Optional - DOSE of reference (i.e. placebo, DOSE == 0) measurements |
-| `xlabel` | a string for x label |
-| `ylabel` | a string for y label |
-| `title` | a string for plot title |
 | `show_hysteresis_warning` | boolean, if TRUE adds Hysteresis Detected to facet wrap label for groups with hysteresis detected |
+| `style` | a named list of any argument that can be passed to style_plot |
 
 ## Returns
 
@@ -50,9 +41,18 @@ a plot
 
 ```r
 data <- preprocess(data)
- data <- dplyr::mutate(data, DOSEF = factor(DOSEF))
  
- eda_hysteresis_loop_plot(data, NTLD, deltaQTCF, CONC, DOSEF, reference_dose = 0)
+ eda_hysteresis_loop_plot(
+   data,
+   NTLD,
+   deltaQTCF,
+   CONC,
+   DOSEF,
+   reference_dose = "0 mg",
+   style = set_style(
+     ylabel = bquote(Delta~Delta~"QTcF (ms)")
+   )
+ )
 ```
 
 

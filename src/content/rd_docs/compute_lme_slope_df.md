@@ -27,8 +27,17 @@ tibble of slope, lower_ci, upper_ci
 ## Examples
 
 ```r
-###QC: Fill in args
- lme_mod <- data %>% fit_qtc_linear_model()
+df <- data %>% preprocess()
+ 
+ lme_mod <- df %>%
+   fit_qtc_linear_model(
+       QT,
+       RR,
+       ID,
+       method = 'REML',
+       remove_rr_iiv = FALSE
+   )
+ 
  slope_data <- compute_lme_slope_df(lme_mod, RR, 0.9)
 ```
 

@@ -12,13 +12,14 @@ gof_qq_plots(
   conc_col,
   ntime_col,
   trt_col = NULL,
-  title = "",
   legend_location = c(
   "top",
   "bottom",
   "left",
   "right",
   "none"
+),
+  style = list(
 )
 )
 ```
@@ -33,8 +34,8 @@ gof_qq_plots(
 | `conc_col` | an unquoted column name of concentration measurements |
 | `ntime_col` | an unquoted column name of nominal times |
 | `trt_col` | an unquoted column name of treatment group, default NULL |
-| `title` | a string of title of plot |
 | `legend_location` | location of legend ggpubr::ggarrange argument |
+| `style` | a named list of any argument that can be passed to style_plot |
 
 ## Returns
 
@@ -43,9 +44,9 @@ a plot
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(data)
  fit <- fit_prespecified_model(
-   data,
+   data_proc,
    deltaQTCF,
    ID,
    CONC,
@@ -56,7 +57,7 @@ data <- preprocess(data)
    TRUE
  )
  
- gof_qq_plots(data, fit, deltaQTCF, CONC, NTLD, TRTG, legend_location = "top")
+ gof_qq_plots(data_proc, fit, deltaQTCF, CONC, NTLD, TRTG, legend_location = "top")
 ```
 
 
