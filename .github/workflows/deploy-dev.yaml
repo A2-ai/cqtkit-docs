@@ -35,15 +35,15 @@ jobs:
       - name: Deploy to GitHub Pages (preserving versioned docs)
         run: |
           # Clean only top-level docs/cqtkit-docs content, but keep 'versions'
-          mkdir -p gh-pages/docs/cqtkit-docs
+          mkdir -p gh-pages/docs/
           
           # Remove all files except 'versions' directory to preserve versioned docs
-          cd gh-pages/docs/cqtkit-docs
+          cd gh-pages/docs/
           find . -maxdepth 1 -not -name '.' -not -name 'versions' -exec rm -rf {} +
           cd ../../../
           
           # Copy new main docs to gh-pages
-          cp -r dist/* gh-pages/docs/cqtkit-docs/
+          cp -r dist/* gh-pages/docs/
           
           # Add .nojekyll in docs folder
           touch gh-pages/docs/.nojekyll

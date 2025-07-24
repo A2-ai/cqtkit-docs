@@ -32,9 +32,9 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          # Add this version to docs/cqtkit-docs/versions/
-          mkdir -p gh-pages/docs/cqtkit-docs/versions/${{ env.VERSION }}
-          cp -r dist/* gh-pages/docs/cqtkit-docs/versions/${{ env.VERSION }}/
+          # Add this version to docs/versions/
+          mkdir -p gh-pages/docs/versions/${{ env.VERSION }}
+          cp -r dist/* gh-pages/docs/versions/${{ env.VERSION }}/
           
           # Add .nojekyll in docs folder
           touch gh-pages/docs/.nojekyll
