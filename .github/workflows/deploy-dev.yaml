@@ -1,4 +1,3 @@
-
 name: Deploy main docs
 
 on:
@@ -7,51 +6,30 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build docs from main
-        run: npx astro build --base=/cqtkit-docs/
-
-      - name: Checkout gh-pages branch
-        uses: actions/checkout@v4
+      - run: npm ci
+      
+      - name: Build main docs
+        env:
+          ASTRO_BASE: "/cqtkit-docs/"
+          ASTRO_SITE: "https://a2-ai.github.io/"
+        run: npm run build
+        
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          ref: gh-pages
-          path: gh-pages
-
-      - name: Deploy to GitHub Pages (preserving versioned docs)
-        run: |
-          # Clean only top-level docs/cqtkit-docs content, but keep 'versions'
-          mkdir -p gh-pages/docs/
-          
-          # Remove all files except 'versions' directory to preserve versioned docs
-          cd gh-pages/docs/
-          find . -maxdepth 1 -not -name '.' -not -name 'versions' -exec rm -rf {} +
-          cd ../../../
-          
-          # Copy new main docs to gh-pages
-          cp -r dist/* gh-pages/docs/
-          
-          # Add .nojekyll in docs folder
-          touch gh-pages/docs/.nojekyll
-          
-          # Commit and push
-          cd gh-pages
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Deploy main docs from commit ${GITHUB_SHA::7}" || echo "No changes to commit"
-          git push
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: dist
+          destination_dir: docs
+          keep_files: true
