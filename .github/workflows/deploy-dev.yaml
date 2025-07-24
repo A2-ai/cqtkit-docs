@@ -36,4 +36,22 @@ jobs:
         run: |
           # Clean only top-level docs/cqtkit-docs content, but keep 'versions'
           mkdir -p gh-pages/docs/cqtkit-docs
-
+          
+          # Remove all files except 'versions' directory to preserve versioned docs
+          cd gh-pages/docs/cqtkit-docs
+          find . -maxdepth 1 -not -name '.' -not -name 'versions' -exec rm -rf {} +
+          cd ../../../
+          
+          # Copy new main docs to gh-pages
+          cp -r dist/* gh-pages/docs/cqtkit-docs/
+          
+          # Add .nojekyll in docs folder
+          touch gh-pages/docs/.nojekyll
+          
+          # Commit and push
+          cd gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Deploy main docs from commit ${GITHUB_SHA::7}" || echo "No changes to commit"
+          git push
