@@ -21,6 +21,8 @@ set_style(
   shape_order = NULL,
   linetype_order = NULL,
   legend.position = NULL,
+  legend.title.position = NULL,
+  legend.title.hjust = NULL,
   logx = NULL,
   logy = NULL,
   fill_alpha = NULL,
@@ -50,6 +52,8 @@ set_style(
 | `shape_order` | a numeric for setting shape legend order |
 | `linetype_order` | a numeric for setting linetype legend order |
 | `legend.position` | a string for legend position |
+| `legend.title.position` | a string for legend title position ("top", "left", "bottom", "right") |
+| `legend.title.hjust` | a string or numeric for legend title horizontal justification ("left"/0, "center"/0.5, "right"/1) |
 | `logx` | a boolean for setting x-axis to log scale |
 | `logy` | a boolean for setting y-axis to log scale |
 | `fill_alpha` | a numeric for controlling alpha of fill colors |
