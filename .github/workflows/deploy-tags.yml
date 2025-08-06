@@ -1,39 +1,63 @@
-name: Deploy versioned docs
+name: Build & deploy docs for each Git tag
 
 on:
   push:
-    tags: ['v*']
+    tags: ['v*']        # fires on v0.0.1, v0.0.2, etc.
+  workflow_dispatch:    # manual back-fill if you like
 
 permissions:
-  contents: write
-  pages: write
+  contents: write       # needed to push to gh-pages
+  pages:    write
   id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-      - name: Get version
+        with:
+          fetch-depth: 0
+          
+      - name: Pull shared versions.ts from main
+        run: |
+          git fetch origin main --depth=1
+          git show origin/main:src/data/versions.ts > src/data/versions.ts
+          echo "Using versions.ts from main:"
+          cat src/data/versions.ts
+
+      - name: Derive version slug
         id: vars
         run: echo "TAG=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
-        
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
       - run: npm ci
       
-      - name: Build versioned docs
+      - name: Astro build for ${{ steps.vars.outputs.TAG }}
         env:
           ASTRO_BASE: "/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }}/"
           ASTRO_SITE: "https://a2-ai.github.io/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }}/"
-        run: npm run build
-        
-      - name: Deploy to GitHub Pages
+        run: npm run build     # outputs into ./dist
+
+      - name: Copy version into site tree
+        run: |
+          mkdir -p site/docs/versions/${{ steps.vars.outputs.TAG }}
+          cp -a dist/. site/docs/versions/${{ steps.vars.outputs.TAG }}/
+          
+          cat > site/docs/index.html <<EOF
+          <!doctype html>
+          <meta http-equiv="refresh"
+          content="0; url=/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }}/">
+          <title>Redirecting…</title>
+          <p>Redirecting to documentation ${{ steps.vars.outputs.TAG }}…</p>
+          EOF
+
+      - name: Publish to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: dist
-          destination_dir: docs/versions/${{ steps.vars.outputs.TAG }}
+          publish_dir: site
           keep_files: true
