@@ -172,8 +172,14 @@ export default defineConfig({
 							collapsed: true,
 							items: [
 								'reference/data/datasets',
-								'reference/data/data',
-								'reference/data/bl',
+								'reference/data/cqtkit_data_verapamil',
+								'reference/data/cqtkit_data_bl_verpamil',
+								'reference/data/cqtkit_data_dofetilide',
+								'reference/data/cqtkit_data_bl_dofetilide',
+								'reference/data/cqtkit_data_quinidine',
+								'reference/data/cqtkit_data_bl_quinidine',
+								'reference/data/cqtkit_data_ranolazine',
+								'reference/data/cqtkit_data_bl_ranolazine,
 							]
 						},
 					],
