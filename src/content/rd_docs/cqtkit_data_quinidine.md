@@ -18,12 +18,6 @@ cqtkit_data_quinidine
 
 A tibble: 643 × 15:
 
-deltaHRBL Difference between baseline HR and mean baseline HR across subjects (ms)
-
-deltaQTCBBL Difference between baseline QTCB and mean baseline QTCB across subjects (ms)
-
-deltaQTCFBL Difference between baseline QTCF and mean baseline QTCF across subjects (ms)
-
 | Column | Description |
 |--------|-------------|
 | `ID` | Uniuqe subject identifier |
@@ -39,14 +33,17 @@ deltaQTCFBL Difference between baseline QTCF and mean baseline QTCF across subje
 | `HR` | HR after dose (bpm) |
 | `HRBL` | Baseline HR beore dose (ms) |
 | `HRBLM` | Mean baseline HR across subjects (ms) |
+| `deltaHRBL` | Difference between baseline HR and mean baseline HR across subjects (ms) |
 | `QT` | QT after dose (ms) |
 | `QTBL` | Baseline QT before dose (ms) |
 | `QTCB` | Bazett's corrected QT after dose (ms) |
 | `QTCBBL` | Baseline Bazett's corrected QT before dose (ms) |
 | `QTCBBLM` | Mean baseline QTCB across subjects (ms) |
+| `deltaQTCBBL` | Difference between baseline QTCB and mean baseline QTCB across subjects (ms) |
 | `QTCF` | Fridericia's corrected QT after dose (ms) |
 | `QTCFBL` | Baseline Fridericia's corrected QT before dose(ms) |
 | `QTCFBLM` | Mean baseline QTCF across subjects (ms) |
+| `deltaQTCFBL` | Difference between baseline QTCF and mean baseline QTCF across subjects (ms) |
 
 ## Source
 
