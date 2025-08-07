@@ -1,3 +1,3 @@
 export const VERSIONS = [
-	{ tag: '0.1.5', label: 'v0.1.5' },
+	{ tag: '1.0.0', label: 'v1.0.0' },
 ]
