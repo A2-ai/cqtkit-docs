@@ -16,9 +16,9 @@ compute_enGRI(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe of QTc dataset |
+| `data` | A data frame containing C-QT analysis dataset |
 | `conc_gm_col` | CONC geometric mean column name |
-| `ddqtc_col` | delta delta QTc column name |
+| `ddqtc_col` | Delta delta QTc column name |
 
 ## Returns
 
@@ -27,7 +27,7 @@ a numeric (ms) of enGRI score
 ## Examples
 
 ```r
-compute_enGRI(preprocess(data), CONC, deltaQTCF)
+compute_enGRI(preprocess(cqtkit_data_verapamil), CONC, deltaQTCF)
 ```
 
 

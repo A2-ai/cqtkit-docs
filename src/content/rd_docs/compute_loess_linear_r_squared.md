@@ -19,10 +19,10 @@ compute_loess_linear_r_squared(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe of QT dataset |
-| `deltaqtc_col` | an unquoted column name of dQTCF measurements |
-| `conc_col` | an unquoted column name of drug concentration measurements |
-| `span` | a fractional value for LOESS span parameter in geom_smooth if LOESS is used, default 0.99 |
+| `data` | A data frame containing C-QT analysis dataset |
+| `deltaqtc_col` | An unquoted column name for dQTCF measurements |
+| `conc_col` | An unquoted column name for drug concentration measurements |
+| `span` | A fractional value for LOESS span parameter in geom_smooth if LOESS is used, default 0.99 |
 
 ## Returns
 
@@ -31,7 +31,7 @@ a tibble of R_squared and adjusted R_squared
 ## Examples
 
 ```r
-compute_loess_linear_r_squared(data %>% preprocess(), deltaQTCF, CONC)
+compute_loess_linear_r_squared(cqtkit_data_verapamil %>% preprocess(), deltaQTCF, CONC)
 ```
 
 

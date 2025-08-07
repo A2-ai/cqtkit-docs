@@ -18,11 +18,11 @@ compute_potential_hysteresis(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe of QTc dataset |
-| `ntime_col` | an unquoted column name for nominal timepoints |
-| `deltaqtc_col` | an unquoted column name of dQTC measurements |
-| `conc_col` | an unquoted column name of concentration measurements |
-| `group_col` | an unquoted column name of grouping column - usually DOSEF |
+| `data` | A data frame containing C-QT analysis dataset |
+| `ntime_col` | An unquoted column name for nominal timepoints |
+| `deltaqtc_col` | An unquoted column name for dQTC measurements |
+| `conc_col` | An unquoted column name for concentration measurements |
+| `group_col` | An unquoted column name for grouping column - usually DOSEF |
 
 ## Returns
 
@@ -31,11 +31,11 @@ a bool of TRUE if hysteresis detected else FALSE
 ## Examples
 
 ```r
-data <- preprocess(data)
- data <- dplyr::filter(data, DOSE == 120)
+data_proc <- preprocess(cqtkit_data_verapamil)
+ data_proc <- dplyr::filter(data_proc, DOSE == 120)
  
  compute_potential_hysteresis(
-   data,
+   data_proc,
    NTLD,
    deltaQTCF,
    CONC,

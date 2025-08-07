@@ -22,15 +22,15 @@ fit_prespecified_model(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe of the QTc datset |
-| `dv_col` | an unquoted column name of dependent variable data |
-| `id_col` | an unquoted column name of ID data |
-| `conc_col` | an unquoted column name of CONC data |
-| `delta_bl_col` | an unquoted column name of delta_bl values, e.g. deltaQTCFBL, deltaHRBL |
-| `trt_col` | Optional - an unquoted column name of TRT data |
-| `tafd_col` | Optional - an unquoted column name of TAFD data |
-| `method` | method for nlme::lme fitting |
-| `remove_conc_iiv` | boolean for removing IIV on concentration slope parameter |
+| `data` | A data frame containing C-QT analysis dataset |
+| `dv_col` | An unquoted column name for dependent variable measurements |
+| `id_col` | An unquoted column name for ID data |
+| `conc_col` | An unquoted column name for drug concentration measurements |
+| `delta_bl_col` | An unquoted column name for delta_bl values, e.g. deltaQTCFBL, deltaHRBL |
+| `trt_col` | An unquoted column name for treatment group |
+| `tafd_col` | An unquoted column name for time measurements |
+| `method` | Method for nlme::lme fitting (ML or REML) |
+| `remove_conc_iiv` | Boolean for removing IIV on concentration slope parameter |
 
 ## Returns
 
@@ -39,9 +39,9 @@ an nlme::lme model fit to the data
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
- fit_prespecified_model(data, deltaQTCF, ID, CONC, deltaQTCFBL, TRTG, TAFD)
+ fit_prespecified_model(data_proc, deltaQTCF, ID, CONC, deltaQTCFBL, TRTG, TAFD)
 ```
 
 

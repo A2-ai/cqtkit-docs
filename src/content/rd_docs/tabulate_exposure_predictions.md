@@ -29,20 +29,20 @@ tabulate_exposure_predictions(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe of QTc dataset |
-| `fit` | the lme model to use for predictions |
-| `conc_col` | an unquoted column name of concentration measurements used to fit the model |
-| `treatment_predictors` | list of a values for contrast. conc will update |
-| `control_predictors` | list of b values for contrast |
-| `doses` | vector of Doses to show prediction at |
-| `cmaxes` | vector of Cmax for each dose |
-| `qtc_label` | label for QTc column name, default QTc (ms) |
+| `data` | A data frame containing C-QT analysis dataset |
+| `fit` | An nlme::lme model object from model fitting |
+| `conc_col` | An unquoted column name for concentration measurements used to fit the model |
+| `treatment_predictors` | A list of a values for contrast. conc will update |
+| `control_predictors` | A list of b values for contrast |
+| `doses` | A vector of doses to show prediction at |
+| `cmaxes` | A vector of Cmax for each dose |
+| `qtc_label` | A label for QTc column name, default QTc (ms) |
 | `conc_units` | Units for concentration default ng/mL |
-| `conf_int` | confidence interval for predictions. Default 90% |
-| `decimals` | number of decimals to format numbers to. default is 2 |
-| `scientific` | boolean for converting to scientific notation |
-| `title` | optional string for table title. Wrapped in gt::md() |
-| `...` | optional additional args to gt::tab_options |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
+| `decimals` | Number of decimals to format numbers to. default is 2 |
+| `scientific` | Boolean for converting to scientific notation |
+| `title` | Optional string for table title. Wrapped in gt::md() |
+| `...` | Optional additional args to gt::tab_options |
 
 ## Returns
 
@@ -52,7 +52,7 @@ a gt table of predicted dQTc/ddQTc values and their CI at tpx and or
 ## Examples
 
 ```r
-data_proc <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
  fit <- fit_prespecified_model(
    data_proc,

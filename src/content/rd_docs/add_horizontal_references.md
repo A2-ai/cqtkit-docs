@@ -15,8 +15,8 @@ add_horizontal_references(
 
 | Name | Description |
 |------|-------------|
-| `p` | ggplot object |
-| `reference_threshold` | numeric/vector of numerics for horizontal lines |
+| `p` | A ggplot object |
+| `reference_threshold` | Numeric/vector of numerics for horizontal lines |
 
 ## Returns
 
@@ -25,7 +25,7 @@ a ggplot object with refence horizontal lines
 ## Examples
 
 ```r
-data_proc <- data |> preprocess()
+data_proc <- cqtkit_data_verapamil |> preprocess()
  eda_mean_dv_over_time(
    data_proc,
    deltaQTCF,

@@ -17,10 +17,10 @@ compute_delta_qtcfblm(
 
 | Name | Description |
 |------|-------------|
-| `data` | dataframe of input data |
-| `id_col` | an unquoted column name of ID data |
-| `qtcfbl_col` | an unquoted column name of baseline QTCB measurements, default is QTCBBL |
-| `deduplicate` | boolean, whether baseline values are duplicated over rows. If true duplicates will be removed from average |
+| `data` | A data frame containing C-QT analysis dataset |
+| `id_col` | An unquoted column name for subject ID |
+| `qtcfbl_col` | An unquoted column name for baseline QTCB measurements, default is QTCBBL |
+| `deduplicate` | Boolean, whether baseline values are duplicated over rows. If true duplicates will be removed from average |
 
 ## Returns
 
@@ -29,7 +29,7 @@ a dataframe with deltaQTCFBL column
 ## Examples
 
 ```r
-compute_delta_qtcfblm(compute_qtcb_qtcf(data))
+compute_delta_qtcfblm(compute_qtcb_qtcf(cqtkit_data_verapamil))
 ```
 
 

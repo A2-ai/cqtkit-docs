@@ -17,10 +17,10 @@ compute_delta_hrblm(
 
 | Name | Description |
 |------|-------------|
-| `data` | input dataset for qtc analysis |
-| `id_col` | an unquoted column name of ID data |
-| `hrbl_col` | an unquoted column name of baseline HR measurements, default is HRBL |
-| `deduplicate` | boolean, whether baseline values are duplicated over rows. If true duplicates will be removed from average |
+| `data` | A data frame containing C-QT analysis dataset |
+| `id_col` | An unquoted column name for subject ID |
+| `hrbl_col` | An unquoted column name for baseline HR measurements, default is HRBL |
+| `deduplicate` | Boolean, whether baseline values are duplicated over rows. If true duplicates will be removed from average |
 
 ## Returns
 
@@ -29,7 +29,7 @@ data frame with deltaHRBL
 ## Examples
 
 ```r
-compute_delta_hrblm(data)
+compute_delta_hrblm(cqtkit_data_verapamil)
 ```
 
 

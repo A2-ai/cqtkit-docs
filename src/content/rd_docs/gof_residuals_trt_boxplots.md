@@ -25,14 +25,14 @@ gof_residuals_trt_boxplots(
 
 | Name | Description |
 |------|-------------|
-| `data` | A dataframe of QTc dataset |
-| `fit` | a deltaQTCF model fit |
-| `dv_col` | an unquoted column name of deltaQTC/Dependent variable measurements |
-| `conc_col` | an unquoted column name of concentration measurements |
-| `ntime_col` | an unquoted column name of nominal times |
-| `trt_col` | an unquoted column name of treatment group, default NULL |
-| `residual_references` | numeric vector of reference residual lines to add, default -2 and 2 |
-| `style` | a named list of any argument that can be passed to style_plot |
+| `data` | A data frame containing C-QT analysis dataset |
+| `fit` | An nlme::lme model object from model fitting |
+| `dv_col` | An unquoted column name for dependent variable measurements |
+| `conc_col` | An unquoted column name for drug concentration measurements |
+| `ntime_col` | An unquoted column name for nominal time since dose |
+| `trt_col` | An unquoted column name for treatment group" |
+| `residual_references` | Numeric vector of reference residual lines to add, default -2 and 2 |
+| `style` | A named list of arguments passed to style_plot() |
 
 ## Returns
 
@@ -41,7 +41,7 @@ a ggarrange plot
 ## Examples
 
 ```r
-data_proc <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  fit <- fit_prespecified_model(
    data_proc,
    deltaQTCF,

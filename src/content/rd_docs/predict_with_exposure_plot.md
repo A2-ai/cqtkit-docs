@@ -25,15 +25,15 @@ predict_with_exposure_plot(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe of QTc dataset |
-| `fit` | the lme model to make predictions with |
-| `conc_col` | an unquoted column name of drug concentration measurements |
-| `treatment_predictors` | list of a values for contrast. CONC will update |
-| `control_predictors` | list of b values for contrast |
-| `reference_threshold` | optional vector of numbers to add as horizontal dashed lines |
+| `data` | A data frame containing C-QT analysis dataset |
+| `fit` | An nlme::lme model object from model fitting |
+| `conc_col` | An unquoted column name for drug concentration measurements |
+| `treatment_predictors` | List of a values for contrast. CONC will update |
+| `control_predictors` | List of b values for contrast |
+| `reference_threshold` | Optional vector of numbers to add as horizontal dashed lines |
 | `cmaxes` | Optional - numeric vector of Cmax values to add as reference lines |
-| `conf_int` | confidence interval fraction, default = 0.9 |
-| `style` | a named list of any argument that can be passed to style_plot |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
+| `style` | A named list of arguments passed to style_plot() |
 
 ## Returns
 
@@ -42,9 +42,9 @@ a plot
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  fit <- fit_prespecified_model(
-   data,
+   data_proc,
    deltaQTCF,
    ID,
    CONC,
@@ -55,10 +55,10 @@ data <- preprocess(data)
    TRUE
  )
  pk_df <- compute_pk_parameters(
-   data %>% dplyr::filter(DOSE != 0), ID, DOSEF, CONC, NTLD)
+   data_proc %>% dplyr::filter(DOSE != 0), ID, DOSEF, CONC, NTLD)
  
  predict_with_exposure_plot(
-   data,
+   data_proc,
    fit,
    CONC,
    treatment_predictors = list(

@@ -19,12 +19,12 @@ compute_pk_parameters(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe of QTc dataset |
-| `id_col` | an unquoted column name of ID |
-| `dose_col` | an unquoted column name of Dose |
-| `conc_col` | an unquoted column name of Concentration measurements |
-| `ntime_col` | an unquoted column name nominal times |
-| `group_col` | an unquoted column name of additional grouping column |
+| `data` | A data frame containing C-QT analysis dataset |
+| `id_col` | An unquoted column name for subject ID |
+| `dose_col` | An unquoted column name for dose measurements |
+| `conc_col` | An unquoted column name for drug concentration measurements |
+| `ntime_col` | An unquoted column name for nominal times |
+| `group_col` | An unquoted column name for additional grouping variable |
 
 ## Returns
 
@@ -34,7 +34,7 @@ a dataframe of pk parameters
 
 ```r
 compute_pk_parameters(
-   preprocess(data) %>% dplyr::filter(DOSE != 0),
+   preprocess(cqtkit_data_verapamil) %>% dplyr::filter(DOSE != 0),
    ID,
    DOSE,
    CONC,

@@ -18,11 +18,11 @@ add_error_bars_to_plot(
 
 | Name | Description |
 |------|-------------|
-| `data` | dataframe from compute_grouped_mean_sd |
-| `p` | ggplot object to add error bars to |
-| `reference_dose` | reference dose value |
-| `error_bars` | type of errorbars to use, ci, se, sd, null |
-| `conf_int` | confidence interval for ci |
+| `data` | A dataframe from compute_grouped_mean_sd |
+| `p` | A ggplot object to add error bars to |
+| `reference_dose` | Reference dose value for comparison calculations |
+| `error_bars` | Type of errorbars to use (ci, se, sd, null) |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
 
 ## Returns
 

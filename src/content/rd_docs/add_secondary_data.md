@@ -23,16 +23,16 @@ add_secondary_data(
 
 | Name | Description |
 |------|-------------|
-| `primary_data` | dataframe of primary data plotted |
-| `secondary_data` | dataframe containing data you'd like to add to plot |
-| `reference_threshold` | reference threshold values |
-| `p` | a ggplot2 object to add data to |
-| `y_data` | string of column name in secondary data to use for plotting |
-| `group` | groupping column |
-| `scale` | multiplicative scaling factor |
-| `shift` | additive shifting factor |
-| `sec_ylabel` | secondary y axis label |
-| `ylabel` | primary y axis label |
+| `primary_data` | Dataframe of primary data plotted |
+| `secondary_data` | Dataframe containing data you'd like to add to plot |
+| `reference_threshold` | Reference threshold values |
+| `p` | A ggplot2 object to add data to |
+| `y_data` | String of column name in secondary data to use for plotting |
+| `group` | Grouping column |
+| `scale` | Multiplicative scaling factor |
+| `shift` | Additive shifting factor |
+| `sec_ylabel` | Secondary y axis label |
+| `ylabel` | Primary y axis label |
 
 ## Returns
 

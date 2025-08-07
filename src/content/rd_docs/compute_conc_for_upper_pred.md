@@ -21,13 +21,13 @@ compute_conc_for_upper_pred(
 
 | Name | Description |
 |------|-------------|
-| `data` | dataset of QTc analysis data |
-| `fit` | an nlme::lme fitted model |
-| `conc_col_name` | string of concentration (independent variable) column name |
-| `trt_col_name` | string of treatment group column name |
-| `treatment_group` | string of treatment group to make prediciton for |
-| `threshold` | value used as upper CI prediction, default = 10 |
-| `conf_int` | confidence interval, default = 0.9 |
+| `data` | A data frame containing C-QT analysis dataset |
+| `fit` | An nlme::lme model object from model fitting |
+| `conc_col_name` | String of concentration (independent variable) column name |
+| `trt_col_name` | String of treatment group column name |
+| `treatment_group` | String of treatment group to make prediction for |
+| `threshold` | Value used as upper CI prediction, default = 10 |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
 
 ## Returns
 
@@ -37,7 +37,7 @@ list of the two potential solutions.
 
 ```r
 mod <- fit_prespecified_model(
-   data %>% preprocess(),
+   cqtkit_data_verapamil %>% preprocess(),
    deltaQTCF,
    ID,
    CONC,
@@ -48,7 +48,7 @@ mod <- fit_prespecified_model(
    remove_conc_iiv = TRUE
  )
  compute_conc_for_upper_pred(
-   data %>% preprocess(),
+   cqtkit_data_verapamil %>% preprocess(),
    mod,
    "CONC",
    "TRTG",

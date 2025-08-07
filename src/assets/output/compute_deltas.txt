@@ -1,17 +1,18 @@
-# A tibble: 643 × 24
-      ID TRTG   DOSE DOSEU DOSEF  NTLD TAFD   CONC CONCU    RR    HR    QT  RRBL
+# A tibble: 643 × 30
+      ID TRTG   DOSE DOSEU DOSEF  NTLD TAFD   CONC CONCU    RR  RRBL    HR  HRBL
    <dbl> <fct> <dbl> <chr> <fct> <dbl> <chr> <dbl> <chr> <dbl> <dbl> <dbl> <dbl>
- 1  1001 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   968   62.0  381.  851 
- 2  1002 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1097.  54.7  405. 1193.
- 3  1003 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1026.  58.5  394.  923.
- 4  1004 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   862.  69.6  396.  883.
- 5  1005 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1060.  56.6  398  1126.
- 6  1006 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   998   60.2  385   999 
- 7  1007 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   919.  65.4  399.  909 
- 8  1008 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   827.  72.5  371   991 
- 9  1009 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   872.  68.9  368.  798.
-10  1010 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1070.  56.1  424. 1071 
+ 1  1001 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   968   851   62.0  70.5
+ 2  1002 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1097. 1193.  54.7  50.3
+ 3  1003 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1026.  923.  58.5  65.2
+ 4  1004 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   862.  883.  69.6  68.0
+ 5  1005 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1060. 1126.  56.6  53.3
+ 6  1006 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   998   999   60.2  60.2
+ 7  1007 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   919.  909   65.4  66.1
+ 8  1008 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   827.  991   72.5  60.6
+ 9  1009 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>   872.  798.  68.9  75.3
+10  1010 Plac…     0 mg    0 mg    0.5 0.5 …     0 <NA>  1070. 1071   56.1  56.0
 # ℹ 633 more rows
-# ℹ 11 more variables: HRBL <dbl>, QTBL <dbl>, QTCB <dbl>, QTCF <dbl>,
-#   QTCBBL <dbl>, QTCFBL <dbl>, deltaQTCB <dbl>, deltaQTCF <dbl>,
-#   deltaRR <dbl>, deltaHR <dbl>, deltaQT <dbl> 
+# ℹ 17 more variables: HRBLM <dbl>, deltaHRBL <dbl>, QT <dbl>, QTBL <dbl>,
+#   QTCB <dbl>, QTCBBL <dbl>, QTCBBLM <dbl>, deltaQTCBBL <dbl>, QTCF <dbl>,
+#   QTCFBL <dbl>, QTCFBLM <dbl>, deltaQTCFBL <dbl>, deltaQTCB <dbl>,
+#   deltaQTCF <dbl>, deltaRR <dbl>, deltaHR <dbl>, deltaQT <dbl> 

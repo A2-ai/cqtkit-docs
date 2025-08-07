@@ -24,16 +24,16 @@ eda_scatter_with_regressions(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe of QT dataset |
-| `ydata_col` | an unquoted column name of dependent variable measurements |
-| `xdata_col` | an unquoted column name of independent variable measurements |
-| `trt_col` | Optional - an unquoted column name of treatment group |
-| `reference_threshold` | optional vector of numbers to add as horizontal dashed lines |
-| `loess_line` | a bool to add LOESS regression line |
-| `linear_line` | a bool to add a linear regression line |
-| `span` | a fractional value for LOESS span parameter in geom_smooth if LOESS is used, default 0.99 |
-| `conf_int` | a fractional numeric for setting confidence interval, default = 9 |
-| `style` | a named list of any argument that can be passed to style_plot. Shapes are mapped to treatment groups and can be controlled via the shapes parameter in style |
+| `data` | A data frame containing C-QT analysis dataset |
+| `ydata_col` | An unquoted column name for dependent variable measurements |
+| `xdata_col` | An unquoted column name for independent variable measurements |
+| `trt_col` | An unquoted column name for treatment group |
+| `reference_threshold` | Optional vector of numbers to add as horizontal dashed lines |
+| `loess_line` | A bool to add LOESS regression line |
+| `linear_line` | A bool to add a linear regression line |
+| `span` | A fractional value for LOESS span parameter in geom_smooth if LOESS is used, default 0.99 |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
+| `style` | A named list of arguments passed to style_plot(). Shapes are mapped to treatment groups and can be controlled via the shapes parameter in style |
 
 ## Returns
 
@@ -42,10 +42,10 @@ a plot
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
  eda_scatter_with_regressions(
-   data,
+   data_proc,
    deltaQTCF,
    CONC,
    TRTG,

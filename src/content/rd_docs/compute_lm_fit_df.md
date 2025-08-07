@@ -17,10 +17,10 @@ compute_lm_fit_df(
 
 | Name | Description |
 |------|-------------|
-| `data` | QTc dataset |
-| `xdata_col` | an unquoted column name of x data |
-| `ydata_col` | an unquoted column name of y data |
-| `conf_int` | confidence interval |
+| `data` | A data frame containing C-QT analysis dataset |
+| `xdata_col` | An unquoted column name for independent variable measurements |
+| `ydata_col` | An unquoted column name for dependent variable measurements |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
 
 ## Returns
 
@@ -29,9 +29,9 @@ the fitted parameters of a lm of y ~ x
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
- compute_lm_fit_df(data, RR, QT)
+ compute_lm_fit_df(data_proc, RR, QT)
 ```
 
 

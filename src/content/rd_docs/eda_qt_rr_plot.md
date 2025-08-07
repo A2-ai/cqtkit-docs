@@ -28,17 +28,17 @@ eda_qt_rr_plot(
 
 | Name | Description |
 |------|-------------|
-| `data` | dataframe containing QT dataset |
-| `rr_col` | an unquoted column name of RR data |
-| `qt_col` | an unquoted column name of QT data |
-| `id_col` | an unquoted column name of ID data |
-| `trt_col` | an unquoted column name of Treatment group data |
-| `conf_int` | confidence interval for lm regression coefficients, default 0.90 |
-| `model_type` | lm or lme, which model to fit for showing on plot |
-| `show_model_results` | a bool for showing regression slope on plot. |
-| `method` | method for nlme::lme fitting |
-| `remove_rr_iiv` | a boolean for removing IIV on RR slope |
-| `style` | a named list of any argument that can be passed to style_plot |
+| `data` | A data frame containing C-QT analysis dataset |
+| `rr_col` | An unquoted column name for RR measurements |
+| `qt_col` | An unquoted column name for QT measurements |
+| `id_col` | An unquoted column name for subject ID |
+| `trt_col` | An unquoted column name for treatment group |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
+| `model_type` | Lm or lme, which model to fit for showing on plot |
+| `show_model_results` | A bool for showing regression slope on plot. |
+| `method` | Method for nlme::lme fitting (ML or REML) |
+| `remove_rr_iiv` | A boolean for removing IIV on RR slope |
+| `style` | A named list of arguments passed to style_plot() |
 
 ## Returns
 
@@ -47,9 +47,9 @@ a plot of the input QT against RR
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
- eda_qt_rr_plot(data, RR, QT, ID, model_type = "lme")
+ eda_qt_rr_plot(data_proc, RR, QT, ID, model_type = "lme")
 ```
 
 

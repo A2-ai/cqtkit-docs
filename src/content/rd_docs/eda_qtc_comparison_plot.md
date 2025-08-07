@@ -32,21 +32,21 @@ eda_qtc_comparison_plot(
 
 | Name | Description |
 |------|-------------|
-| `data` | dataframe containing QTc data |
-| `rr_col` | an unquoted column name of RR data |
-| `qt_col` | an unquoted column name of QT data |
-| `qtcb_col` | an unquoted column name of Bazett corrected QT data |
-| `qtcf_col` | an unquoted column name of Fridericia corrected QT data |
-| `qtcp_col` | Optional - an unquoted column name of Population corrected QT data |
-| `id_col` | an unquoted column name of ID data |
-| `trt_col` | Optional - an unquoted column name of treatment group data |
-| `legend_location` | string for legend location, top,bottom,left,right |
-| `model_type` | lm or lme, which model to fit for showing on plot |
-| `show_model_results` | a bool for showing regression slope on plot. |
-| `method` | method for nlme::lme fitting |
-| `remove_rr_iiv` | a boolean for removing IIV on RR slope |
-| `conf_int` | confidence interval for lm results default 0.90 |
-| `style` | named list of any argument that can be passed to style_plots |
+| `data` | A data frame containing C-QT analysis dataset |
+| `rr_col` | An unquoted column name for RR measurements |
+| `qt_col` | An unquoted column name for QT measurements |
+| `qtcb_col` | An unquoted column name for Bazett corrected QT data |
+| `qtcf_col` | An unquoted column name for Fridericia corrected QT data |
+| `qtcp_col` | An unquoted column name for QTc measurements |
+| `id_col` | An unquoted column name for subject ID |
+| `trt_col` | An unquoted column name for treatment group data |
+| `legend_location` | String for legend position (top, bottom, left, right) |
+| `model_type` | Lm or lme, which model to fit for showing on plot |
+| `show_model_results` | A bool for showing regression slope on plot. |
+| `method` | Method for nlme::lme fitting (ML or REML) |
+| `remove_rr_iiv` | A boolean for removing IIV on RR slope |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
+| `style` | A named list of arguments passed to style_plot() |
 
 ## Returns
 
@@ -55,10 +55,10 @@ a plot
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
  eda_qtc_comparison_plot(
-   data,
+   data_proc,
    RR,
    QT,
    QTCB,

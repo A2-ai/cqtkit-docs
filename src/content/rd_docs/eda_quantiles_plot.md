@@ -21,13 +21,13 @@ eda_quantiles_plot(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe of QTc dataset |
-| `xdata_col` | an unquoted column name of x data |
-| `ydata_col` | an unquoted column name of y data |
-| `trt_col` | an unquoted column name of treatment column to stratify the data by |
-| `conf_int` | a fractional value to set confidence interval, default = 0.9 |
-| `error_bars` | a string for setting which errorbars are shown, CI, SE, SD |
-| `style` | a named list of any argument that can be passed to style_plot |
+| `data` | A data frame containing C-QT analysis dataset |
+| `xdata_col` | An unquoted column name for x data |
+| `ydata_col` | An unquoted column name for y data |
+| `trt_col` | An unquoted column name for treatment column to stratify the data by |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
+| `error_bars` | A string for setting which errorbars are shown, CI, SE, SD |
+| `style` | A named list of arguments passed to style_plot() |
 
 ## Returns
 
@@ -36,10 +36,10 @@ a plot
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
  eda_quantiles_plot(
-   data,
+   data_proc,
    RR,
    QTCF,
    trt_col = TRTG,

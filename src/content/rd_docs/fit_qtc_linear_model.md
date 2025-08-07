@@ -20,12 +20,12 @@ fit_qtc_linear_model(
 
 | Name | Description |
 |------|-------------|
-| `data` | QTc dataset |
-| `qt_col` | unquoted column name of QT(c) data |
-| `rr_col` | unquoted column name of RR data |
-| `id_col` | unquoted column name of ID data |
-| `method` | method for fitting (ML or REML) |
-| `remove_rr_iiv` | boolean for removing IIV on slope |
+| `data` | A data frame containing C-QT analysis dataset |
+| `qt_col` | An unquoted column name for QT measurements |
+| `rr_col` | An unquoted column name for RR measurements |
+| `id_col` | An unquoted column name for subject ID |
+| `method` | Method for nlme::lme fitting (ML or REML) |
+| `remove_rr_iiv` | Boolean for removing IIV on slope |
 
 ## Returns
 
@@ -34,7 +34,9 @@ nlme::lme model
 ## Examples
 
 ```r
-qt_mod <- fit_qtc_linear_model(bl, QT, RR, ID)
+bl <- compute_qtcb_qtcf(cqtkit_data_bl_verapamil, qtbl_col = NULL, rrbl_col = NULL)
+ 
+ qt_mod <- fit_qtc_linear_model(bl, QT, RR, ID)
  qtcb_mod <- fit_qtc_linear_model(bl, QTCB, RR, ID)
  qtcf_mod <- fit_qtc_linear_model(bl, QTCF, RR, ID)
 ```

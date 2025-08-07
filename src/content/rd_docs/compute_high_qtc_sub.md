@@ -17,10 +17,10 @@ compute_high_qtc_sub(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe with QTc dataset |
-| `qtc_col` | an unquoted column name containing QTc data |
-| `deltaqtc_col` | an unquoted column name containing deltaQTc data |
-| `group_col` | an optional column name for grouping data |
+| `data` | A data frame containing C-QT analysis dataset |
+| `qtc_col` | An unquoted column name for containing QTc data |
+| `deltaqtc_col` | An unquoted column name for containing deltaQTc data |
+| `group_col` | An optional column name for grouping data |
 
 ## Returns
 
@@ -29,7 +29,7 @@ a tibble containing the number of subjects with high QTc values
 ## Examples
 
 ```r
-data_proc <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
  compute_high_qtc_sub(data_proc, QTCF, deltaQTCF)
 ```

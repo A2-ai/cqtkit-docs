@@ -4,19 +4,19 @@ datasets
 
 ## Description
 
-testing data
+Baseline data for ranolazine C-QT study
 
 ## Usage
 
 ```r
-data
+cqtkit_data_bl_ranolazine
 ```
 
 ## Format
 
-data
+cqtkit_data_bl_ranolazine
 
-A tibble: 643 × 15:
+A data frame with 65 rows and 10 columns:
 
 | Column | Description |
 |--------|-------------|
@@ -24,16 +24,10 @@ A tibble: 643 × 15:
 | `TRTG` | Treatment Group (Drug or Placebo) |
 | `DOSE` | numeric value of dose |
 | `DOSEU` | Units of DOSE |
-| `DOSEF` | Factor value of dose |
-| `NTLD` | Nominal time since last dose (h) |
-| `CONC` | Drug concentration |
-| `CONCU` | Drug concentration unit |
-| `RR` | RR after dose (ms) |
-| `HR` | HR after dose (bpm) |
-| `QT` | QT after dose (ms) |
-| `RRBL` | Baseline RR (ms) |
-| `HRBL` | Baseline HR (bpm) |
-| `QTBL` | Baseline QT (ms) |
+| `TPT` | Timepoint of collection relative to first dose (h) |
+| `RR` | RR before dose (ms) |
+| `HR` | HR before dose (bpm) |
+| `QT` | QT before dose (ms) |
 
 ## Source
 

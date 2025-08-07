@@ -19,12 +19,12 @@ compute_fit_results(
 
 | Name | Description |
 |------|-------------|
-| `data` | A dataframe of QTc dataset |
-| `fit` | model fit |
-| `dv_col` | an unquoted column name of observed model dependent variable |
-| `conc_col` | an unquoted column name of observed Concentration measurements |
-| `ntime_col` | an unquoted column name of time points for measurements |
-| `trt_col` | an unquoted column name of treatment group, default NULL |
+| `data` | A data frame containing C-QT analysis dataset |
+| `fit` | An nlme::lme model object from model fitting |
+| `dv_col` | An unquoted column name for observed model dependent variable |
+| `conc_col` | An unquoted column name for observed Concentration measurements |
+| `ntime_col` | An unquoted column name for time points for measurements |
+| `trt_col` | An unquoted column name for treatment group, default NULL |
 
 ## Returns
 
@@ -33,10 +33,10 @@ a dataframe of predictions and residuals.
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
  fit <- fit_prespecified_model(
-   data,
+   data_proc,
    deltaQTCF,
    ID,
    CONC,
@@ -47,7 +47,7 @@ data <- preprocess(data)
    TRUE
  )
  
- compute_fit_results(data, fit, deltaQTCF, CONC, NTLD)
+ compute_fit_results(data_proc, fit, deltaQTCF, CONC, NTLD)
 ```
 
 

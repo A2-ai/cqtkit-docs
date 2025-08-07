@@ -37,30 +37,30 @@ set_style(
 
 | Name | Description |
 |------|-------------|
-| `style` | an optional style list to update |
-| `title` | a string for a plot title |
-| `xlabel` | a string for x-axis label |
-| `ylabel` | a string for y-axis label |
-| `xlims` | a tuple of numbers specifying limits for x-axis |
-| `ylims` | a tuple of numbers specifying limits for y-axis |
-| `colors` | a named character vector for setting colors |
-| `labels` | a named character vector for setting legend labels |
-| `shapes` | a named character vector for setting geom_point shapes |
-| `legend` | a string for setting color legend title |
-| `shape_legend` | a string for setting shape legend title |
-| `color_order` | a numeric for setting color legend order |
-| `shape_order` | a numeric for setting shape legend order |
-| `linetype_order` | a numeric for setting linetype legend order |
-| `legend.position` | a string for legend position |
-| `legend.title.position` | a string for legend title position ("top", "left", "bottom", "right") |
-| `legend.title.hjust` | a string or numeric for legend title horizontal justification ("left"/0, "center"/0.5, "right"/1) |
-| `logx` | a boolean for setting x-axis to log scale |
-| `logy` | a boolean for setting y-axis to log scale |
-| `fill_alpha` | a numeric for controlling alpha of fill colors |
-| `fill_legend` | a string to replace fill legend title |
-| `fill_order` | a numeric for setting fill legend order |
-| `caption_hjust` | a string or numeric for caption horizontal justification ("left"/0, "center"/0.5, "right"/1) |
-| `legend_nrow` | a numeric for number of rows in legend |
+| `style` | An optional named list of style arguments to update |
+| `title` | A string for a plot title |
+| `xlabel` | A string for x-axis label |
+| `ylabel` | A string for y-axis label |
+| `xlims` | A tuple of numbers specifying limits for x-axis |
+| `ylims` | A tuple of numbers specifying limits for y-axis |
+| `colors` | A named character vector for setting colors |
+| `labels` | A named character vector for setting legend labels |
+| `shapes` | A named character vector for setting geom_point shapes |
+| `legend` | A string for setting color legend title |
+| `shape_legend` | A string for setting shape legend title |
+| `color_order` | A numeric for setting color legend order |
+| `shape_order` | A numeric for setting shape legend order |
+| `linetype_order` | A numeric for setting linetype legend order |
+| `legend.position` | A string for legend position |
+| `legend.title.position` | A string for legend title position ("top", "left", "bottom", "right") |
+| `legend.title.hjust` | A string or numeric for legend title horizontal justification ("left"/0, "center"/0.5, "right"/1) |
+| `logx` | A boolean for setting x-axis to log scale |
+| `logy` | A boolean for setting y-axis to log scale |
+| `fill_alpha` | A numeric for controlling alpha of fill colors |
+| `fill_legend` | A string to replace fill legend title |
+| `fill_order` | A numeric for setting fill legend order |
+| `caption_hjust` | A string or numeric for caption horizontal justification ("left"/0, "center"/0.5, "right"/1) |
+| `legend_nrow` | A numeric for number of rows in legend |
 
 ## Returns
 
@@ -69,7 +69,7 @@ a named list for using with style_plot
 ## Examples
 
 ```r
-data_proc <- data |> preprocess()
+data_proc <- cqtkit_data_verapamil |> preprocess()
  style = set_style(
    colors = c(
      "0 mg Placebo" = "grey"

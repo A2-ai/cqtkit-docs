@@ -32,19 +32,19 @@ predict_with_observations_plot(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe of QTc dataset |
-| `fit` | the lme model to make predictions with |
-| `conc_col` | an unquoted column name of drug concentration measurements |
-| `dv_col` | an unquoted column name of dQTC measurements |
-| `id_col` | an unquoted column name of ID data, used when control predictors is provided to compute delta delta dv |
-| `ntime_col` | an unquoted column name of Nominal time data, used when control predictors is provided to compute delta delta dv |
-| `trt_col` | an unquoted column name of Treatment group data, used when control predictors is provided to compute delta delta dv |
-| `treatment_predictors` | a list for predictions with model. Should contain a value for each predictor in the model. |
-| `control_predictors` | an optional list for contrast predictions |
-| `reference_threshold` | optional vector of numbers to add as horizontal dashed lines |
-| `conf_int` | a float for the fractional confidence interval. default = 0.9 |
-| `contrast_method` | a string specifying contrast method when using control_predictors: "matched" for individual ID+time matching (crossover studies), "group" for group-wise subtraction (parallel studies) |
-| `style` | a named list of any argument that can be passed to style_plot |
+| `data` | A data frame containing C-QT analysis dataset |
+| `fit` | An nlme::lme model object from model fitting |
+| `conc_col` | An unquoted column name for drug concentration measurements |
+| `dv_col` | An unquoted column name for dependent variable measurements |
+| `id_col` | An unquoted column name for subject ID |
+| `ntime_col` | An unquoted column name for nominal time since dose |
+| `trt_col` | An unquoted column name for treatment group |
+| `treatment_predictors` | A list for predictions with model. Should contain a value for each predictor in the model. |
+| `control_predictors` | An optional list for contrast predictions |
+| `reference_threshold` | Optional vector of numbers to add as horizontal dashed lines |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
+| `contrast_method` | A string specifying contrast method when using control_predictors: "matched" for individual ID+time matching (crossover studies), "group" for group-wise subtraction (parallel studies) |
+| `style` | A named list of arguments passed to style_plot() |
 
 ## Returns
 
@@ -53,9 +53,9 @@ a plot
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  fit <- fit_prespecified_model(
-   data,
+   data_proc,
    deltaQTCF,
    ID,
    CONC,
@@ -66,7 +66,7 @@ data <- preprocess(data)
    TRUE
  )
  predict_with_observations_plot(
-   data,
+   data_proc,
    fit,
    CONC,
    deltaQTCF,

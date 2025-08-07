@@ -23,16 +23,16 @@ tabulate_model_fit_parameters(
 
 | Name | Description |
 |------|-------------|
-| `fit` | fitted model |
-| `trt_col_name` | string of column name of trt used in model fitting |
-| `tafd_col_name` | string of column name of tafd used in model fitting |
-| `id_col_name` | string of column name of id used in model fitting for random effects |
-| `conf_int` | confidence interval, default = 0.95 |
-| `decimals` | number of decimals to format table to, default is 2 |
-| `show_standard_error` | boolean, displays standard error of fixed effects estimates in table |
-| `scientific` | boolean for converting numbers to scientific notation if less than decimals |
-| `title` | optional string for adding tab_header. It will be wrapped in gt::md() |
-| `...` | optional additional arguments for gt::tab_options |
+| `fit` | An nlme::lme model object from model fitting |
+| `trt_col_name` | A string of column name of trt used in model fitting |
+| `tafd_col_name` | A string of column name of tafd used in model fitting |
+| `id_col_name` | A string of column name of id used in model fitting for random effects |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
+| `decimals` | Number of decimals to format table to, default is 2 |
+| `show_standard_error` | Boolean that displays standard error of fixed effects estimates in table |
+| `scientific` | Boolean for converting numbers to scientific notation if less than decimals |
+| `title` | Optional string for adding tab_header. It will be wrapped in gt::md() |
+| `...` | Optional additional arguments for gt::tab_options |
 
 ## Returns
 
@@ -41,7 +41,7 @@ a gt table
 ## Examples
 
 ```r
-data_proc <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  fit <- fit_prespecified_model(
    data_proc,
    deltaQTCF,

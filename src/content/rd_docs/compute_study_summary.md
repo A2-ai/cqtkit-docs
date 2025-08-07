@@ -17,10 +17,10 @@ compute_study_summary(
 
 | Name | Description |
 |------|-------------|
-| `data` | cqt-dataset |
-| `trt_col` | column name of treatement group |
-| `id_col` | column name of ID |
-| `group_col` | optional additional grouping column |
+| `data` | A data frame containing C-QT analysis dataset |
+| `trt_col` | Column name of treatment group |
+| `id_col` | Column name of ID |
+| `group_col` | Optional additional grouping column |
 
 ## Returns
 
@@ -29,7 +29,7 @@ a tibble of number of subjects in trt_col (or trt_col + group_col) along with to
 ## Examples
 
 ```r
-data_proc <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
  compute_study_summary(data_proc, TRTG, ID)
 ```

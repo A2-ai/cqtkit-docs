@@ -18,11 +18,11 @@ compute_model_fit_parameters(
 
 | Name | Description |
 |------|-------------|
-| `fit` | a model fit |
-| `trt_col_name` | string of column name of trt used in model fitting |
-| `tafd_col_name` | string of column name of tafd used in model fitting |
-| `id_col_name` | string of column name of the id used in model fitting for random effects |
-| `conf_int` | confidence interval, default = 0.95 |
+| `fit` | An nlme::lme model object from model fitting |
+| `trt_col_name` | String of column name of trt used in model fitting |
+| `tafd_col_name` | String of column name of tafd used in model fitting |
+| `id_col_name` | String of column name of the id used in model fitting for random effects |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
 
 ## Returns
 
@@ -31,10 +31,10 @@ a tibble of model_fit parameters
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
  fit <- fit_prespecified_model(
-   data,
+   data_proc,
    deltaQTCF,
    ID,
    CONC,

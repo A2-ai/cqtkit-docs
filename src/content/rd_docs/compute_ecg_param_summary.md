@@ -21,14 +21,14 @@ compute_ecg_param_summary(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe containing QTc dataset |
-| `ntime_col` | an unquoted column name for nominal time data |
-| `dose_col` | an unquoted column name for dose data |
-| `ecg_param_col` | an unquoted column name for QTc measurements |
-| `deltaecg_param_col` | an unquoted column name for deltaQTc measurements |
-| `group_col` | an unquoted column name for additional grouping column |
-| `reference_dose` | an optional argument for specifying reference dose for delta delta QTc computation |
-| `conf_int` | an optional argument for setting confidence interval. default 0.95 |
+| `data` | A data frame containing C-QT analysis dataset |
+| `ntime_col` | An unquoted column name for nominal time data |
+| `dose_col` | An unquoted column name for dose data |
+| `ecg_param_col` | An unquoted column name for QTc measurements |
+| `deltaecg_param_col` | An unquoted column name for deltaQTc measurements |
+| `group_col` | An unquoted column name for additional grouping column |
+| `reference_dose` | Reference dose value for comparison calculations |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
 
 ## Returns
 
@@ -37,9 +37,9 @@ a tibble of QTc/deltaQTc/delta delta QTc summary over dose and time.
 ## Examples
 
 ```r
-data <- data %>% preprocess()
+data_proc <- cqtkit_data_verapamil %>% preprocess()
  
- compute_ecg_param_summary(data, NTLD, DOSEF, QTCF, deltaQTCF)
+ compute_ecg_param_summary(data_proc, NTLD, DOSEF, QTCF, deltaQTCF)
 ```
 
 

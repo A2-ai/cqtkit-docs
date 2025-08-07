@@ -4,17 +4,17 @@ datasets
 
 ## Description
 
-testing baseline data
+Baseline data for verapamil C-QT study
 
 ## Usage
 
 ```r
-bl
+cqtkit_data_bl_verapamil
 ```
 
 ## Format
 
-bl
+cqtkit_data_bl_verapamil
 
 A data frame with 65 rows and 10 columns:
 
@@ -28,8 +28,6 @@ A data frame with 65 rows and 10 columns:
 | `RR` | RR before dose (ms) |
 | `HR` | HR before dose (bpm) |
 | `QT` | QT before dose (ms) |
-| `QTCB` | Bazett Corected QT (ms) |
-| `QTCF` | Fridericia Corrected QT (ms) |
 
 ## Source
 

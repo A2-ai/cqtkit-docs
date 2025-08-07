@@ -22,13 +22,13 @@ compute_exposure_predictions(
 
 | Name | Description |
 |------|-------------|
-| `data` | a dataframe of QTc dataset |
-| `fit` | the lme model to use for predictions |
-| `conc_col` | an unquoted column name of concentration measurements used to fit the model |
-| `treatment_predictors` | list of a values for contrast. conc will update |
-| `control_predictors` | list of b values for contrast |
-| `cmaxes` | vector of Cmax for each dose |
-| `conf_int` | confidence interval for predictions. Default 90% |
+| `data` | A data frame containing C-QT analysis dataset |
+| `fit` | An nlme::lme model object from model fitting |
+| `conc_col` | An unquoted column name for concentration measurements used to fit the model |
+| `treatment_predictors` | List of a values for contrast. conc will update |
+| `control_predictors` | List of b values for contrast |
+| `cmaxes` | Vector of Cmax for each dose |
+| `conf_int` | Numeric confidence interval level (default: 0.9) |
 
 ## Returns
 
@@ -38,17 +38,21 @@ A data frame that contains median concentration,
 ## Examples
 
 ```r
-data <- preprocess(data)
+data_proc <- preprocess(cqtkit_data_verapamil)
  
  fit <- nlme::lme(
     fixed = deltaQTCF ~ 1 + CONC,
     random = ~ 1 | ID,
     method = "REML",
-    data = data
+    data = data_proc
  )
  
  compute_exposure_predictions(
-   data, fit, CONC, list(CONC = 10))
+   data_proc,
+   fit,
+   CONC,
+   list(CONC = 10)
+ )
 ```
 
 
