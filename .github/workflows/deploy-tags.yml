@@ -42,7 +42,9 @@ jobs:
           for tag in ${{ steps.all-tags.outputs.tags }}; do
             echo "Building version $tag..."
             
-            # Checkout the tag
+            # Reset any changes and checkout the tag
+            git reset --hard HEAD
+            git clean -fd
             git checkout $tag
             
             # Install dependencies for this version
