@@ -36,8 +36,6 @@ jobs:
           git fetch origin main --depth=1
           LATEST_VERSIONS=$(git show origin/main:src/data/versions.ts)
           
-          mkdir -p site/docs/versions
-          
           # Build each version
           for tag in ${{ steps.all-tags.outputs.tags }}; do
             echo "Building version $tag..."
@@ -46,6 +44,9 @@ jobs:
             git reset --hard HEAD
             git clean -fd
             git checkout $tag
+            
+            # Recreate site directory structure
+            mkdir -p site/docs/versions
             
             # Install dependencies for this version
             npm ci
