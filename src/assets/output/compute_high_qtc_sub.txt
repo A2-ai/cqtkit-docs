@@ -1,4 +1,0 @@
-# A tibble: 1 × 6
-  group n_QTc_gt_450 n_QTc_gt_480 n_QTc_gt_500 n_dQTc_gt_30 n_dQTc_gt_60
-  <chr>        <int>        <int>        <int>        <int>        <int>
-1 Total            0            0            0            0            0 
