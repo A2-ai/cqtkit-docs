@@ -10,6 +10,7 @@ eda_quantiles_plot(
   xdata_col,
   ydata_col,
   trt_col = NULL,
+  plot_observations = FALSE,
   conf_int = 0.9,
   error_bars = "CI",
   style = list(
@@ -25,6 +26,7 @@ eda_quantiles_plot(
 | `xdata_col` | An unquoted column name for x data |
 | `ydata_col` | An unquoted column name for y data |
 | `trt_col` | An unquoted column name for treatment column to stratify the data by |
+| `plot_observations` | A boolean to include the raw individual data points as background points, default FALSE |
 | `conf_int` | Numeric confidence interval level (default: 0.9) |
 | `error_bars` | A string for setting which errorbars are shown, CI, SE, SD |
 | `style` | A named list of arguments passed to style_plot() |

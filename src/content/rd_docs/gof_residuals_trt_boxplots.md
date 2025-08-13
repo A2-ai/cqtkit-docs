@@ -16,6 +16,13 @@ gof_residuals_trt_boxplots(
   -2,
   2
 ),
+  legend_location = c(
+  "top",
+  "bottom",
+  "left",
+  "right",
+  "none"
+),
   style = list(
 )
 )
@@ -32,6 +39,7 @@ gof_residuals_trt_boxplots(
 | `ntime_col` | An unquoted column name for nominal time since dose |
 | `trt_col` | An unquoted column name for treatment group" |
 | `residual_references` | Numeric vector of reference residual lines to add, default -2 and 2 |
+| `legend_location` | String for legend position (top, bottom, left, right) |
 | `style` | A named list of arguments passed to style_plot() |
 
 ## Returns

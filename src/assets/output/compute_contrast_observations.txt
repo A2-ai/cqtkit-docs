@@ -13,16 +13,16 @@
 10 Observations     0  -2.73
 # ℹ 633 more rows 
 # A tibble: 313 × 3
-   group         conc      dv
-   <chr>        <dbl>   <dbl>
- 1 Observations 180     1.57 
- 2 Observations  51.5   4.59 
- 3 Observations  46.1   6.69 
- 4 Observations 251    11.0  
- 5 Observations  72.6 -11.7  
- 6 Observations 201     1.36 
- 7 Observations  91.1  -3.85 
- 8 Observations  50     1.43 
- 9 Observations 368     8.08 
-10 Observations  37.8  -0.910
+   group          conc      dv
+   <fct>         <dbl>   <dbl>
+ 1 Verapamil HCL 180     1.57 
+ 2 Verapamil HCL  51.5   4.59 
+ 3 Verapamil HCL  46.1   6.69 
+ 4 Verapamil HCL 251    11.0  
+ 5 Verapamil HCL  72.6 -11.7  
+ 6 Verapamil HCL 201     1.36 
+ 7 Verapamil HCL  91.1  -3.85 
+ 8 Verapamil HCL  50     1.43 
+ 9 Verapamil HCL 368     8.08 
+10 Verapamil HCL  37.8  -0.910
 # ℹ 303 more rows 
