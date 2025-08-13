@@ -67,8 +67,10 @@ jobs:
           done
           
           # Create redirect to latest version
-          LATEST_TAG=$(echo "${{ steps.all-tags.outputs.tags }}" | tr ' ' '\n' | tail -n1)
+          LATEST_TAG=$(echo "${{ steps.all-tags.outputs.tags }}" | tr ' ' '\n' | grep -v '^$' | tail -n1)
           LATEST_SLUG=${LATEST_TAG#v}
+          echo "Latest tag: '$LATEST_TAG', slug: '$LATEST_SLUG'"
+          
           cat > site/docs/index.html <<EOF
           <!doctype html>
           <meta http-equiv="refresh"
@@ -76,6 +78,9 @@ jobs:
           <title>Redirecting…</title>
           <p>Redirecting to documentation $LATEST_SLUG…</p>
           EOF
+          
+          # Add .nojekyll file for GitHub Pages
+          touch site/docs/.nojekyll
 
       - name: Publish to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
@@ -83,4 +88,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: site
-          keep_files: false  # Clear existing files to avoid stale versions
+          keep_files: true
