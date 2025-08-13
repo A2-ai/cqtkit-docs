@@ -19,39 +19,61 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Pull shared versions.ts from main
+      - name: Get all version tags
+        id: all-tags
         run: |
-          git fetch origin main --depth=1
-          git show origin/main:src/data/versions.ts > src/data/versions.ts
-          echo "Using versions.ts from main:"
-          cat src/data/versions.ts
-
-      - name: Derive version slug
-        id: vars
-        run: echo "TAG=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+          ALL_TAGS=$(git tag -l 'v*' | sort -V)
+          echo "tags<<EOF" >> $GITHUB_OUTPUT
+          echo "$ALL_TAGS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "Found tags: $ALL_TAGS"
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
       
-      - name: Astro build for ${{ steps.vars.outputs.TAG }}
-        env:
-          ASTRO_BASE: "/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }}/"
-          ASTRO_SITE: "https://a2-ai.github.io/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }}/"
-        run: npm run build     # outputs into ./dist
-
-      - name: Copy version into site tree
+      - name: Build all versions with latest versions.ts
         run: |
-          mkdir -p site/docs/versions/${{ steps.vars.outputs.TAG }}
-          cp -a dist/. site/docs/versions/${{ steps.vars.outputs.TAG }}/
+          # Get the latest versions.ts from main
+          git fetch origin main --depth=1
+          LATEST_VERSIONS=$(git show origin/main:src/data/versions.ts)
           
+          mkdir -p site/docs/versions
+          
+          # Build each version
+          for tag in ${{ steps.all-tags.outputs.tags }}; do
+            echo "Building version $tag..."
+            
+            # Checkout the tag
+            git checkout $tag
+            
+            # Install dependencies for this version
+            npm ci
+            
+            # Replace versions.ts with latest from main
+            echo "$LATEST_VERSIONS" > src/data/versions.ts
+            
+            # Build this version
+            TAG_SLUG=${tag#v}
+            ASTRO_BASE="/cqtkit-docs/versions/$TAG_SLUG/" \
+            ASTRO_SITE="https://a2-ai.github.io/cqtkit-docs/versions/$TAG_SLUG/" \
+            npm run build
+            
+            # Copy to site tree
+            cp -a dist/. site/docs/versions/$TAG_SLUG/
+            
+            echo "Completed build for $tag"
+          done
+          
+          # Create redirect to latest version
+          LATEST_TAG=$(echo "${{ steps.all-tags.outputs.tags }}" | tail -n1)
+          LATEST_SLUG=${LATEST_TAG#v}
           cat > site/docs/index.html <<EOF
           <!doctype html>
           <meta http-equiv="refresh"
-          content="0; url=/cqtkit-docs/versions/${{ steps.vars.outputs.TAG }}/">
+          content="0; url=/cqtkit-docs/versions/$LATEST_SLUG/">
           <title>Redirecting…</title>
-          <p>Redirecting to documentation ${{ steps.vars.outputs.TAG }}…</p>
+          <p>Redirecting to documentation $LATEST_SLUG…</p>
           EOF
 
       - name: Publish to gh-pages branch
@@ -60,4 +82,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: site
-          keep_files: true
+          keep_files: false  # Clear existing files to avoid stale versions
