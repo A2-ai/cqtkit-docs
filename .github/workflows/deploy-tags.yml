@@ -22,10 +22,8 @@ jobs:
       - name: Get all version tags
         id: all-tags
         run: |
-          ALL_TAGS=$(git tag -l 'v*' | sort -V)
-          echo "tags<<EOF" >> $GITHUB_OUTPUT
-          echo "$ALL_TAGS" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          ALL_TAGS=$(git tag -l 'v*' | sort -V | tr '\n' ' ')
+          echo "tags=$ALL_TAGS" >> $GITHUB_OUTPUT
           echo "Found tags: $ALL_TAGS"
 
       - uses: actions/setup-node@v4
@@ -66,7 +64,7 @@ jobs:
           done
           
           # Create redirect to latest version
-          LATEST_TAG=$(echo "${{ steps.all-tags.outputs.tags }}" | tail -n1)
+          LATEST_TAG=$(echo "${{ steps.all-tags.outputs.tags }}" | tr ' ' '\n' | tail -n1)
           LATEST_SLUG=${LATEST_TAG#v}
           cat > site/docs/index.html <<EOF
           <!doctype html>
