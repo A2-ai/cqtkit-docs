@@ -46,6 +46,11 @@ export default defineConfig({
 				'./src/styles/custom.css'
 			],
 			title: 'cqtkit',
+      logo: {
+        src: "./src/assets/cqtkit.png",
+        alt: "cqtkit logo",
+      },
+			favicon: "/images/cqtkit.png",
 			social: [
 				{
 					icon: 'github',
