@@ -25,12 +25,12 @@ jobs:
         run: npm ci            
 
       - name: Build site
-        run: npm run build
+        run: npm run build:pages
 
       - name: linkinator
         uses: JustinBeckwith/linkinator-action/@v1
         with:
-          paths: dist/
+          paths: dist/cqtkit-docs/versions/dev
           recurse: true
           linksToSkip: "https://github.com/*"
 

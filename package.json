@@ -7,8 +7,10 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
-  },
+    "astro": "astro",
+		"build:pages": "ASTRO_BASE=/cqtkit-docs/versions/dev/ ASTRO_SITE=http://localhost:3000/cqtkit-docs/versions/dev/ npm run build",
+		"serve": "rm -rf .gh-pages-local && mkdir -p .gh-pages-local/cqtkit-docs/versions/dev && cp -a dist/. .gh-pages-local/cqtkit-docs/versions/dev && npx --yes http-server .gh-pages-local -p 3000 -c-1"
+		},
   "dependencies": {
     "@astrojs/starlight": "^0.35.2",
     "astro": "^5.12.8",
@@ -16,6 +18,7 @@
     "rehype": "^13.0.2",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
+    "serve": "^14.2.4",
     "sharp": "^0.32.5",
     "starlight-katex": "^0.0.4"
   }
