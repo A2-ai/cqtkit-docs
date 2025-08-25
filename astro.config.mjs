@@ -120,6 +120,7 @@ export default defineConfig({
 							collapsed: true,
 							items: [
 								'reference/tabulate/tabulate',
+								'reference/tabulate/tabulate_study_summary',
 								'reference/tabulate/tabulate_ecg_param_summary',
 								'reference/tabulate/tabulate_high_qtc_sub',
 								'reference/tabulate/tabulate_pk_parameters',
