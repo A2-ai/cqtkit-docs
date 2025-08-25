@@ -1,3 +1,4 @@
+
 name: Check Links in Docs
 
 on:
@@ -15,37 +16,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '20'   
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci            
 
       - name: Build site
         run: npm run build
 
-      - name: Run Lychee
-        uses: lycheeverse/lychee-action@v1.9.0
+      - name: linkinator
+        uses: JustinBeckwith/linkinator-action/@v1
         with:
-          args: './dist/**/*.html --verbose --exclude ^mailto:'
-          output: lychee/output.json
-          format: json
-          fail: false
-          lycheeVersion: 0.14.0
+          paths: dist/
+          recurse: true
+          linksToSkip: "https://github.com/*"
 
-      - name: Fail if any broken file:// URLs found
-        run: |
-          echo 'Checking for broken file:// links...'
-          if jq -e '
-            .fail_map
-            | to_entries[]
-            | .value[]
-            | select(.url | startswith("file://"))
-          ' lychee/output.json > /dev/null; then
-            echo '❌ Broken file:// links found in fail_map'
-            exit 1
-          else
-            echo '✅ No broken file:// links'
-          fi
