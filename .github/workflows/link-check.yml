@@ -21,7 +21,7 @@ jobs:
 
       - name: Install link-checker
         run: |
-          gh release download -R a2-ai/link-checker -p '*linux-gnu*'
+          gh release download -R a2-ai/link-checker -p '*x86*linux-gnu*'
           tar -xzf *.tar.gz
           chmod +x link-checker
           sudo mv link-checker /usr/local/bin/
