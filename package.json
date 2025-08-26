@@ -8,8 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-		"build:pages": "ASTRO_BASE=/cqtkit-docs/versions/dev/ ASTRO_SITE=http://localhost:3000/cqtkit-docs/versions/dev/ npm run build",
-		"serve": "rm -rf .gh-pages-local && mkdir -p .gh-pages-local/cqtkit-docs/versions/dev && cp -a dist/. .gh-pages-local/cqtkit-docs/versions/dev && npx --yes http-server .gh-pages-local -p 3000 -c-1"
+		"build:pages": "ASTRO_BASE=/cqtkit-docs/versions/dev/ ASTRO_SITE=http://localhost:3000/cqtkit-docs/versions/dev/ npm run build && rm -rf .gh-pages-local && mkdir -p .gh-pages-local/cqtkit-docs/versions/dev && cp -a dist/. .gh-pages-local/cqtkit-docs/versions/dev",
+		"serve": "npx --yes http-server .gh-pages-local -p 3000 -c-1",
+		"check:links": "npm run build:pages && npm run serve & sleep 3 && npx linkinator http://localhost:3000/cqtkit-docs/versions/dev/ --recurse --skip 'https://github.com/*' --directory-listing --timeout 30000 && pkill -f http-server"
 		},
   "dependencies": {
     "@astrojs/starlight": "^0.35.2",

@@ -1,36 +1,42 @@
+  name: Check Links
+  on:
+    push:
+      branches: [main]
+    pull_request:
+      branches: [main]
 
-name: Check Links in Docs
+  jobs:
+    check-links:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-  workflow_dispatch:
+        - name: Setup Node.js
+          uses: actions/setup-node@v4
+          with:
+            node-version: '18'
 
-jobs:
-  link-check:
-    name: Link Checker
-    runs-on: ubuntu-latest
+        - name: Install dependencies
+          run: npm install
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+        - name: Install link-checker
+          run: curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'   
+        - name: Build and serve site
+          run: |
+            npm run build:pages
+            npm run serve &
 
-      - name: Install dependencies
-        run: npm ci            
+        - name: Wait for server to start
+          run: sleep 10
 
-      - name: Build site
-        run: npm run build:pages
-
-      - name: linkinator
-        uses: JustinBeckwith/linkinator-action/@v1
-        with:
-          paths: dist/cqtkit-docs/versions/dev
-          recurse: true
-          linksToSkip: "https://github.com/*"
-
+        - name: Check for broken links
+          run: |
+            link-checker --url http://localhost:3000/cqtkit-docs/versions/dev/ --skip "example\.com|external-api\.com"
+            if [ -s bad_urls.json ] && [ "$(jq length bad_urls.json)" -gt 0 ]; then
+              echo "❌ Broken links found!"
+              jq '.[] | "- \(.url) (found on: \(.found_on // "starting page"))"' -r bad_urls.json
+              exit 1
+            else
+              echo "✅ No broken links found"
+            fi
