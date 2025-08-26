@@ -19,15 +19,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Checkout and build link-checker from skip branch
+      - name: Install link-checker
         run: |
-          git clone https://github.com/a2-ai/link-checker.git /tmp/link-checker
-          cd /tmp/link-checker
-          git checkout skip
-          cargo build --release
-          mkdir -p ~/.local/bin
-          cp target/release/link-checker ~/.local/bin/
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          curl -sSL https://raw.githubusercontent.com/A2-ai/link-checker/refs/heads/main/scripts/install.sh | bash
 
       - name: Build and serve site
         run: |

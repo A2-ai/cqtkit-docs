@@ -21,3 +21,6 @@ pnpm-debug.log*
 .DS_Store
 
 .gh-pages-local
+bad_urls.json
+url_map.json
+
