@@ -1,0 +1,49 @@
+name: Check Links (Build from Source)
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Checkout and build link-checker from skip branch
+        run: |
+          git clone https://github.com/a2-ai/link-checker.git /tmp/link-checker
+          cd /tmp/link-checker
+          git checkout skip
+          cargo build --release
+          mkdir -p ~/.local/bin
+          cp target/release/link-checker ~/.local/bin/
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Build and serve site
+        run: |
+          npm run build:pages
+          npm run serve &
+
+      - name: Wait for server to start
+        run: sleep 10
+
+      - name: Check for broken links
+        run: |
+          link-checker --url http://localhost:3000/cqtkit-docs/versions/dev/ --skip "ascpt.onlinelibrary.*"
+          if [ -s bad_urls.json ] && [ "$(jq length bad_urls.json)" -gt 0 ]; then
+            echo "❌ Broken links found!"
+            jq '.[] | "- \(.url) (found on: \(.found_on // "starting page"))"' -r bad_urls.json
+            exit 1
+          else
+            echo "✅ No broken links found"
+          fi
