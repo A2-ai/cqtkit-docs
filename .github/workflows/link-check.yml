@@ -1,44 +1,48 @@
-  name: Check Links
-  on:
-    push:
-      branches: [main]
-    pull_request:
-      branches: [main]
+name: Check Links
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
-  jobs:
-    check-links:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-        - name: Setup Node.js
-          uses: actions/setup-node@v4
-          with:
-            node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-        - name: Install dependencies
-          run: npm install
+      - name: Install dependencies
+        run: npm install
 
-        - name: Install link-checker
-          run: |
-            curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
-            echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Install link-checker
+        run: |
+          gh release download -R a2-ai/link-checker -p '*linux*'
+          tar -xzf *.tar.gz
+          chmod +x link-checker
+          sudo mv link-checker /usr/local/bin/
+        env:
+          GH_TOKEN: ${{ github.token }}
 
-        - name: Build and serve site
-          run: |
-            npm run build:pages
-            npm run serve &
+      - name: Build and serve site
+        run: |
+          npm run build:pages
+          npm run serve &
 
-        - name: Wait for server to start
-          run: sleep 10
+      - name: Wait for server to start
+        run: sleep 10
 
-        - name: Check for broken links
-          run: |
-            rv --url http://localhost:3000/cqtkit-docs/versions/dev/
-            if [ -s bad_urls.json ] && [ "$(jq length bad_urls.json)" -gt 0 ]; then
-              echo "❌ Broken links found!"
-              jq '.[] | "- \(.url) (found on: \(.found_on // "starting page"))"' -r bad_urls.json
-              exit 1
-            else
-              echo "✅ No broken links found"
-            fi
+      - name: Check for broken links
+        run: |
+          link-checker --url http://localhost:3000/cqtkit-docs/versions/dev/ --skip "example\.com|external-api\.com"
+          if [ -s bad_urls.json ] && [ "$(jq length bad_urls.json)" -gt 0 ]; then
+            echo "❌ Broken links found!"
+            jq '.[] | "- \(.url) (found on: \(.found_on // "starting page"))"' -r bad_urls.json
+            exit 1
+          else
+            echo "✅ No broken links found"
+          fi
