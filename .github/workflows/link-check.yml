@@ -34,7 +34,7 @@
 
         - name: Check for broken links
           run: |
-            link-checker --url http://localhost:3000/cqtkit-docs/versions/dev/
+            rv --url http://localhost:3000/cqtkit-docs/versions/dev/
             if [ -s bad_urls.json ] && [ "$(jq length bad_urls.json)" -gt 0 ]; then
               echo "❌ Broken links found!"
               jq '.[] | "- \(.url) (found on: \(.found_on // "starting page"))"' -r bad_urls.json
