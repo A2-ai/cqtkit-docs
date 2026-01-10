@@ -1,11 +1,12 @@
 ---
-title: "Generates table of model parameter esitmates and statistics"
-description: "Generates table of model parameter esitmates and statistics"
+title: "Tabulate Model Fit Parameters"
+description: "Generates table of model parameter estimates and statistics."
+pagefind: true
 ---
 
 ## Description
 
-Generates table of model parameter esitmates and statistics
+Generates table of model parameter estimates and statistics.
 
 ## Usage
 
@@ -34,14 +35,14 @@ tabulate_model_fit_parameters(
 | `id_col_name` | A string of column name of id used in model fitting for random effects |
 | `conf_int` | Numeric confidence interval level (default: 0.9) |
 | `decimals` | Number of decimals to format table to, default is 2 |
-| `show_standard_error` | Boolean that displays standard error of fixed effects estimates in table |
-| `scientific` | Boolean for converting numbers to scientific notation if less than decimals |
+| `show_standard_error` | Logical, whether to display standard error of fixed effects estimates |
+| `scientific` | Logical, whether to use scientific notation for small values |
 | `title` | Optional string for adding tab_header. It will be wrapped in gt::md() |
 | `...` | Optional additional arguments for gt::tab_options |
 
 ## Value
 
-a gt table
+A gt table with fixed effect estimates, standard errors, confidence intervals, and p-values
 
 ## Examples
 

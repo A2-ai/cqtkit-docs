@@ -1,11 +1,12 @@
 ---
-title: "Detects the pressence of hysteresis"
-description: "Detects the pressence of hysteresis"
+title: "Compute Potential Hysteresis"
+description: "Detects the presence of counter-clockwise hysteresis (effect lags concentration)."
+pagefind: true
 ---
 
 ## Description
 
-Detects the pressence of hysteresis
+Detects the presence of counter-clockwise hysteresis (effect lags concentration).
 
 ## Usage
 
@@ -29,9 +30,21 @@ compute_potential_hysteresis(
 | `conc_col` | An unquoted column name for concentration measurements |
 | `group_col` | An unquoted column name for grouping column - usually DOSEF |
 
+## Details
+
+Hysteresis is flagged when both conditions are met:
+
+- The time of maximum QTc effect (Umax) occurs \>= 1 hour after time of maximum concentration (Tmax)
+
+- More than 3 timepoints have mean deltaQTc \> 5 ms (sustained elevation)
+
 ## Value
 
-a bool of TRUE if hysteresis detected else FALSE
+Logical TRUE if hysteresis detected (Tmax-Umax lag \>= 1 hour with sustained QTc elevation), FALSE otherwise
+
+## See Also
+
+<a href={`${import.meta.env.BASE_URL}reference/eda_hysteresis_loop_plot`}><code>eda_hysteresis_loop_plot()</code></a> for visual inspection of hysteresis loops
 
 ## Examples
 

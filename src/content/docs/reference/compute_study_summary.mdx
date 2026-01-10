@@ -1,11 +1,12 @@
 ---
-title: "Creates a dataframe summarizing number of subjects in each trtreatment group"
-description: "Creates a dataframe summarizing number of subjects in each trtreatment group"
+title: "Compute Study Summary"
+description: "Creates a data frame summarizing number of subjects in each treatment group."
+pagefind: true
 ---
 
 ## Description
 
-Creates a dataframe summarizing number of subjects in each trtreatment group
+Creates a data frame summarizing number of subjects in each treatment group.
 
 ## Usage
 
@@ -24,7 +25,7 @@ compute_study_summary(data, trt_col, id_col, group_col = NULL)
 
 ## Value
 
-a tibble of number of subjects in trt_col (or trt_col + group_col) along with total id_col
+A tibble with unique subject counts per treatment group and overall total
 
 ## Examples
 

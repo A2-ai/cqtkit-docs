@@ -1,11 +1,12 @@
 ---
-title: "Computes R-squared and Adjusted R-squared of loess regression compared to linear regression. Used for determining linearity of C-QT data"
+title: "Compute Loess Linear R Squared"
 description: "Computes R-squared and Adjusted R-squared of loess regression compared to linear regression."
+pagefind: true
 ---
 
 ## Description
 
-Computes R-squared and Adjusted R-squared of loess regression compared to linear regression. Used for determining linearity of C-QT data
+Computes R-squared and Adjusted R-squared of loess regression compared to linear regression. Used for determining linearity of C-QT data.
 
 ## Usage
 
@@ -24,7 +25,7 @@ compute_loess_linear_r_squared(data, deltaqtc_col, conc_col, span = 0.99)
 
 ## Value
 
-a tibble of R_squared and adjusted R_squared
+A tibble with R-squared, adjusted R-squared, and partial coefficient of determination comparing loess to linear fit
 
 ## Examples
 

@@ -1,11 +1,12 @@
 ---
-title: "computes delta HR BL Mean"
-description: "computes delta HR BL Mean"
+title: "Compute Delta HR Baseline Mean"
+description: "Compute Delta HR Baseline Mean"
+pagefind: true
 ---
 
 ## Description
 
-computes delta HR BL Mean
+Compute Delta HR Baseline Mean
 
 ## Usage
 
@@ -20,11 +21,11 @@ compute_delta_hrblm(data, id_col = ID, hrbl_col = HRBL, deduplicate = TRUE)
 | `data` | A data frame containing C-QT analysis dataset |
 | `id_col` | An unquoted column name for subject ID |
 | `hrbl_col` | An unquoted column name for baseline HR measurements, default is HRBL |
-| `deduplicate` | Boolean, whether baseline values are duplicated over rows. If true duplicates will be removed from average |
+| `deduplicate` | Logical, whether to remove duplicate baseline values before averaging |
 
 ## Value
 
-data frame with deltaHRBL
+A data frame with deltaHRBL column added
 
 ## Examples
 

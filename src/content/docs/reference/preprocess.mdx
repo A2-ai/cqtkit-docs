@@ -1,11 +1,12 @@
 ---
-title: "Pre-processes data Computes QTcB, QTcF, deltaQTcF, deltaQTcB, deltaHR, deltaQTcB Baseline Mean, deltaQTcF Baseline Mean, deltaHR Baseline Mean"
-description: "Pre-processes data Computes QTcB, QTcF, deltaQTcF, deltaQTcB, deltaHR, deltaQTcB Baseline Mean, deltaQTcF Baseline Mean, deltaHR Baseline Mean"
+title: "Preprocess"
+description: "Computes QTcB, QTcF, deltaQTcF, deltaQTcB, deltaHR, deltaQTcB Baseline Mean, deltaQTcF Baseline Mean, deltaHR Baseline Mean."
+pagefind: true
 ---
 
 ## Description
 
-Pre-processes data Computes QTcB, QTcF, deltaQTcF, deltaQTcB, deltaHR, deltaQTcB Baseline Mean, deltaQTcF Baseline Mean, deltaHR Baseline Mean
+Computes QTcB, QTcF, deltaQTcF, deltaQTcB, deltaHR, deltaQTcB Baseline Mean, deltaQTcF Baseline Mean, deltaHR Baseline Mean.
 
 ## Usage
 
@@ -43,11 +44,11 @@ preprocess(
 | `qtcb_col` | An unquoted column name for QTCB measurements, QTCB by default |
 | `qtcbbl_col` | An unquoted column name for baseline QTCB measurements, QTCBBL by default |
 | `id_col` | An unquoted column name for subject ID |
-| `deduplicate` | Boolean, whether baseline values are duplicated over rows. If true duplicates will be removed from average |
+| `deduplicate` | Logical, whether to remove duplicate baseline values before averaging |
 
 ## Value
 
-dataframe with deltas computed from BL
+A data frame with all delta columns computed from baseline
 
 ## Examples
 

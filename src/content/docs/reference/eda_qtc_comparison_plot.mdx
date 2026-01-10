@@ -1,11 +1,12 @@
 ---
-title: "plots different corrections of QT against RR to compare which to use."
-description: "plots different corrections of QT against RR to compare which to use."
+title: "EDA QTc Comparison Plot"
+description: "Plots different corrections of QT against RR to compare which to use."
+pagefind: true
 ---
 
 ## Description
 
-plots different corrections of QT against RR to compare which to use.
+Plots different corrections of QT against RR to compare which to use.
 
 ## Usage
 
@@ -43,15 +44,15 @@ eda_qtc_comparison_plot(
 | `trt_col` | An unquoted column name for treatment group data |
 | `legend_location` | String for legend position (top, bottom, left, right) |
 | `model_type` | Lm or lme, which model to fit for showing on plot |
-| `show_model_results` | A bool for showing regression slope on plot. |
+| `show_model_results` | Logical, whether to show regression slope on plot |
 | `method` | Method for nlme::lme fitting (ML or REML) |
-| `remove_rr_iiv` | A boolean for removing IIV on RR slope |
+| `remove_rr_iiv` | Logical, whether to remove IIV on RR slope |
 | `conf_int` | Numeric confidence interval level (default: 0.9) |
 | `style` | A named list of arguments passed to style_plot() |
 
 ## Value
 
-a plot
+A multi-panel plot comparing QT, QTcB, QTcF, and QTcP corrections against RR
 
 ## Examples
 

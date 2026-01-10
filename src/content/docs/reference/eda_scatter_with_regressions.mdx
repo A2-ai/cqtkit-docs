@@ -1,11 +1,12 @@
 ---
-title: "plots scatter plot with with linear and loess regressions. Can be used to check for linearity."
-description: "plots scatter plot with with linear and loess regressions."
+title: "EDA Scatter With Regressions"
+description: "Plots scatter plot with linear and loess regressions."
+pagefind: true
 ---
 
 ## Description
 
-plots scatter plot with with linear and loess regressions. Can be used to check for linearity.
+Plots scatter plot with linear and loess regressions. Can be used to check for linearity.
 
 ## Usage
 
@@ -33,15 +34,15 @@ eda_scatter_with_regressions(
 | `xdata_col` | An unquoted column name for independent variable measurements |
 | `trt_col` | An unquoted column name for treatment group |
 | `reference_threshold` | Optional vector of numbers to add as horizontal dashed lines |
-| `loess_line` | A bool to add LOESS regression line |
-| `linear_line` | A bool to add a linear regression line |
+| `loess_line` | Logical, whether to add LOESS regression line |
+| `linear_line` | Logical, whether to add linear regression line |
 | `span` | A fractional value for LOESS span parameter in geom_smooth if LOESS is used, default 0.99 |
 | `conf_int` | Numeric confidence interval level (default: 0.9) |
 | `style` | A named list of arguments passed to style_plot(). Shapes are mapped to treatment groups and can be controlled via the shapes parameter in style |
 
 ## Value
 
-a plot
+A scatter plot with linear and/or LOESS regression lines for assessing linearity
 
 ## Examples
 

@@ -1,11 +1,12 @@
 ---
-title: "Styles a plot with provided colors and labels"
-description: "Styles a plot with provided colors and labels"
+title: "Style Plot"
+description: "Styles a plot with provided colors and labels."
+pagefind: true
 ---
 
 ## Description
 
-Styles a plot with provided colors and labels
+Styles a plot with provided colors and labels.
 
 ## Usage
 
@@ -59,8 +60,8 @@ style_plot(
 | `legend.position` | A string for legend position |
 | `legend.title.position` | A string for legend title position ("top", "left", "bottom", "right") |
 | `legend.title.hjust` | A string or numeric for legend title horizontal justification ("left"/0, "center"/0.5, "right"/1) |
-| `logx` | A boolean for setting x-axis to log scale |
-| `logy` | A boolean for setting y-axis to log scale |
+| `logx` | Logical, whether to use log scale for x-axis |
+| `logy` | Logical, whether to use log scale for y-axis |
 | `fill_alpha` | A numeric for controlling alpha of fill colors |
 | `fill_legend` | A string to replace fill legend title |
 | `fill_order` | A numeric for setting fill legend order |
@@ -69,7 +70,7 @@ style_plot(
 
 ## Value
 
-an updated ggplot2 object
+A ggplot2 object with applied colors, labels, shapes, and theme settings
 
 ## Examples
 

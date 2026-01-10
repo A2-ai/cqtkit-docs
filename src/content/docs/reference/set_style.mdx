@@ -1,11 +1,12 @@
 ---
-title: "Creates a style list for eda graphing functions"
-description: "Creates a style list for eda graphing functions"
+title: "Set Style"
+description: "Creates a style list for eda graphing functions."
+pagefind: true
 ---
 
 ## Description
 
-Creates a style list for eda graphing functions
+Creates a style list for eda graphing functions.
 
 ## Usage
 
@@ -59,8 +60,8 @@ set_style(
 | `legend.position` | A string for legend position |
 | `legend.title.position` | A string for legend title position ("top", "left", "bottom", "right") |
 | `legend.title.hjust` | A string or numeric for legend title horizontal justification ("left"/0, "center"/0.5, "right"/1) |
-| `logx` | A boolean for setting x-axis to log scale |
-| `logy` | A boolean for setting y-axis to log scale |
+| `logx` | Logical, whether to use log scale for x-axis |
+| `logy` | Logical, whether to use log scale for y-axis |
 | `fill_alpha` | A numeric for controlling alpha of fill colors |
 | `fill_legend` | A string to replace fill legend title |
 | `fill_order` | A numeric for setting fill legend order |
@@ -69,7 +70,7 @@ set_style(
 
 ## Value
 
-a named list for using with style_plot
+A named list of style parameters for use with style_plot()
 
 ## Examples
 

@@ -1,11 +1,12 @@
 ---
-title: "Generates a gt table of summary of QTc, dQTc and ddQTc over time stratified by dose"
-description: "Generates a gt table of summary of QTc, dQTc and ddQTc over time stratified by dose"
+title: "Tabulate ECG Parameter Summary"
+description: "Generates a gt table of summary of QTc, dQTc and ddQTc over time stratified by dose."
+pagefind: true
 ---
 
 ## Description
 
-Generates a gt table of summary of QTc, dQTc and ddQTc over time stratified by dose
+Generates a gt table of summary of QTc, dQTc and ddQTc over time stratified by dose.
 
 ## Usage
 
@@ -24,6 +25,7 @@ tabulate_ecg_param_summary(
   delta_ecg_param_conf_int = 0.9,
   decimals = 2,
   row_group_label = NULL,
+  time_label = "Time (hr)",
   title = NULL,
   ...
 )
@@ -46,12 +48,13 @@ tabulate_ecg_param_summary(
 | `delta_ecg_param_conf_int` | Confidence interval for dQTc summary stats default 90% |
 | `decimals` | Number of decimals to fmt the table to default is 2, N column is 0 |
 | `row_group_label` | Optional label for the dose/dose + group column |
+| `time_label` | A string label for the time column (default: "Time (hr)") |
 | `title` | Optional title for the table, it will be wrapped in gt::md() |
 | `...` | Optional arguments for gt::tab_options |
 
 ## Value
 
-a gt table of the QTc/deltaQTc/delta delta QTc summary
+A gt table with mean ECG parameters (QTc, deltaQTc, delta-delta QTc) and confidence intervals by dose and time
 
 ## Examples
 

@@ -1,6 +1,7 @@
 ---
-title: "Fits QT(c) data to linear mixed effects model with fixed effects of intercept and RR slope, with random effects on intercept and slope."
+title: "Fit QTc Linear Model"
 description: "Fits QT(c) data to linear mixed effects model with fixed effects of intercept and RR slope, with random effects on intercept and slope."
+pagefind: true
 ---
 
 ## Description
@@ -29,11 +30,11 @@ fit_qtc_linear_model(
 | `rr_col` | An unquoted column name for RR measurements |
 | `id_col` | An unquoted column name for subject ID |
 | `method` | Method for nlme::lme fitting (ML or REML) |
-| `remove_rr_iiv` | Boolean for removing IIV on slope |
+| `remove_rr_iiv` | Logical, whether to remove IIV on slope |
 
 ## Value
 
-nlme::lme model
+An nlme::lme model object with QT ~ RR relationship, including random effects on intercept and optionally slope
 
 ## Examples
 

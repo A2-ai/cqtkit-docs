@@ -1,11 +1,12 @@
 ---
-title: "Computes Baseline Mean QTCB"
-description: "Computes Baseline Mean QTCB"
+title: "Compute Delta QTcB Baseline Mean"
+description: "Compute Delta QTcB Baseline Mean"
+pagefind: true
 ---
 
 ## Description
 
-Computes Baseline Mean QTCB
+Compute Delta QTcB Baseline Mean
 
 ## Usage
 
@@ -25,11 +26,11 @@ compute_delta_qtcbblm(
 | `data` | A data frame containing C-QT analysis dataset |
 | `id_col` | An unquoted column name for subject ID |
 | `qtcbbl_col` | An unquoted column name for baseline QTCB measurements, default is QTCBBL |
-| `deduplicate` | Boolean, whether baseline values are duplicated over rows. If true duplicates will be removed from average |
+| `deduplicate` | Logical, whether to remove duplicate baseline values before averaging |
 
 ## Value
 
-a dataframe with deltaQTCBBL column
+A data frame with deltaQTCBBL column added
 
 ## Examples
 

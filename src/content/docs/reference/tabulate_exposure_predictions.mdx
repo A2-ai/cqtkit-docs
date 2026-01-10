@@ -1,11 +1,12 @@
 ---
-title: "Tablulates exposure predictions at therapeutic and supratherapuetic Cmax."
-description: "Tablulates exposure predictions at therapeutic and supratherapuetic Cmax."
+title: "Tabulate Exposure Predictions"
+description: "Tabulates exposure predictions at therapeutic and supratherapeutic Cmax."
+pagefind: true
 ---
 
 ## Description
 
-Tablulates exposure predictions at therapeutic and supratherapuetic Cmax.
+Tabulates exposure predictions at therapeutic and supratherapeutic Cmax.
 
 ## Usage
 
@@ -43,13 +44,13 @@ tabulate_exposure_predictions(
 | `conc_units` | Units for concentration default ng/mL |
 | `conf_int` | Numeric confidence interval level (default: 0.9) |
 | `decimals` | Number of decimals to format numbers to. default is 2 |
-| `scientific` | Boolean for converting to scientific notation |
+| `scientific` | Logical, whether to use scientific notation |
 | `title` | Optional string for table title. Wrapped in gt::md() |
 | `...` | Optional additional args to gt::tab_options |
 
 ## Value
 
-a gt table of predicted dQTc/ddQTc values and their CI at tpx and or stpx dose/Cmax
+A gt table with predicted deltaQTc values and confidence intervals at therapeutic and supratherapeutic Cmax
 
 ## Examples
 

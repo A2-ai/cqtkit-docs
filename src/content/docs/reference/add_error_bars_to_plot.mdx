@@ -1,11 +1,12 @@
 ---
-title: "adds errorbars to a plot"
-description: "adds errorbars to a plot"
+title: "Add Error Bars To Plot"
+description: "Adds errorbars to a plot."
+pagefind: true
 ---
 
 ## Description
 
-adds errorbars to a plot
+Adds errorbars to a plot.
 
 ## Usage
 
@@ -17,7 +18,7 @@ add_error_bars_to_plot(data, p, reference_dose, error_bars, conf_int)
 
 | Argument | Description |
 |----------|-------------|
-| `data` | A dataframe from compute_grouped_mean_sd |
+| `data` | A data frame from compute_grouped_mean_sd |
 | `p` | A ggplot object to add error bars to |
 | `reference_dose` | Reference dose value for comparison calculations |
 | `error_bars` | Type of errorbars to use (ci, se, sd, null) |
@@ -25,4 +26,4 @@ add_error_bars_to_plot(data, p, reference_dose, error_bars, conf_int)
 
 ## Value
 
-ggplot2 with errorbars
+A ggplot2 object with error bars added

@@ -1,11 +1,12 @@
 ---
-title: "Generates pk parameters Cmax and Tmax for exporsure predictions."
-description: "Generates pk parameters Cmax and Tmax for exporsure predictions."
+title: "Compute PK Parameters"
+description: "Generates PK parameters Cmax and Tmax for exposure predictions."
+pagefind: true
 ---
 
 ## Description
 
-Generates pk parameters Cmax and Tmax for exporsure predictions.
+Generates PK parameters Cmax and Tmax for exposure predictions.
 
 ## Usage
 
@@ -33,7 +34,7 @@ compute_pk_parameters(
 
 ## Value
 
-a dataframe of pk parameters
+A tibble with PK summary statistics by group: N, Tmax (median/min/max), and Cmax (geometric mean, CV%, median/min/max)
 
 ## Examples
 
