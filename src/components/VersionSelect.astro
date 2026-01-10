@@ -1,54 +1,129 @@
 ---
-import { VERSIONS } from '../data/versions';
+import type { Props } from "@astrojs/starlight/props";
+import Default from "@astrojs/starlight/components/SiteTitle.astro";
+import { VERSIONS } from "../data/versions";
 
-// Get current page path relative to version
 const path = Astro.url.pathname;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Extract prefix before /versions/ (e.g., "" or "/repo-name")
+const basePrefix = base.includes('/versions/') ? base.split('/versions/')[0] : base;
 let currentPage = '';
 
-// If we're in a versioned page, extract the page path
+// Extract page path after version
 if (path.includes('/versions/')) {
   const matches = path.match(/\/versions\/[^/]+(\/.*)$/);
   if (matches && matches[1]) {
     currentPage = matches[1];
   }
-} else if (path.startsWith('/cqtkit-docs/')) {
-  // Extract page path for non-versioned URLs
-  currentPage = path.replace('/cqtkit-docs', '');
+} else {
+  // Non-versioned URL - strip base path
+  currentPage = path.replace(base, '') || '/';
 }
 
-// If current page is empty, set to home
 if (!currentPage) currentPage = '/';
 
-// Check if we're on a versioned page
-let currentVersion = null;
+// Find current version from URL
+let currentVersion = VERSIONS[0]?.tag;
 for (const version of VERSIONS) {
   if (path.includes(`/versions/${version.tag}/`)) {
     currentVersion = version.tag;
     break;
   }
 }
-
-// If no current version found, default to the latest tagged version
-if (currentVersion === null && VERSIONS.length > 0) {
-  currentVersion = VERSIONS[0].tag;
-}
 ---
 
-<select
-  id="version-select"
-  aria-label="Documentation version"
-  style="padding:.25rem;border-radius:.25rem"
-  onchange="window.location.href = this.value"
->
-  <!-- Available versions -->
-  {VERSIONS.map(version => {
-    const versionUrl = `/cqtkit-docs/versions/${version.tag}${currentPage}`;
-    const isSelected = currentVersion === version.tag;
-    
-    return (
-      <option value={versionUrl} selected={isSelected}>
-        {version.label}
-      </option>
-    );
-  })}
-</select>
+<div class="site-title-wrapper">
+  <Default {...Astro.props} />
+  <div class="version-select-wrapper">
+    <label class="sr-only" for="version-select">Select version</label>
+    <select
+      id="version-select"
+      class="version-select"
+      data-base-prefix={basePrefix}
+      onchange="handleVersionChange(this)"
+    >
+      {VERSIONS.map(version => {
+        const versionUrl = `${basePrefix}/versions/${version.tag}${currentPage}`;
+        return (
+          <option value={versionUrl} selected={currentVersion === version.tag}>
+            {version.label}
+          </option>
+        );
+      })}
+    </select>
+  </div>
+</div>
+
+<script is:inline>
+async function handleVersionChange(select) {
+  const targetUrl = select.value;
+
+  try {
+    const response = await fetch(targetUrl, { method: 'HEAD' });
+    if (response.ok) {
+      window.location.href = targetUrl;
+    } else {
+      // Page doesn't exist, fallback to version root
+      const basePrefix = select.dataset.basePrefix;
+      const versionMatch = targetUrl.match(/\/versions\/([^/]+)/);
+      if (versionMatch) {
+        window.location.href = `${basePrefix}/versions/${versionMatch[1]}/`;
+      } else {
+        window.location.href = targetUrl;
+      }
+    }
+  } catch (e) {
+    // On error, try navigating anyway
+    window.location.href = targetUrl;
+  }
+}
+</script>
+
+<style>
+  .site-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .version-select-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .version-select {
+    appearance: none;
+    background: var(--sl-color-bg-nav);
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 0.25rem;
+    color: var(--sl-color-text);
+    font-size: var(--sl-text-sm);
+    padding: 0.25rem 1.75rem 0.25rem 0.5rem;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.25rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+  }
+
+  .version-select:hover {
+    border-color: var(--sl-color-text-accent);
+  }
+
+  .version-select:focus {
+    outline: 2px solid var(--sl-color-text-accent);
+    outline-offset: 2px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>
