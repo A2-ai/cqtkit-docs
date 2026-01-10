@@ -1,0 +1,18 @@
+# A tibble: 250 × 15
+   decile   sim_num med_xdata med_pred low_pred high_pred mean_med_pred
+   <fct>      <int>     <dbl>    <dbl>    <dbl>     <dbl>         <dbl>
+ 1 [0,9.05]       1         0    -7.04    -18.2      3.72         -6.93
+ 2 [0,9.05]       2         0    -7.32    -19.9      6.45         -6.93
+ 3 [0,9.05]       3         0    -7.65    -18.9      5.64         -6.93
+ 4 [0,9.05]       4         0    -7.53    -20.7      3.58         -6.93
+ 5 [0,9.05]       5         0    -5.85    -18.2      6.69         -6.93
+ 6 [0,9.05]       6         0    -7.65    -18.9      6.69         -6.93
+ 7 [0,9.05]       7         0    -7.11    -18.4      3.72         -6.93
+ 8 [0,9.05]       8         0    -8.03    -18.6      5.64         -6.93
+ 9 [0,9.05]       9         0    -6.54    -19.4      3.66         -6.93
+10 [0,9.05]      10         0    -6.49    -20.1      7.04         -6.93
+# ℹ 240 more rows
+# ℹ 8 more variables: low_med_pred <dbl>, high_med_pred <dbl>,
+#   mean_low_pred <dbl>, low_low_pred <dbl>, high_low_pred <dbl>,
+#   mean_high_pred <dbl>, low_high_pred <dbl>, high_high_pred <dbl>
+# ℹ Use `print(n = ...)` to see more rows 
