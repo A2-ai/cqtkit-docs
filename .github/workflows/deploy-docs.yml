@@ -13,7 +13,7 @@ permissions:
 env:
   # For private repos: leave empty
   # For public repos: set to "/${{ github.event.repository.name }}"
-  BASE_PREFIX: ""
+  BASE_PREFIX: "/cqtkit-docs"
 
 jobs:
   deploy:
