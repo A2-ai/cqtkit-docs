@@ -6,9 +6,13 @@ export interface Version {
 
 export const VERSIONS: Version[] = [
   {
+    tag: "1.0.1",
+    label: "v1.0.1",
+    default: true,
+  },
+  {
     tag: "1.0.0",
     label: "v1.0.0",
-    default: true,
   },
 ];
 
