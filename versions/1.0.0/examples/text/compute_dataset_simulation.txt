@@ -1,0 +1,15 @@
+# A tibble: 643 × 3
+     pred xdata sim_num
+    <dbl> <dbl>   <dbl>
+ 1 -18.7      0       0
+ 2  -7.32     0       0
+ 3  -7.06     0       0
+ 4  -1.91     0       0
+ 5 -21.3      0       0
+ 6  -8.69     0       0
+ 7  -5.38     0       0
+ 8 -21.5      0       0
+ 9  -1.90     0       0
+10 -15.7      0       0
+# ℹ 633 more rows
+# ℹ Use `print(n = ...)` to see more rows 

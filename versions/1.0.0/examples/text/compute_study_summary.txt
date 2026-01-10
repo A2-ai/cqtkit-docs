@@ -1,0 +1,6 @@
+# A tibble: 3 × 2
+  grouping      n_sub
+  <chr>         <int>
+1 Total            22
+2 Placebo          22
+3 Verapamil HCL    21 
