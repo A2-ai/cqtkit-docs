@@ -1,0 +1,94 @@
+---
+title: "Compute High QTc Observations"
+description: "Computes the number of observations (rows) where QTc exceeds specified thresholds or deltaQTc exceeds specified thresholds."
+sidebar:
+  label: "compute_high_qtc_obs"
+pagefind: true
+---
+
+## Description
+
+Computes the number of observations (rows) where QTc exceeds specified
+thresholds or deltaQTc exceeds specified thresholds.
+
+
+
+
+
+
+## Usage
+
+```r
+compute_high_qtc_obs(
+  data,
+  qtc_col,
+  deltaqtc_col,
+  group_col = NULL,
+  qtc_thresholds = c(450, 480, 500),
+  dqtc_thresholds = c(30, 60)
+)
+```
+
+## Arguments
+
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>qtc_col</code></td>
+<td>An unquoted column name for QTc data</td>
+</tr>
+<tr>
+<td><code>deltaqtc_col</code></td>
+<td>An unquoted column name for deltaQTc data</td>
+</tr>
+<tr>
+<td><code>group_col</code></td>
+<td>An optional column name for grouping data</td>
+</tr>
+<tr>
+<td><code>qtc_thresholds</code></td>
+<td>Numeric vector of QTc thresholds (default: c(450, 480, 500))</td>
+</tr>
+<tr>
+<td><code>dqtc_thresholds</code></td>
+<td>Numeric vector of deltaQTc thresholds (default: c(30, 60))</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+## Value
+
+A tibble with counts of observations exceeding each threshold
+
+
+
+## Examples
+
+```r
+compute_high_qtc_obs(cqtkit_data_verapamil, QTCF, deltaQTCF)
+compute_high_qtc_obs(cqtkit_data_verapamil, QTCF, deltaQTCF, qtc_thresholds = c(430, 450))
+```
+### Output
+
+```
+# A tibble: 1 × 6
+  group n_QTc_gt_450 n_QTc_gt_480 n_QTc_gt_500 n_dQTc_gt_30 n_dQTc_gt_60
+  <chr>        <int>        <int>        <int>        <int>        <int>
+1 Total            0            0            0            0            0
+# A tibble: 1 × 5
+  group n_QTc_gt_430 n_QTc_gt_450 n_dQTc_gt_30 n_dQTc_gt_60
+  <chr>        <int>        <int>        <int>        <int>
+1 Total            2            0            0            0
+```
+
+

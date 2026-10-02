@@ -1,12 +1,27 @@
 ---
 title: "Pipe operator"
-description: "See magrittr:: %>% for details."
+description: "[![[Deprecated]](/figures/lifecycle-deprecated. svg)](https://lifecycle. r-lib. org/articles/stages. html#deprecated)."
+sidebar:
+  label: "%>%"
 pagefind: true
 ---
 
 ## Description
 
+[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+
+## Details
+
+The re-export of magrittr's pipe from cqtkit is deprecated and will be
+removed in cqtkit 2.0.0. Attach the operator yourself with `library(dplyr)`
+or `library(magrittr)`, or use the base pipe `|>` (R >= 4.1.0).
+
 See `magrittr::%>%` for details.
+
+
+
+
+
 
 ## Usage
 
@@ -16,11 +31,30 @@ lhs %>% rhs
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `lhs` | A value or the magrittr placeholder. |
-| `rhs` | A function call using the magrittr semantics. |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lhs</code></td>
+<td>A value or the magrittr placeholder.</td>
+</tr>
+<tr>
+<td><code>rhs</code></td>
+<td>A function call using the magrittr semantics.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 The result of calling `rhs(lhs)`.
+
+
+
+
+

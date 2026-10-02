@@ -1,12 +1,20 @@
 ---
 title: "Compute Grouped Mean SD"
 description: "Computes the mean and standard deviation of the dependent variable data in DV_col grouped by time and dose."
+sidebar:
+  label: "compute_grouped_mean_sd"
 pagefind: true
 ---
 
 ## Description
 
-Computes the mean and standard deviation of the dependent variable data in DV_col grouped by time and dose.
+Computes the mean and standard deviation of the dependent variable data
+in DV_col grouped by time and dose.
+
+
+
+
+
 
 ## Usage
 
@@ -24,19 +32,53 @@ compute_grouped_mean_sd(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `dv_col` | An unquoted column name for dependent variable |
-| `ntime_col` | An unquoted column name for the Time group |
-| `dose_col` | An unquoted column name for dose group |
-| `group_col` | An unquoted column of optional grouping column |
-| `reference_dose` | Reference dose value for comparison calculations |
-| `conf_int` | Numeric confidence interval level (default: 0.9) |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>dv_col</code></td>
+<td>An unquoted column name for dependent variable</td>
+</tr>
+<tr>
+<td><code>ntime_col</code></td>
+<td>An unquoted column name for the Time group</td>
+</tr>
+<tr>
+<td><code>dose_col</code></td>
+<td>An unquoted column name for dose group</td>
+</tr>
+<tr>
+<td><code>group_col</code></td>
+<td>An unquoted column of optional grouping column, without missing values. Fill or filter missing values, or omit this argument for dose-only summaries.</td>
+</tr>
+<tr>
+<td><code>reference_dose</code></td>
+<td>Reference dose value for comparison calculations. Each dose is compared with `reference_dose` at the same time point. With `group_col`, it is compared with `reference_dose` in the same group, unless each dose belongs to exactly one group (a treatment group column, say). Then every group is compared with the one `reference_dose` group, as without `group_col`, so a study with its own doses and no `reference_dose` observations is compared with another study's `reference_dose`. Where there are no `reference_dose` observations to compare with, the differences are NA, with a warning naming the time points, or the time points and groups.</td>
+</tr>
+<tr>
+<td><code>conf_int</code></td>
+<td>Numeric confidence interval level (default: 0.9)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
-A tibble with mean, SD, SE, and confidence intervals for the dependent variable, grouped by time and dose
+A tibble with mean, SD, SE, and confidence intervals for the
+dependent variable, grouped by time and dose. `group` is a factor whose
+levels carry the intended display order. A group with fewer than 2
+observations has NA confidence intervals, with a warning naming the groups.
+
+
 
 ## Examples
 
@@ -48,9 +90,26 @@ compute_grouped_mean_sd(
   data_proc, deltaQTCF, NTLD, DOSE, reference_dose = 0
 )
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_grouped_mean_sd.txt?raw';
+```
+# A tibble: 30 × 17
+# Groups:   time [15]
+    time  dose mean_dv    sd geo_mean_dv geo_sd_dv     n    se ci_low ci_high
+   <dbl> <dbl>   <dbl> <dbl> <lgl>       <lgl>     <int> <dbl>  <dbl>   <dbl>
+ 1   0.5     0  -8.28   6.43 NA          NA           22  1.37 -11.1  -5.43  
+ 2   0.5   120  -6.01   6.14 NA          NA           22  1.31  -8.74 -3.29  
+ 3   1       0  -5.43   7.06 NA          NA           22  1.50  -8.55 -2.30  
+ 4   1     120  -0.454  7.96 NA          NA           22  1.70  -3.98  3.07  
+ 5   1.5     0  -5.42   6.77 NA          NA           22  1.44  -8.42 -2.41  
+ 6   1.5   120  -4.47   8.24 NA          NA           22  1.76  -8.13 -0.818 
+ 7   2       0  -2.28   5.23 NA          NA           22  1.11  -4.60  0.0352
+ 8   2     120   1.14   8.59 NA          NA           22  1.83  -2.67  4.94  
+ 9   2.5     0  -4.07   9.70 NA          NA           22  2.07  -8.37  0.234 
+10   2.5   120   0.757 10.3  NA          NA           22  2.19  -3.79  5.30  
+# ℹ 20 more rows
+# ℹ 7 more variables: group <fct>, mean_delta_dv <dbl>, geomean_delta_dv <int>,
+#   delta_sd <dbl>, delta_se <dbl>, ci_low_delta <dbl>, ci_up_delta <dbl>
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

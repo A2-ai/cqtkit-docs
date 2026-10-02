@@ -1,12 +1,19 @@
 ---
 title: "EDA QTc Comparison Plot"
 description: "Plots different corrections of QT against RR to compare which to use."
+sidebar:
+  label: "eda_qtc_comparison_plot"
 pagefind: true
 ---
 
 ## Description
 
 Plots different corrections of QT against RR to compare which to use.
+
+
+
+
+
 
 ## Usage
 
@@ -20,39 +27,114 @@ eda_qtc_comparison_plot(
   qtcp_col = NULL,
   id_col = NULL,
   trt_col = NULL,
-  legend_location = "top",
+  legend_location = lifecycle::deprecated(),
   model_type = c("lm", "lme"),
   show_model_results = TRUE,
   method = "REML",
   remove_rr_iiv = FALSE,
   conf_int = 0.9,
-  style = list()
+  style = list(),
+  include_pvalue = FALSE,
+  pvalue_eps = NULL,
+  decimals = NULL,
+  scientific = TRUE
 )
 ```
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `rr_col` | An unquoted column name for RR measurements |
-| `qt_col` | An unquoted column name for QT measurements |
-| `qtcb_col` | An unquoted column name for Bazett corrected QT data |
-| `qtcf_col` | An unquoted column name for Fridericia corrected QT data |
-| `qtcp_col` | An unquoted column name for QTc measurements |
-| `id_col` | An unquoted column name for subject ID |
-| `trt_col` | An unquoted column name for treatment group data |
-| `legend_location` | String for legend position (top, bottom, left, right) |
-| `model_type` | Lm or lme, which model to fit for showing on plot |
-| `show_model_results` | Logical, whether to show regression slope on plot |
-| `method` | Method for nlme::lme fitting (ML or REML) |
-| `remove_rr_iiv` | Logical, whether to remove IIV on RR slope |
-| `conf_int` | Numeric confidence interval level (default: 0.9) |
-| `style` | A named list of arguments passed to style_plot() |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>rr_col</code></td>
+<td>An unquoted column name for RR measurements</td>
+</tr>
+<tr>
+<td><code>qt_col</code></td>
+<td>An unquoted column name for QT measurements</td>
+</tr>
+<tr>
+<td><code>qtcb_col</code></td>
+<td>An unquoted column name for Bazett corrected QT data</td>
+</tr>
+<tr>
+<td><code>qtcf_col</code></td>
+<td>An unquoted column name for Fridericia corrected QT data</td>
+</tr>
+<tr>
+<td><code>qtcp_col</code></td>
+<td>An unquoted column name for QTc measurements</td>
+</tr>
+<tr>
+<td><code>id_col</code></td>
+<td>An unquoted column name for subject ID</td>
+</tr>
+<tr>
+<td><code>trt_col</code></td>
+<td>An unquoted column name for treatment group data</td>
+</tr>
+<tr>
+<td><code>legend_location</code></td>
+<td>[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated) String for legend position (top, bottom, left, right). Set `legend.position` in [`style_spec()`](../style_spec/) instead.</td>
+</tr>
+<tr>
+<td><code>model_type</code></td>
+<td>Lm or lme, which model to fit for showing on plot</td>
+</tr>
+<tr>
+<td><code>show_model_results</code></td>
+<td>Logical, whether to draw the fitted line and annotate the plot with the model results. `include_pvalue` adds to that annotation, so it does nothing when this is `FALSE`.</td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td>Method for nlme::lme fitting (ML or REML)</td>
+</tr>
+<tr>
+<td><code>remove_rr_iiv</code></td>
+<td>Logical, whether to remove IIV on RR slope</td>
+</tr>
+<tr>
+<td><code>conf_int</code></td>
+<td>Numeric confidence interval level (default: 0.9)</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>A [`style_spec()`](../style_spec/), or a named list of arguments passed to `style_plot()`. The list form is deprecated.</td>
+</tr>
+<tr>
+<td><code>include_pvalue</code></td>
+<td>Logical, add the slope p-value to the caption (default: FALSE)</td>
+</tr>
+<tr>
+<td><code>pvalue_eps</code></td>
+<td>Numeric, p-values below this are shown as "\< eps". Defaults to `NULL`, no cutoff, so the p-value is rounded to `decimals` places. Ignored when `scientific = TRUE`.</td>
+</tr>
+<tr>
+<td><code>decimals</code></td>
+<td>Integer, decimal places for the slope, confidence interval and p-value, or `NULL` (the default) to round to three decimals. `NULL` and `3` are not the same: `NULL` rounds, so 0.1 prints as `0.1`, while `decimals = 3` pads to a fixed width, so 0.1 prints as `0.100`.</td>
+</tr>
+<tr>
+<td><code>scientific</code></td>
+<td>Logical, show the p-value in scientific notation (default: TRUE, matching `tabulate_model_fit_parameters()`). `pvalue_eps` does not apply when this is `TRUE`, since the point of scientific notation is to show the small value rather than hide it.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A multi-panel plot comparing QT, QTcB, QTcF, and QTcP corrections against RR
+
+
 
 ## Examples
 
@@ -69,10 +151,10 @@ eda_qtc_comparison_plot(
   trt_col = TRTG,
   model_type = "lme",
   show_model_results = TRUE,
-  remove_rr_iiv = TRUE,
-  legend_location = 'top')
+  remove_rr_iiv = TRUE)
 ```
-
 ### Output
 
-<img src={`${import.meta.env.BASE_URL}examples/eda_qtc_comparison_plot.png`} alt="Example plot" style="max-width: 100%;" />
+![Example plot](/figures/reference/eda_qtc_comparison_plot.png)
+
+

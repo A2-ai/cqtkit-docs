@@ -1,12 +1,25 @@
 ---
 title: "Add Horizontal References"
-description: "Adds horizontal reference lines to plot."
+description: "[![[Deprecated]](/figures/lifecycle-deprecated. svg)](https://lifecycle. r-lib. org/articles/stages. html#deprecated)."
+sidebar:
+  label: "add_horizontal_references"
 pagefind: true
 ---
 
 ## Description
 
-Adds horizontal reference lines to plot.
+[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+
+## Details
+
+Adds horizontal reference lines to plot. Deprecated in favour of the
+`reference_threshold` argument of the plotting functions. A plot styled with
+[`style_spec()`](../style_spec/) cannot be revealed or restyled after lines are added to it.
+
+
+
+
+
 
 ## Usage
 
@@ -16,14 +29,31 @@ add_horizontal_references(p, reference_threshold)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `p` | A ggplot object |
-| `reference_threshold` | Numeric/vector of numerics for horizontal lines |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p</code></td>
+<td>A ggplot object</td>
+</tr>
+<tr>
+<td><code>reference_threshold</code></td>
+<td>Numeric/vector of numerics for horizontal lines</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A ggplot2 object with horizontal reference lines added
+
+
+
 
 ## Examples
 
@@ -42,7 +72,8 @@ eda_mean_dv_over_time(
     reference_threshold = c(-10, 10)
   )
 ```
-
 ### Output
 
-<img src={`${import.meta.env.BASE_URL}examples/add_horizontal_references.png`} alt="Example plot" style="max-width: 100%;" />
+![Example plot](/figures/reference/add_horizontal_references.png)
+
+

@@ -1,12 +1,19 @@
 ---
 title: "Compute QTcB QTcF"
-description: "Compute QTcB QTcF"
+description: "Compute QTcB QTcF."
+sidebar:
+  label: "compute_qtcb_qtcf"
 pagefind: true
 ---
 
 ## Description
 
 Compute QTcB QTcF
+
+
+
+
+
 
 ## Usage
 
@@ -22,26 +29,70 @@ compute_qtcb_qtcf(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing QT, RR, QTBL, RRBL |
-| `qt_col` | An unquoted column name for QT measurements |
-| `qtbl_col` | An unquoted column name for baseline QT measurements |
-| `rr_col` | An unquoted column name for RR measurements |
-| `rrbl_col` | An unquoted column name for baseline RR measurements |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing QT, RR, QTBL, RRBL</td>
+</tr>
+<tr>
+<td><code>qt_col</code></td>
+<td>An unquoted column name for QT measurements</td>
+</tr>
+<tr>
+<td><code>qtbl_col</code></td>
+<td>An unquoted column name for baseline QT measurements</td>
+</tr>
+<tr>
+<td><code>rr_col</code></td>
+<td>An unquoted column name for RR measurements</td>
+</tr>
+<tr>
+<td><code>rrbl_col</code></td>
+<td>An unquoted column name for baseline RR measurements</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A data frame with QTCF, QTCB, QTCFBL, and QTCBBL columns added
 
+
+
 ## Examples
 
 ```r
-compute_qtcb_qtcf(cqtkit_data_verapamil)
+compute_qtcb_qtcf(
+  dplyr::select(cqtkit_data_bl_verapamil, -QTCB, -QTCF),
+  qtbl_col = NULL,
+  rrbl_col = NULL
+)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_qtcb_qtcf.txt?raw';
+```
+# A tibble: 131 × 17
+      ID SEX     AGE  HGHT  WGHT RACE  ETHNIC      VISIT TRTG   DOSE DOSEU   TPT
+   <int> <chr> <int> <dbl> <dbl> <chr> <chr>       <chr> <fct> <int> <chr> <dbl>
+ 1  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Vera…   120 mg     -0.5
+ 2  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Vera…   120 mg     -0.5
+ 3  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Vera…   120 mg     -0.5
+ 4  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+ 5  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+ 6  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+ 7  1002 F        20  177   80.6 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+ 8  1002 F        20  177   80.6 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+ 9  1002 F        20  177   80.6 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+10  1002 F        20  177   80.6 WHITE NOT HISPAN… PERI… Vera…   120 mg     -0.5
+# ℹ 121 more rows
+# ℹ 5 more variables: RR <int>, QT <int>, HR <dbl>, QTCB <dbl>, QTCF <dbl>
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

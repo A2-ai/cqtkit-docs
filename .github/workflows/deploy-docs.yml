@@ -13,14 +13,14 @@ permissions:
 env:
   # For private repos: leave empty
   # For public repos: set to "/${{ github.event.repository.name }}"
-  BASE_PREFIX: "/cqtkit-docs"
+  BASE_PREFIX: ""
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -59,7 +59,9 @@ jobs:
             bun install
 
             # Replace versions.ts and VersionSelect.astro with latest from main
-            echo "$LATEST_VERSIONS" > src/data/versions.ts
+            if [ -f src/data/versions.ts ]; then
+              echo "$LATEST_VERSIONS" > src/data/versions.ts
+            fi
             git show origin/main:src/components/VersionSelect.astro > src/components/VersionSelect.astro 2>/dev/null || true
 
             # Build this version
@@ -88,7 +90,7 @@ jobs:
           touch site/.nojekyll
 
       - name: Publish to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages

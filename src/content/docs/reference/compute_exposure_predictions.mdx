@@ -1,12 +1,21 @@
 ---
 title: "Compute Exposure Predictions"
-description: "Predicts dQTC over range of concentration values with contrast."
+description: "Predicts dQTC over range of concentration values with contrast. To help keep the predictions quick, the concentration values to predict at are done at an order "
+sidebar:
+  label: "compute_exposure_predictions"
 pagefind: true
 ---
 
 ## Description
 
-Predicts dQTC over range of concentration values with contrast. To help keep the predictions quick, the concentration values to predict at are done at an order of magnitude of concentration values, if max(conc) = 7340, then by = 100.
+Predicts dQTC over range of concentration values with contrast.
+To help keep the predictions quick, the concentration values to predict at are
+done at an order of magnitude of concentration values, if max(conc) = 7340, then by = 100.
+
+
+
+
+
 
 ## Usage
 
@@ -24,19 +33,50 @@ compute_exposure_predictions(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `fit` | An nlme::lme model object from model fitting |
-| `conc_col` | An unquoted column name for concentration measurements used to fit the model |
-| `treatment_predictors` | List of a values for contrast. conc will update |
-| `control_predictors` | List of b values for contrast |
-| `cmaxes` | Vector of Cmax for each dose |
-| `conf_int` | Numeric confidence interval level (default: 0.9) |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>fit</code></td>
+<td>An nlme::lme model object from model fitting</td>
+</tr>
+<tr>
+<td><code>conc_col</code></td>
+<td>An unquoted column name for concentration measurements used to fit the model</td>
+</tr>
+<tr>
+<td><code>treatment_predictors</code></td>
+<td>List of a values for contrast. conc will update</td>
+</tr>
+<tr>
+<td><code>control_predictors</code></td>
+<td>List of b values for contrast</td>
+</tr>
+<tr>
+<td><code>cmaxes</code></td>
+<td>Vector of Cmax for each dose</td>
+</tr>
+<tr>
+<td><code>conf_int</code></td>
+<td>Numeric confidence interval level (default: 0.9)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A tibble with concentration, predicted deltaQTc, and lower/upper confidence bounds for exposure-response predictions
+
+
 
 ## Examples
 
@@ -57,9 +97,23 @@ compute_exposure_predictions(
   list(CONC = 10)
 )
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_exposure_predictions.txt?raw';
+```
+# A tibble: 38 × 4
+    conc  pred lower  upper
+   <dbl> <dbl> <dbl>  <dbl>
+ 1     0 -7.31 -9.61 -5.01 
+ 2    10 -6.84 -9.13 -4.55 
+ 3    20 -6.38 -8.66 -4.09 
+ 4    30 -5.91 -8.19 -3.63 
+ 5    40 -5.44 -7.73 -3.15 
+ 6    50 -4.98 -7.28 -2.67 
+ 7    60 -4.51 -6.83 -2.19 
+ 8    70 -4.04 -6.38 -1.70 
+ 9    80 -3.57 -5.95 -1.20 
+10    90 -3.11 -5.51 -0.701
+# ℹ 28 more rows
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

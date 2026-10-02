@@ -1,12 +1,25 @@
 ---
 title: "Compute Loess Linear R Squared"
-description: "Computes R-squared and Adjusted R-squared of loess regression compared to linear regression."
+description: "[![[Deprecated]](/figures/lifecycle-deprecated. svg)](https://lifecycle. r-lib. org/articles/stages. html#deprecated)."
+sidebar:
+  label: "compute_loess_linear_r_squared"
 pagefind: true
 ---
 
 ## Description
 
-Computes R-squared and Adjusted R-squared of loess regression compared to linear regression. Used for determining linearity of C-QT data.
+[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+
+## Details
+
+Computes R-squared and Adjusted R-squared of loess regression
+compared to linear regression. Used for determining linearity
+of C-QT data. Deprecated in 1.2.1.
+
+
+
+
+
 
 ## Usage
 
@@ -16,25 +29,52 @@ compute_loess_linear_r_squared(data, deltaqtc_col, conc_col, span = 0.99)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `deltaqtc_col` | An unquoted column name for dQTCF measurements |
-| `conc_col` | An unquoted column name for drug concentration measurements |
-| `span` | A fractional value for LOESS span parameter in geom_smooth if LOESS is used, default 0.99 |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>deltaqtc_col</code></td>
+<td>An unquoted column name for dQTCF measurements</td>
+</tr>
+<tr>
+<td><code>conc_col</code></td>
+<td>An unquoted column name for drug concentration measurements</td>
+</tr>
+<tr>
+<td><code>span</code></td>
+<td>A fractional value for LOESS span parameter in geom_smooth if LOESS is used, default 0.99</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A tibble with R-squared, adjusted R-squared, and partial coefficient of determination comparing loess to linear fit
 
+
+
+
 ## Examples
 
 ```r
-compute_loess_linear_r_squared(cqtkit_data_verapamil %>% preprocess(), deltaQTCF, CONC)
+compute_loess_linear_r_squared(cqtkit_data_verapamil |> preprocess(), deltaQTCF, CONC)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_loess_linear_r_squared.txt?raw';
+```
+# A tibble: 1 × 3
+  R_squared R_squared_adj R_partial_det
+      <dbl>         <dbl>         <dbl>
+1     0.860         0.859       0.00632
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

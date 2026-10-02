@@ -1,12 +1,19 @@
 ---
 title: "Compute Deltas"
-description: "Compute Deltas"
+description: "Compute Deltas."
+sidebar:
+  label: "compute_deltas"
 pagefind: true
 ---
 
 ## Description
 
 Compute Deltas
+
+
+
+
+
 
 ## Usage
 
@@ -28,32 +35,96 @@ compute_deltas(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `qt_col` | An unquoted column name for QT measurements |
-| `qtbl_col` | An unquoted column name for baseline QT measurements |
-| `rr_col` | An unquoted column name for RR measurements |
-| `rrbl_col` | An unquoted column name for baseline RR measurements |
-| `hr_col` | An unquoted column name for HR measurements, HR by default |
-| `hrbl_col` | An unquoted column name for baseline HR measurements, HRBL by default |
-| `qtcf_col` | An unquoted column name for QTCF measurements, QTCF by default |
-| `qtcfbl_col` | An unquoted column name for baseline QTCF measurements, QTCFBL by default |
-| `qtcb_col` | An unquoted column name for QTCB measurements, QTCB by default |
-| `qtcbbl_col` | An unquoted column name for baseline QTCB measurements, QTCBBL by default |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>qt_col</code></td>
+<td>An unquoted column name for QT measurements</td>
+</tr>
+<tr>
+<td><code>qtbl_col</code></td>
+<td>An unquoted column name for baseline QT measurements</td>
+</tr>
+<tr>
+<td><code>rr_col</code></td>
+<td>An unquoted column name for RR measurements</td>
+</tr>
+<tr>
+<td><code>rrbl_col</code></td>
+<td>An unquoted column name for baseline RR measurements</td>
+</tr>
+<tr>
+<td><code>hr_col</code></td>
+<td>An unquoted column name for HR measurements, HR by default</td>
+</tr>
+<tr>
+<td><code>hrbl_col</code></td>
+<td>An unquoted column name for baseline HR measurements, HRBL by default</td>
+</tr>
+<tr>
+<td><code>qtcf_col</code></td>
+<td>An unquoted column name for QTCF measurements, QTCF by default</td>
+</tr>
+<tr>
+<td><code>qtcfbl_col</code></td>
+<td>An unquoted column name for baseline QTCF measurements, QTCFBL by default</td>
+</tr>
+<tr>
+<td><code>qtcb_col</code></td>
+<td>An unquoted column name for QTCB measurements, QTCB by default</td>
+</tr>
+<tr>
+<td><code>qtcbbl_col</code></td>
+<td>An unquoted column name for baseline QTCB measurements, QTCBBL by default</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A data frame with deltaPARAM columns added
 
+
+
 ## Examples
 
 ```r
-compute_deltas(compute_qtcb_qtcf(cqtkit_data_verapamil))
+compute_deltas(
+  dplyr::select(cqtkit_data_verapamil, -dplyr::starts_with("delta"))
+)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_deltas.txt?raw';
+```
+# A tibble: 660 × 34
+      ID SEX     AGE  HGHT  WGHT RACE       ETHNIC VISIT TRTG   DOSE DOSEU DOSEF
+   <int> <chr> <int> <dbl> <dbl> <chr>      <chr>  <chr> <fct> <dbl> <chr> <fct>
+ 1  1001 F        25  162.  54.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 2  1002 F        20  177   80.6 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 3  1003 F        30  167   71.3 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 4  1004 F        32  177.  60.7 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 5  1005 F        23  182.  78.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 6  1006 F        22  168.  69.6 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 7  1007 F        27  159   52   WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 8  1008 F        33  164.  69.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 9  1009 F        29  162   68   AFRICAN A… NOT H… PERI… Plac…     0 mg    0 mg 
+10  1010 F        21  166.  56.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+# ℹ 650 more rows
+# ℹ 22 more variables: NTLD <dbl>, TAFD <chr>, CONC <dbl>, CONCU <chr>,
+#   RR <dbl>, RRBL <dbl>, HR <dbl>, HRBL <dbl>, HRBLM <dbl>, QT <dbl>,
+#   QTBL <dbl>, QTCB <dbl>, QTCBBL <dbl>, QTCBBLM <dbl>, QTCF <dbl>,
+#   QTCFBL <dbl>, QTCFBLM <dbl>, deltaQTCB <dbl>, deltaQTCF <dbl>,
+#   deltaRR <dbl>, deltaHR <dbl>, deltaQT <dbl>
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

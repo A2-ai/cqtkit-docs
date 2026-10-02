@@ -1,12 +1,19 @@
 ---
 title: "Compute LM Fit"
 description: "Fits a linear model of input data frame."
+sidebar:
+  label: "compute_lm_fit_df"
 pagefind: true
 ---
 
 ## Description
 
 Fits a linear model of input data frame.
+
+
+
+
+
 
 ## Usage
 
@@ -16,16 +23,38 @@ compute_lm_fit_df(data, xdata_col, ydata_col, conf_int = 0.95)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `xdata_col` | An unquoted column name for independent variable measurements |
-| `ydata_col` | An unquoted column name for dependent variable measurements |
-| `conf_int` | Numeric confidence interval level (default: 0.9) |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>xdata_col</code></td>
+<td>An unquoted column name for independent variable measurements</td>
+</tr>
+<tr>
+<td><code>ydata_col</code></td>
+<td>An unquoted column name for dependent variable measurements</td>
+</tr>
+<tr>
+<td><code>conf_int</code></td>
+<td>Numeric confidence interval level (default: 0.9)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A tibble with linear model coefficients (intercept, slope), their confidence intervals, and p-values
+
+
 
 ## Examples
 
@@ -34,9 +63,15 @@ data_proc <- preprocess(cqtkit_data_verapamil)
 
 compute_lm_fit_df(data_proc, RR, QT)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_lm_fit_df.txt?raw';
+```
+# A tibble: 1 × 9
+  intercept slope intercept_ci_lower intercept_ci_upper slope_ci_lower
+      <dbl> <dbl>              <dbl>              <dbl>          <dbl>
+1      280. 0.108               271.               289.         0.0985
+# ℹ 4 more variables: slope_ci_upper <dbl>, p_value_intercept <dbl>,
+#   p_value_slope <dbl>, conf_int <dbl>
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

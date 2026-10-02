@@ -1,12 +1,19 @@
 ---
 title: "Compute Hysteresis Labeller"
 description: "Gets labeller for hysteresis_loop_plot."
+sidebar:
+  label: "compute_hysteresis_labeller"
 pagefind: true
 ---
 
 ## Description
 
 Gets labeller for hysteresis_loop_plot.
+
+
+
+
+
 
 ## Usage
 
@@ -23,18 +30,46 @@ compute_hysteresis_labeller(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `ntime_col` | An unquoted column name for Nominal time since last dose (h) |
-| `deltaqtc_col` | An unquoted column name for dQTC measurements (ms) |
-| `conc_col` | An unquoted column name for CONC measurements (units) |
-| `dosef_col` | An unquoted column name for doses as factor |
-| `group_col` | An unquoted column name for additional grouping variable. |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>ntime_col</code></td>
+<td>An unquoted column name for Nominal time since last dose (h)</td>
+</tr>
+<tr>
+<td><code>deltaqtc_col</code></td>
+<td>An unquoted column name for dQTC measurements (ms)</td>
+</tr>
+<tr>
+<td><code>conc_col</code></td>
+<td>An unquoted column name for CONC measurements (units)</td>
+</tr>
+<tr>
+<td><code>dosef_col</code></td>
+<td>An unquoted column name for doses as factor</td>
+</tr>
+<tr>
+<td><code>group_col</code></td>
+<td>An unquoted column name for additional grouping variable.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A labeller function for ggplot2 facets that appends hysteresis detection status to dose labels
+
+
 
 ## Examples
 
@@ -49,9 +84,15 @@ compute_hysteresis_labeller(
   CONC,
   DOSEF)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_hysteresis_labeller.txt?raw';
+```
+function (variable, dose) 
+{
+    return(hysteresis)
+}
+<bytecode: 0x14106a358>
+<environment: 0x14106dd28>
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

@@ -1,0 +1,120 @@
+---
+title: "Compute a population mean baseline value (BLM)"
+description: "Assembly-time helper for building a C-QT analysis dataset. Averages `ecg_param_col` within each `group_col` group, averages those group means, and attaches the "
+sidebar:
+  label: "compute_blm"
+pagefind: true
+---
+
+## Description
+
+Assembly-time helper for building a C-QT analysis dataset. Averages
+`ecg_param_col` within each `group_col` group, averages those group means, and
+attaches the result to `data` as a constant column. Not intended for use on
+already-assembled datasets, use [`compute_delta_hrblm()`](../compute_delta_hrblm/),
+[`compute_delta_qtcbblm()`](../compute_delta_qtcbblm/) or [`compute_delta_qtcfblm()`](../compute_delta_qtcfblm/) for that.
+
+## Details
+
+`ecg_param_col` must already be on `bl_data`, computed per replicate.
+Corrected QT is nonlinear in RR, so a correction applied after averaging does not give
+the mean of the replicate corrected values. Add the columns with
+[`compute_hr()`](../compute_hr/) and [`compute_qtcb_qtcf()`](../compute_qtcb_qtcf/) first. Groups with any `NA` in
+`ecg_param_col` are dropped before averaging, and a warning is emitted.
+
+
+
+
+
+
+## Usage
+
+```r
+compute_blm(data, bl_data, group_col, ecg_param_col, blm_col_name)
+```
+
+## Arguments
+
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame to attach the population mean baseline column to (e.g., the assembled analysis dataset).</td>
+</tr>
+<tr>
+<td><code>bl_data</code></td>
+<td>A data frame of baseline ECG measurements to compute the population mean baseline from (typically raw data filtered to baseline rows), one row per replicate.</td>
+</tr>
+<tr>
+<td><code>group_col</code></td>
+<td>Grouping columns, as bare symbols or strings, supplied as `c(col1, col2, ...)` or a single value.</td>
+</tr>
+<tr>
+<td><code>ecg_param_col</code></td>
+<td>Unquoted name of the column in `bl_data` to average.</td>
+</tr>
+<tr>
+<td><code>blm_col_name</code></td>
+<td>Name of the column added to `data`.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+## Value
+
+`data` with the population mean baseline column added (a constant
+scalar repeated across all rows). If that column already exists on `data`,
+returns `data` unchanged.
+
+
+
+
+## Examples
+
+```r
+bl_data <- compute_qtcb_qtcf(
+  cqtkit_data_bl_verapamil,
+  qtbl_col = NULL,
+  rrbl_col = NULL
+)
+
+compute_blm(
+  dplyr::select(cqtkit_data_verapamil, -QTCFBLM),
+  bl_data,
+  group_col = c(ID, TRTG),
+  ecg_param_col = QTCF,
+  blm_col_name = "QTCFBLM"
+)
+```
+### Output
+
+```
+# A tibble: 660 × 37
+      ID SEX     AGE  HGHT  WGHT RACE       ETHNIC VISIT TRTG   DOSE DOSEU DOSEF
+   <int> <chr> <int> <dbl> <dbl> <chr>      <chr>  <chr> <fct> <dbl> <chr> <fct>
+ 1  1001 F        25  162.  54.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 2  1002 F        20  177   80.6 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 3  1003 F        30  167   71.3 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 4  1004 F        32  177.  60.7 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 5  1005 F        23  182.  78.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 6  1006 F        22  168.  69.6 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 7  1007 F        27  159   52   WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 8  1008 F        33  164.  69.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 9  1009 F        29  162   68   AFRICAN A… NOT H… PERI… Plac…     0 mg    0 mg 
+10  1010 F        21  166.  56.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+# ℹ 650 more rows
+# ℹ 25 more variables: NTLD <dbl>, TAFD <chr>, CONC <dbl>, CONCU <chr>,
+#   RR <dbl>, RRBL <dbl>, deltaRR <dbl>, HR <dbl>, HRBL <dbl>, HRBLM <dbl>,
+#   deltaHRBL <dbl>, deltaHR <dbl>, QT <dbl>, QTBL <dbl>, deltaQT <dbl>,
+#   QTCB <dbl>, QTCBBL <dbl>, QTCBBLM <dbl>, deltaQTCBBL <dbl>,
+#   deltaQTCB <dbl>, QTCF <dbl>, QTCFBL <dbl>, deltaQTCFBL <dbl>,
+#   deltaQTCF <dbl>, QTCFBLM <dbl>
+```
+
+

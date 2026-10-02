@@ -1,12 +1,19 @@
 ---
 title: "Compute enGRI"
 description: "Computes the exposure-normalized Glomb-Ring Index (enGRI)."
+sidebar:
+  label: "compute_enGRI"
 pagefind: true
 ---
 
 ## Description
 
 Computes the exposure-normalized Glomb-Ring Index (enGRI).
+
+
+
+
+
 
 ## Usage
 
@@ -16,24 +23,44 @@ compute_enGRI(data, conc_gm_col, ddqtc_col)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `conc_gm_col` | CONC geometric mean column name |
-| `ddqtc_col` | Delta delta QTc column name |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>conc_gm_col</code></td>
+<td>CONC geometric mean column name</td>
+</tr>
+<tr>
+<td><code>ddqtc_col</code></td>
+<td>Delta delta QTc column name</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 Numeric exposure-normalized Glomb-Ring Index value in ms, indicating hysteresis magnitude
+
+
 
 ## Examples
 
 ```r
 compute_enGRI(preprocess(cqtkit_data_verapamil), CONC, deltaQTCF)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_enGRI.txt?raw';
+```
+[1] 23.49247
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

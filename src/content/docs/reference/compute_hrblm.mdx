@@ -1,0 +1,81 @@
+---
+title: "Compute population mean baseline HR (HRBLM)"
+description: "Assembly-time helper for building a C-QT analysis dataset. Computes the population mean baseline heart rate from raw baseline ECG data and attaches it as a cons"
+sidebar:
+  label: "compute_hrblm"
+pagefind: true
+---
+
+## Description
+
+Assembly-time helper for building a C-QT analysis dataset. Computes the
+population mean baseline heart rate from raw baseline ECG data and
+attaches it as a constant column (`HRBLM`) on `data`. Not intended for
+use on already-assembled datasets — use [`compute_delta_hrblm()`](../compute_delta_hrblm/) for
+that.
+
+## Details
+
+When `by` is supplied, the scalar follows the white-paper recipe: per
+group, average `60000 / rr_col`; then take the mean of those per-group
+means. Groups with any `NA` in `rr_col` are dropped before averaging,
+and a warning is emitted. When `by = NULL`, the scalar is a single row-
+level mean of `60000 / rr_col`.
+
+
+
+
+
+
+## Usage
+
+```r
+compute_hrblm(data, bl_data, by = NULL, rr_col = RR)
+```
+
+## Arguments
+
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame to attach the `HRBLM` column to (e.g., the assembled analysis dataset).</td>
+</tr>
+<tr>
+<td><code>bl_data</code></td>
+<td>A data frame of baseline ECG measurements to compute `HRBLM` from (typically raw data filtered to baseline rows).</td>
+</tr>
+<tr>
+<td><code>by</code></td>
+<td>Optional grouping columns as bare symbols, supplied as `c(col1, col2, ...)` or a single symbol. Default `NULL`.</td>
+</tr>
+<tr>
+<td><code>rr_col</code></td>
+<td>Unquoted name of the RR column in `bl_data` (default `RR`).</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+## Value
+
+`data` with an `HRBLM` column added (a constant scalar repeated
+across all rows). If `HRBLM` already exists on `data`, returns `data`
+unchanged.
+
+
+
+
+## Examples
+
+```r
+# Not run:
+raw_bl <- raw |> dplyr::filter(BASELINE == "Y")
+analysis_data |> compute_hrblm(raw_bl, by = c(RANDID, EXTRT))
+```
+

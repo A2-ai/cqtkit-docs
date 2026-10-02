@@ -1,41 +1,50 @@
 ---
-title: Welcome to cqtkit
+title: "cqtkit"
+description: "Provides an end-to-end toolkit for C-QTc analysis"
 template: splash
+pagefind: true
 hero:
-  tagline: Comprehensive C-QT Analysis From Data to Deliverables
+  tagline: "Comprehensive C-QT Analysis From Data to Deliverables"
   image:
-    file: /src/assets/cqtkit.png
+    file: ../../assets/logo.png
   actions:
-    - text: cqtkit Reference Guide
-      link: ./reference/cqtkit
+    - text: "Get Started"
+      link: "./articles/readme/"
       icon: right-arrow
-    - text: Explore the cqtkit repository 
-      link: https://github.com/a2-ai/cqtkit
+      variant: primary
+    - text: "Explore the cqtkit repository"
+      link: "https://github.com/a2-ai/cqtkit"
       icon: external
       variant: minimal
 ---
+import { Card, CardGrid } from "@astrojs/starlight/components";
 
-import { Card, CardGrid, Icon} from '@astrojs/starlight/components';
-
-## `cqtkit` Highlights
+## Quick links
 
 <CardGrid stagger>
-	<Card title="Data Preprocessing Functions" icon="pen">
-		<a href={`${import.meta.env.BASE_URL}reference/preprocessing`}>Reference of preprocessing functions</a>
-	</Card>
-	<Card title="Exploratory Data Analysis Functions" icon="seti:code-search">
-		<a href={`${import.meta.env.BASE_URL}reference/eda`}>Reference of EDA functions</a>
-	</Card>
-	<Card title="Compute Functions" icon="laptop">
-		<a href={`${import.meta.env.BASE_URL}reference/compute`}>Reference of Computational functions</a>
-	</Card>
-	<Card title="Tabling Functions" icon="list-format">
-		<a href={`${import.meta.env.BASE_URL}reference/tabulate`}>Reference of Table functions</a>
-	</Card>
-	<Card title="Goodness of Fit Functions" icon="approve-check">
-		<a href={`${import.meta.env.BASE_URL}reference/gof`}>Reference of GoF functions</a>
-	</Card>
-	<Card title="Predict Functions" icon="information">
-		<a href={`${import.meta.env.BASE_URL}reference/predict`}>Reference of Prediction functions</a>
-	</Card>
+  <Card title="Data Preprocessing Functions" icon="pen">
+    Reference of preprocessing functions
+    [Learn more >](./reference/cqtkit-preprocessing/)
+  </Card>
+  <Card title="Exploratory Data Analysis Functions" icon="seti:code-search">
+    Reference of EDA functions
+    [Learn more >](./reference/cqtkit-eda/)
+  </Card>
+  <Card title="Compute Functions" icon="laptop">
+    Reference of Computational functions
+    [Learn more >](./reference/cqtkit-compute/)
+  </Card>
+  <Card title="Tabling Functions" icon="list-format">
+    Reference of Table functions
+    [Learn more >](./reference/cqtkit-tabulate/)
+  </Card>
+  <Card title="Goodness of Fit Functions" icon="approve-check">
+    Reference of GoF functions
+    [Learn more >](./reference/cqtkit-gof/)
+  </Card>
+  <Card title="Predict Functions" icon="information">
+    Reference of Prediction functions
+    [Learn more >](./reference/cqtkit-predict/)
+  </Card>
 </CardGrid>
+

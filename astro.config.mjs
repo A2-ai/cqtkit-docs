@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import { remarkBaseUrl } from "./remark-base-url.mjs";
 import { starlightKatex } from "starlight-katex";
 
 // https://astro.build/config
@@ -8,29 +9,51 @@ export default defineConfig({
   site: process.env.ASTRO_SITE || "http://localhost",
   base: process.env.ASTRO_BASE || "/",
   trailingSlash: "always",
+  markdown: {
+    remarkPlugins: [remarkBaseUrl],
+  },
   integrations: [
     starlight({
       title: "cqtkit",
-      customCss: ["./src/styles/custom.css"],
+      customCss: ["./src/styles/starlightr.css", "./src/styles/custom.css"],
       plugins: [starlightKatex()],
       components: { SiteTitle: "./src/components/VersionSelect.astro" },
       logo: { src: "./src/assets/logo.png", alt: "Logo" },
       favicon: "/images/favicon.png",
-      
       sidebar: [
+    {
+      label: "Articles",
+      items: [
+        {
+          label: "Getting Started",
+          items: [
+            { label: "Welcome", slug: "articles/readme" },
+            { label: "data-assembly", slug: "articles/data-assembly" },
+            { label: "styling", slug: "articles/styling" }
+          ]
+        }
+      ]
+    },
     {
       label: "Reference",
       items: [
-        { label: "cqtkit", slug: "reference/cqtkit" },
+        {
+          label: "Overview",
+          items: [
+            { label: "cqtkit", slug: "reference/cqtkit-package" }
+          ]
+        },
         {
           label: "Preprocessing",
           collapsed: true,
           items: [
-            { label: "preprocessing", slug: "reference/preprocessing" },
+            { label: "Preprocessing Functions", slug: "reference/cqtkit-preprocessing" },
+            { label: "compute_hr", slug: "reference/compute_hr" },
             { label: "compute_qtcb_qtcf", slug: "reference/compute_qtcb_qtcf" },
-            { label: "compute_delta_qtcfblm", slug: "reference/compute_delta_qtcfblm" },
-            { label: "compute_delta_qtcbblm", slug: "reference/compute_delta_qtcbblm" },
+            { label: "compute_blm", slug: "reference/compute_blm" },
             { label: "compute_delta_hrblm", slug: "reference/compute_delta_hrblm" },
+            { label: "compute_delta_qtcbblm", slug: "reference/compute_delta_qtcbblm" },
+            { label: "compute_delta_qtcfblm", slug: "reference/compute_delta_qtcfblm" },
             { label: "compute_deltas", slug: "reference/compute_deltas" },
             { label: "preprocess", slug: "reference/preprocess" }
           ]
@@ -39,7 +62,7 @@ export default defineConfig({
           label: "Exploratory Data Analysis",
           collapsed: true,
           items: [
-            { label: "eda", slug: "reference/eda" },
+            { label: "EDA Functions", slug: "reference/cqtkit-eda" },
             { label: "eda_mean_dv_over_time", slug: "reference/eda_mean_dv_over_time" },
             { label: "eda_qtc_comparison_plot", slug: "reference/eda_qtc_comparison_plot" },
             { label: "eda_hysteresis_loop_plot", slug: "reference/eda_hysteresis_loop_plot" },
@@ -52,10 +75,12 @@ export default defineConfig({
           label: "Compute",
           collapsed: true,
           items: [
-            { label: "compute", slug: "reference/compute" },
+            { label: "Compute Functions", slug: "reference/cqtkit-compute" },
             { label: "compute_grouped_mean_sd", slug: "reference/compute_grouped_mean_sd" },
             { label: "compute_pk_parameters", slug: "reference/compute_pk_parameters" },
             { label: "compute_ecg_param_summary", slug: "reference/compute_ecg_param_summary" },
+            { label: "compute_high_qtc_subjects", slug: "reference/compute_high_qtc_subjects" },
+            { label: "compute_high_qtc_observations", slug: "reference/compute_high_qtc_observations" },
             { label: "compute_high_qtc_sub", slug: "reference/compute_high_qtc_sub" },
             { label: "compute_study_summary", slug: "reference/compute_study_summary" },
             { label: "compute_quantiles_obs_df", slug: "reference/compute_quantiles_obs_df" },
@@ -76,9 +101,11 @@ export default defineConfig({
           label: "Tabulate",
           collapsed: true,
           items: [
-            { label: "tabulate", slug: "reference/tabulate" },
+            { label: "Tabulate Functions", slug: "reference/cqtkit-tabulate" },
             { label: "tabulate_study_summary", slug: "reference/tabulate_study_summary" },
             { label: "tabulate_ecg_param_summary", slug: "reference/tabulate_ecg_param_summary" },
+            { label: "tabulate_high_qtc_subjects", slug: "reference/tabulate_high_qtc_subjects" },
+            { label: "tabulate_high_qtc_observations", slug: "reference/tabulate_high_qtc_observations" },
             { label: "tabulate_high_qtc_sub", slug: "reference/tabulate_high_qtc_sub" },
             { label: "tabulate_pk_parameters", slug: "reference/tabulate_pk_parameters" },
             { label: "tabulate_model_fit_parameters", slug: "reference/tabulate_model_fit_parameters" },
@@ -89,7 +116,7 @@ export default defineConfig({
           label: "Fit",
           collapsed: true,
           items: [
-            { label: "fit", slug: "reference/fit" },
+            { label: "Fit Functions", slug: "reference/cqtkit-fit" },
             { label: "fit_prespecified_model", slug: "reference/fit_prespecified_model" },
             { label: "fit_qtc_linear_model", slug: "reference/fit_qtc_linear_model" },
             { label: "compute_model_fit_parameters", slug: "reference/compute_model_fit_parameters" },
@@ -100,7 +127,7 @@ export default defineConfig({
           label: "Goodness of Fit",
           collapsed: true,
           items: [
-            { label: "gof", slug: "reference/gof" },
+            { label: "GoF Functions", slug: "reference/cqtkit-gof" },
             { label: "gof_plots", slug: "reference/gof_plots" },
             { label: "gof_concordance_plots", slug: "reference/gof_concordance_plots" },
             { label: "gof_residuals_plots", slug: "reference/gof_residuals_plots" },
@@ -114,7 +141,7 @@ export default defineConfig({
           label: "Prediction",
           collapsed: true,
           items: [
-            { label: "predict", slug: "reference/predict" },
+            { label: "Predict Functions", slug: "reference/cqtkit-predict" },
             { label: "predict_with_observations_plot", slug: "reference/predict_with_observations_plot" },
             { label: "predict_with_quantiles_plot", slug: "reference/predict_with_quantiles_plot" },
             { label: "predict_with_exposure_plot", slug: "reference/predict_with_exposure_plot" }
@@ -124,17 +151,18 @@ export default defineConfig({
           label: "Style",
           collapsed: true,
           items: [
-            { label: "style", slug: "reference/style" },
+            { label: "Style Functions", slug: "reference/cqtkit-style" },
             { label: "add_horizontal_references", slug: "reference/add_horizontal_references" },
             { label: "set_style", slug: "reference/set_style" },
-            { label: "style_plot", slug: "reference/style_plot" }
+            { label: "style_plot", slug: "reference/style_plot" },
+            { label: "reexports", slug: "reference/reexports" }
           ]
         },
         {
           label: "Datasets",
           collapsed: true,
           items: [
-            { label: "datasets", slug: "reference/datasets" },
+            { label: "Datasets", slug: "reference/cqtkit-datasets" },
             { label: "cqtkit_data_verapamil", slug: "reference/cqtkit_data_verapamil" },
             { label: "cqtkit_data_bl_verapamil", slug: "reference/cqtkit_data_bl_verapamil" },
             { label: "cqtkit_data_dofetilide", slug: "reference/cqtkit_data_dofetilide" },
@@ -152,4 +180,3 @@ export default defineConfig({
     })
   ]
 });
-

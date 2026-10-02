@@ -1,0 +1,90 @@
+---
+title: "Compute High QTc Observations"
+description: "Counts the number of observations with QTc or deltaQTc above each threshold."
+sidebar:
+  label: "compute_high_qtc_observations"
+pagefind: true
+---
+
+## Description
+
+Counts the number of observations with QTc or deltaQTc above each threshold.
+
+
+
+
+
+
+## Usage
+
+```r
+compute_high_qtc_observations(
+  data,
+  qtc_col,
+  deltaqtc_col,
+  group_col = NULL,
+  qtc_thresholds = c(450, 480, 500),
+  dqtc_thresholds = c(30, 60)
+)
+```
+
+## Arguments
+
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>qtc_col</code></td>
+<td>An unquoted column name containing QTc data</td>
+</tr>
+<tr>
+<td><code>deltaqtc_col</code></td>
+<td>An unquoted column name containing deltaQTc data</td>
+</tr>
+<tr>
+<td><code>group_col</code></td>
+<td>An optional column name for grouping data</td>
+</tr>
+<tr>
+<td><code>qtc_thresholds</code></td>
+<td>Numeric vector of QTc thresholds (default: 450, 480, 500)</td>
+</tr>
+<tr>
+<td><code>dqtc_thresholds</code></td>
+<td>Numeric vector of deltaQTc thresholds (default: 30, 60)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+## Value
+
+A tibble with counts of observations exceeding each QTc and deltaQTc threshold
+
+
+
+## Examples
+
+```r
+data_proc <- preprocess(cqtkit_data_verapamil)
+
+compute_high_qtc_observations(data_proc, QTCF, deltaQTCF)
+```
+### Output
+
+```
+# A tibble: 1 × 6
+  group n_QTc_gt_450 n_QTc_gt_480 n_QTc_gt_500 n_dQTc_gt_30 n_dQTc_gt_60
+  <chr>        <int>        <int>        <int>        <int>        <int>
+1 Total            0            0            0            0            0
+```
+
+

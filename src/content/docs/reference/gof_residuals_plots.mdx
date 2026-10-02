@@ -1,12 +1,19 @@
 ---
 title: "GOF Residuals Plots"
 description: "Plots residuals vs predicted dQTCF and concentration."
+sidebar:
+  label: "gof_residuals_plots"
 pagefind: true
 ---
 
 ## Description
 
 Plots residuals vs predicted dQTCF and concentration.
+
+
+
+
+
 
 ## Usage
 
@@ -21,30 +28,78 @@ gof_residuals_plots(
   conc_xlabel = "Concentration (ng/mL)",
   dv_label = bquote(Delta ~ "QTc (ms)"),
   residual_references = c(-2, 2),
-  legend_location = c("top", "bottom", "left", "right", "none"),
-  style = list()
+  legend_location = lifecycle::deprecated(),
+  style = list(),
+  loess_line = FALSE
 )
 ```
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `fit` | An nlme::lme model object from model fitting |
-| `dv_col` | An unquoted column name for dependent variable measurements |
-| `conc_col` | An unquoted column name for drug concentration measurements |
-| `ntime_col` | An unquoted column name for nominal time since dose |
-| `trt_col` | An unquoted column name for treatment group" |
-| `conc_xlabel` | A string of concentration xlabel |
-| `dv_label` | A string of dv label (default: bquote(Delta ~ 'QTc (ms)')) |
-| `residual_references` | Numeric vector of reference residual lines to add, default -2 and 2 |
-| `legend_location` | String for legend position (top, bottom, left, right) |
-| `style` | A named list of arguments passed to style_plot() |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>fit</code></td>
+<td>An nlme::lme model object from model fitting</td>
+</tr>
+<tr>
+<td><code>dv_col</code></td>
+<td>An unquoted column name for dependent variable measurements</td>
+</tr>
+<tr>
+<td><code>conc_col</code></td>
+<td>An unquoted column name for drug concentration measurements</td>
+</tr>
+<tr>
+<td><code>ntime_col</code></td>
+<td>An unquoted column name for nominal time since dose</td>
+</tr>
+<tr>
+<td><code>trt_col</code></td>
+<td>An unquoted column name for treatment group"</td>
+</tr>
+<tr>
+<td><code>conc_xlabel</code></td>
+<td>A string of concentration xlabel</td>
+</tr>
+<tr>
+<td><code>dv_label</code></td>
+<td>A string of dv label (default: bquote(Delta ~ 'QTc (ms)'))</td>
+</tr>
+<tr>
+<td><code>residual_references</code></td>
+<td>Numeric vector of reference residual lines to add, default -2 and 2</td>
+</tr>
+<tr>
+<td><code>legend_location</code></td>
+<td>[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated) String for legend position (top, bottom, left, right). Set `legend.position` in [`style_spec()`](../style_spec/) instead.</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>A [`style_spec()`](../style_spec/), or a named list of arguments passed to `style_plot()`. The list form is deprecated.</td>
+</tr>
+<tr>
+<td><code>loess_line</code></td>
+<td>Logical, whether to add LOESS regression line, default FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A 4-panel plot of WRES and IWRES residuals vs predicted values and concentration
+
+
 
 ## Examples
 
@@ -67,10 +122,10 @@ gof_residuals_plots(
   deltaQTCF,
   CONC,
   NTLD,
-  TRTG,
-  legend_location = "top")
+  TRTG)
 ```
-
 ### Output
 
-<img src={`${import.meta.env.BASE_URL}examples/gof_residuals_plots.png`} alt="Example plot" style="max-width: 100%;" />
+![Example plot](/figures/reference/gof_residuals_plots.png)
+
+

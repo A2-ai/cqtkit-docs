@@ -1,12 +1,19 @@
 ---
 title: "Compute Study Summary"
 description: "Creates a data frame summarizing number of subjects in each treatment group."
+sidebar:
+  label: "compute_study_summary"
 pagefind: true
 ---
 
 ## Description
 
 Creates a data frame summarizing number of subjects in each treatment group.
+
+
+
+
+
 
 ## Usage
 
@@ -16,16 +23,39 @@ compute_study_summary(data, trt_col, id_col, group_col = NULL)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `trt_col` | Column name of treatment group |
-| `id_col` | Column name of ID |
-| `group_col` | Optional additional grouping column |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>trt_col</code></td>
+<td>Column name of treatment group</td>
+</tr>
+<tr>
+<td><code>id_col</code></td>
+<td>Column name of ID</td>
+</tr>
+<tr>
+<td><code>group_col</code></td>
+<td>Optional additional grouping column, without missing values. Fill or filter missing values, or omit this argument for treatment-only summaries.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
-A tibble with unique subject counts per treatment group and overall total
+A tibble with unique subject counts per factor `grouping`, including
+an overall `Total` as the first level
+
+
 
 ## Examples
 
@@ -34,9 +64,15 @@ data_proc <- preprocess(cqtkit_data_verapamil)
 
 compute_study_summary(data_proc, TRTG, ID)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_study_summary.txt?raw';
+```
+# A tibble: 3 × 2
+  grouping      n_sub
+  <fct>         <int>
+1 Total            22
+2 Placebo          22
+3 Verapamil HCL    22
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

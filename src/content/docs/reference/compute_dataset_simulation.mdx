@@ -1,12 +1,19 @@
 ---
 title: "Compute Dataset Simulation"
 description: "Simulates a dataset used to fit the model."
+sidebar:
+  label: "compute_dataset_simulation"
 pagefind: true
 ---
 
 ## Description
 
 Simulates a dataset used to fit the model.
+
+
+
+
+
 
 ## Usage
 
@@ -16,16 +23,38 @@ compute_dataset_simulation(data, fit, xdata_col, sim_num = 0)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `fit` | An nlme::lme model object from model fitting |
-| `xdata_col` | An unquoted column name for xdata |
-| `sim_num` | An optional simulation number |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>fit</code></td>
+<td>An nlme::lme model object from model fitting</td>
+</tr>
+<tr>
+<td><code>xdata_col</code></td>
+<td>An unquoted column name for xdata</td>
+</tr>
+<tr>
+<td><code>sim_num</code></td>
+<td>An optional simulation number</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A tibble with simulated predictions (pred), concentration values (xdata), and simulation number
+
+
 
 ## Examples
 
@@ -39,9 +68,23 @@ fit <- nlme::lme(
 
 compute_dataset_simulation(data_proc, fit, CONC)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_dataset_simulation.txt?raw';
+```
+# A tibble: 660 × 3
+     pred xdata sim_num
+    <dbl> <dbl>   <dbl>
+ 1 -26.4      0       0
+ 2  -2.87     0       0
+ 3  -9.00     0       0
+ 4   6.49     0       0
+ 5  -9.29     0       0
+ 6 -12.4      0       0
+ 7  -8.11     0       0
+ 8  -4.95     0       0
+ 9 -18.2      0       0
+10 -14.6      0       0
+# ℹ 650 more rows
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

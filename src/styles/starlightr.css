@@ -1,0 +1,17 @@
+/* Display math (\deqn): scroll wide equations instead of overflowing */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25em 0;
+}
+
+/* Argument tables in reference documentation */
+.arg-table table td:first-child {
+  min-width: 160px;
+  white-space: nowrap;
+}
+
+.arg-table table td:not(:first-child) {
+  width: 100%;
+  white-space: normal;
+}

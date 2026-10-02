@@ -1,12 +1,24 @@
 ---
 title: "Set Style"
-description: "Creates a style list for eda graphing functions."
+description: "[![[Deprecated]](/figures/lifecycle-deprecated. svg)](https://lifecycle. r-lib. org/articles/stages. html#deprecated)."
+sidebar:
+  label: "set_style"
 pagefind: true
 ---
 
 ## Description
 
-Creates a style list for eda graphing functions.
+[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+
+## Details
+
+Creates a style list for eda graphing functions. Deprecated in favour of
+[`style_spec()`](../style_spec/).
+
+
+
+
+
 
 ## Usage
 
@@ -41,36 +53,119 @@ set_style(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `style` | An optional named list of style arguments to update |
-| `title` | A string for a plot title |
-| `xlabel` | A string for x-axis label |
-| `ylabel` | A string for y-axis label |
-| `xlims` | A tuple of numbers specifying limits for x-axis |
-| `ylims` | A tuple of numbers specifying limits for y-axis |
-| `colors` | A named character vector for setting colors |
-| `labels` | A named character vector for setting legend labels |
-| `shapes` | A named character vector for setting geom_point shapes |
-| `legend` | A string for setting color legend title |
-| `shape_legend` | A string for setting shape legend title |
-| `color_order` | A numeric for setting color legend order |
-| `shape_order` | A numeric for setting shape legend order |
-| `linetype_order` | A numeric for setting linetype legend order |
-| `legend.position` | A string for legend position |
-| `legend.title.position` | A string for legend title position ("top", "left", "bottom", "right") |
-| `legend.title.hjust` | A string or numeric for legend title horizontal justification ("left"/0, "center"/0.5, "right"/1) |
-| `logx` | Logical, whether to use log scale for x-axis |
-| `logy` | Logical, whether to use log scale for y-axis |
-| `fill_alpha` | A numeric for controlling alpha of fill colors |
-| `fill_legend` | A string to replace fill legend title |
-| `fill_order` | A numeric for setting fill legend order |
-| `caption_hjust` | A string or numeric for caption horizontal justification ("left"/0, "center"/0.5, "right"/1) |
-| `legend_nrow` | A numeric for number of rows in legend |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>style</code></td>
+<td>An optional named list of style arguments to update</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>A string for a plot title</td>
+</tr>
+<tr>
+<td><code>xlabel</code></td>
+<td>A string for x-axis label</td>
+</tr>
+<tr>
+<td><code>ylabel</code></td>
+<td>A string for y-axis label</td>
+</tr>
+<tr>
+<td><code>xlims</code></td>
+<td>A tuple of numbers specifying limits for x-axis</td>
+</tr>
+<tr>
+<td><code>ylims</code></td>
+<td>A tuple of numbers specifying limits for y-axis</td>
+</tr>
+<tr>
+<td><code>colors</code></td>
+<td>A named character vector for setting colors</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td>A named character vector for setting legend labels</td>
+</tr>
+<tr>
+<td><code>shapes</code></td>
+<td>A named character vector for setting geom_point shapes</td>
+</tr>
+<tr>
+<td><code>legend</code></td>
+<td>A string for setting color legend title</td>
+</tr>
+<tr>
+<td><code>shape_legend</code></td>
+<td>A string for setting shape legend title</td>
+</tr>
+<tr>
+<td><code>color_order</code></td>
+<td>A numeric for setting color legend order</td>
+</tr>
+<tr>
+<td><code>shape_order</code></td>
+<td>A numeric for setting shape legend order</td>
+</tr>
+<tr>
+<td><code>linetype_order</code></td>
+<td>A numeric for setting linetype legend order</td>
+</tr>
+<tr>
+<td><code>legend.position</code></td>
+<td>A string for legend position</td>
+</tr>
+<tr>
+<td><code>legend.title.position</code></td>
+<td>A string for legend title position ("top", "left", "bottom", "right")</td>
+</tr>
+<tr>
+<td><code>legend.title.hjust</code></td>
+<td>A string or numeric for legend title horizontal justification ("left"/0, "center"/0.5, "right"/1)</td>
+</tr>
+<tr>
+<td><code>logx</code></td>
+<td>Logical, whether to use log scale for x-axis</td>
+</tr>
+<tr>
+<td><code>logy</code></td>
+<td>Logical, whether to use log scale for y-axis</td>
+</tr>
+<tr>
+<td><code>fill_alpha</code></td>
+<td>A numeric for controlling alpha of fill colors</td>
+</tr>
+<tr>
+<td><code>fill_legend</code></td>
+<td>A string to replace fill legend title</td>
+</tr>
+<tr>
+<td><code>fill_order</code></td>
+<td>A numeric for setting fill legend order</td>
+</tr>
+<tr>
+<td><code>caption_hjust</code></td>
+<td>A string or numeric for caption horizontal justification ("left"/0, "center"/0.5, "right"/1)</td>
+</tr>
+<tr>
+<td><code>legend_nrow</code></td>
+<td>A numeric for number of rows in legend</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A named list of style parameters for use with style_plot()
+
+
+
 
 ## Examples
 
@@ -90,9 +185,80 @@ style = set_style(
 )
 style
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/set_style.txt?raw';
+```
+$title
+NULL
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+$xlabel
+NULL
+
+$ylabel
+NULL
+
+$xlims
+NULL
+
+$ylims
+NULL
+
+$colors
+0 mg Placebo 
+      "grey" 
+
+$labels
+    Reference -10      Reference 10      0 mg Placebo  120 mg Verapamil 
+               NA "+/- 10 ms dQTcF"         "Placebo"       "Verapamil" 
+
+$shapes
+NULL
+
+$legend
+[1] "Treatment"
+
+$shape_legend
+NULL
+
+$color_order
+NULL
+
+$shape_order
+NULL
+
+$linetype_order
+NULL
+
+$legend.position
+NULL
+
+$legend.title.position
+[1] "top"
+
+$legend.title.hjust
+NULL
+
+$logx
+NULL
+
+$logy
+NULL
+
+$fill_alpha
+NULL
+
+$fill_legend
+NULL
+
+$fill_order
+NULL
+
+$caption_hjust
+NULL
+
+$legend_nrow
+NULL
+
+```
+
+

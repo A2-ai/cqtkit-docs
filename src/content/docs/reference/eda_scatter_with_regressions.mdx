@@ -1,12 +1,19 @@
 ---
 title: "EDA Scatter With Regressions"
-description: "Plots scatter plot with linear and loess regressions."
+description: "Plots scatter plot with linear and loess regressions. Can be used to check for linearity."
+sidebar:
+  label: "eda_scatter_with_regressions"
 pagefind: true
 ---
 
 ## Description
 
 Plots scatter plot with linear and loess regressions. Can be used to check for linearity.
+
+
+
+
+
 
 ## Usage
 
@@ -27,22 +34,62 @@ eda_scatter_with_regressions(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `ydata_col` | An unquoted column name for dependent variable measurements |
-| `xdata_col` | An unquoted column name for independent variable measurements |
-| `trt_col` | An unquoted column name for treatment group |
-| `reference_threshold` | Optional vector of numbers to add as horizontal dashed lines |
-| `loess_line` | Logical, whether to add LOESS regression line |
-| `linear_line` | Logical, whether to add linear regression line |
-| `span` | A fractional value for LOESS span parameter in geom_smooth if LOESS is used, default 0.99 |
-| `conf_int` | Numeric confidence interval level (default: 0.9) |
-| `style` | A named list of arguments passed to style_plot(). Shapes are mapped to treatment groups and can be controlled via the shapes parameter in style |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>ydata_col</code></td>
+<td>An unquoted column name for dependent variable measurements</td>
+</tr>
+<tr>
+<td><code>xdata_col</code></td>
+<td>An unquoted column name for independent variable measurements</td>
+</tr>
+<tr>
+<td><code>trt_col</code></td>
+<td>An unquoted column name for treatment group</td>
+</tr>
+<tr>
+<td><code>reference_threshold</code></td>
+<td>Optional vector of numbers to add as horizontal dashed lines</td>
+</tr>
+<tr>
+<td><code>loess_line</code></td>
+<td>Logical, whether to add LOESS regression line</td>
+</tr>
+<tr>
+<td><code>linear_line</code></td>
+<td>Logical, whether to add linear regression line</td>
+</tr>
+<tr>
+<td><code>span</code></td>
+<td>A fractional value for LOESS span parameter in geom_smooth if LOESS is used, default 0.99</td>
+</tr>
+<tr>
+<td><code>conf_int</code></td>
+<td>Numeric confidence interval level (default: 0.9)</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>A [`style_spec()`](../style_spec/), or a named list of arguments passed to `style_plot()`. The list form is deprecated.. Shapes are mapped to treatment groups and can be controlled via the shapes parameter in style</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A scatter plot with linear and/or LOESS regression lines for assessing linearity
+
+
 
 ## Examples
 
@@ -56,7 +103,8 @@ eda_scatter_with_regressions(
   TRTG,
   reference_threshold = 10)
 ```
-
 ### Output
 
-<img src={`${import.meta.env.BASE_URL}examples/eda_scatter_with_regressions.png`} alt="Example plot" style="max-width: 100%;" />
+![Example plot](/figures/reference/eda_scatter_with_regressions.png)
+
+

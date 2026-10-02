@@ -1,0 +1,92 @@
+---
+title: "Compute heart rate (HR) from RR"
+description: "Adds an `HR` column to `data` computed as `60000 / RR` (ms -> bpm), and optionally an `HRBL` column computed from a baseline RR column."
+sidebar:
+  label: "compute_hr"
+pagefind: true
+---
+
+## Description
+
+Adds an `HR` column to `data` computed as `60000 / RR` (ms -> bpm), and
+optionally an `HRBL` column computed from a baseline RR column.
+
+## Details
+
+Intended for ECG data that has not yet been averaged across replicates.
+On replicate-averaged data the result is `60000` divided by a mean RR,
+which is not the mean of the replicate heart rates.
+
+
+
+
+
+
+## Usage
+
+```r
+compute_hr(data, rr_col = RR, rrbl_col = RRBL)
+```
+
+## Arguments
+
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing an RR column.</td>
+</tr>
+<tr>
+<td><code>rr_col</code></td>
+<td>Unquoted column name for RR measurements. Default `RR`. Pass `NULL` to skip the HR computation.</td>
+</tr>
+<tr>
+<td><code>rrbl_col</code></td>
+<td>Unquoted column name for baseline RR measurements. Default `RRBL`. Pass `NULL` to skip the HRBL computation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+## Value
+
+`data` with `HR` and/or `HRBL` columns added. Existing columns
+of those names are left unchanged.
+
+
+
+
+## Examples
+
+```r
+compute_hr(
+  dplyr::select(cqtkit_data_bl_verapamil, -HR),
+  rrbl_col = NULL
+)
+```
+### Output
+
+```
+# A tibble: 131 × 17
+      ID SEX     AGE  HGHT  WGHT RACE  ETHNIC      VISIT TRTG   DOSE DOSEU   TPT
+   <int> <chr> <int> <dbl> <dbl> <chr> <chr>       <chr> <fct> <int> <chr> <dbl>
+ 1  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Vera…   120 mg     -0.5
+ 2  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Vera…   120 mg     -0.5
+ 3  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Vera…   120 mg     -0.5
+ 4  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+ 5  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+ 6  1001 F        25  162.  54.8 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+ 7  1002 F        20  177   80.6 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+ 8  1002 F        20  177   80.6 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+ 9  1002 F        20  177   80.6 WHITE NOT HISPAN… PERI… Plac…    NA <NA>   -0.5
+10  1002 F        20  177   80.6 WHITE NOT HISPAN… PERI… Vera…   120 mg     -0.5
+# ℹ 121 more rows
+# ℹ 5 more variables: RR <int>, QT <int>, QTCB <dbl>, QTCF <dbl>, HR <dbl>
+```
+
+

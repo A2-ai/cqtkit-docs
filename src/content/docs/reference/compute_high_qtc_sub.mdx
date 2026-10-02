@@ -1,12 +1,25 @@
 ---
 title: "Compute High QTc Subjects"
-description: "Computes the number of subjects with QTc > 450, 480, 500 as well as deltaQTc > 30, 60."
+description: "[![[Deprecated]](/figures/lifecycle-deprecated. svg)](https://lifecycle. r-lib. org/articles/stages. html#deprecated)."
+sidebar:
+  label: "compute_high_qtc_sub"
 pagefind: true
 ---
 
 ## Description
 
-Computes the number of subjects with QTc \> 450, 480, 500 as well as deltaQTc \> 30, 60.
+[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+
+## Details
+
+Despite its name, this function counts observations, not subjects. Use
+[`compute_high_qtc_subjects()`](../compute_high_qtc_subjects/) for subject counts or
+[`compute_high_qtc_observations()`](../compute_high_qtc_observations/) for observation counts.
+
+
+
+
+
 
 ## Usage
 
@@ -16,16 +29,39 @@ compute_high_qtc_sub(data, qtc_col, deltaqtc_col, group_col = NULL)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `qtc_col` | An unquoted column name for containing QTc data |
-| `deltaqtc_col` | An unquoted column name for containing deltaQTc data |
-| `group_col` | An optional column name for grouping data |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>qtc_col</code></td>
+<td>An unquoted column name for containing QTc data</td>
+</tr>
+<tr>
+<td><code>deltaqtc_col</code></td>
+<td>An unquoted column name for containing deltaQTc data</td>
+</tr>
+<tr>
+<td><code>group_col</code></td>
+<td>An optional column name for grouping data</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A tibble with counts of observations exceeding QTc thresholds (450, 480, 500 ms) and deltaQTc thresholds (30, 60 ms)
+
+
+
 
 ## Examples
 
@@ -34,9 +70,13 @@ data_proc <- preprocess(cqtkit_data_verapamil)
 
 compute_high_qtc_sub(data_proc, QTCF, deltaQTCF)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_high_qtc_sub.txt?raw';
+```
+# A tibble: 1 × 6
+  group n_QTc_gt_450 n_QTc_gt_480 n_QTc_gt_500 n_dQTc_gt_30 n_dQTc_gt_60
+  <chr>        <int>        <int>        <int>        <int>        <int>
+1 Total            0            0            0            0            0
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

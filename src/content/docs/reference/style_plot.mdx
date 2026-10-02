@@ -1,76 +1,58 @@
 ---
 title: "Style Plot"
-description: "Styles a plot with provided colors and labels."
+description: "[![[Deprecated]](/figures/lifecycle-deprecated. svg)](https://lifecycle. r-lib. org/articles/stages. html#deprecated)."
+sidebar:
+  label: "style_plot"
 pagefind: true
 ---
 
 ## Description
 
-Styles a plot with provided colors and labels.
+[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+
+## Details
+
+Styles a plot with provided colors and labels. Deprecated in favour of
+[`style_spec()`](../style_spec/) and [`restyle_plot()`](../restyle_plot/).
+
+
+
+
+
 
 ## Usage
 
 ```r
-style_plot(
-  p,
-  title = NULL,
-  xlabel = NULL,
-  ylabel = NULL,
-  xlims = NULL,
-  ylims = NULL,
-  colors = NULL,
-  labels = NULL,
-  shapes = NULL,
-  legend = NULL,
-  shape_legend = NULL,
-  color_order = NULL,
-  shape_order = NULL,
-  linetype_order = NULL,
-  legend.position = NULL,
-  legend.title.position = NULL,
-  legend.title.hjust = NULL,
-  logx = NULL,
-  logy = NULL,
-  fill_alpha = NULL,
-  fill_legend = NULL,
-  fill_order = NULL,
-  caption_hjust = NULL,
-  legend_nrow = NULL
-)
+style_plot(p, ...)
 ```
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `p` | A ggplot2 object to update colors/legend labels |
-| `title` | A string for a plot title |
-| `xlabel` | A string for x-axis label |
-| `ylabel` | A string for y-axis label |
-| `xlims` | A tuple of numbers specifying limits for x-axis |
-| `ylims` | A tuple of numbers specifying limits for y-axis |
-| `colors` | A named character vector for setting colors |
-| `labels` | A named character vector for setting legend labels |
-| `shapes` | A named character vector for setting geom_point shapes |
-| `legend` | A string for setting color legend title |
-| `shape_legend` | A string for setting shape legend title |
-| `color_order` | A numeric for setting color legend order |
-| `shape_order` | A numeric for setting shape legend order |
-| `linetype_order` | A numeric for setting linetype legend order |
-| `legend.position` | A string for legend position |
-| `legend.title.position` | A string for legend title position ("top", "left", "bottom", "right") |
-| `legend.title.hjust` | A string or numeric for legend title horizontal justification ("left"/0, "center"/0.5, "right"/1) |
-| `logx` | Logical, whether to use log scale for x-axis |
-| `logy` | Logical, whether to use log scale for y-axis |
-| `fill_alpha` | A numeric for controlling alpha of fill colors |
-| `fill_legend` | A string to replace fill legend title |
-| `fill_order` | A numeric for setting fill legend order |
-| `caption_hjust` | A string or numeric for caption horizontal justification ("left"/0, "center"/0.5, "right"/1) |
-| `legend_nrow` | A numeric for number of rows in legend |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p</code></td>
+<td>A ggplot2 object to update colors/legend labels</td>
+</tr>
+<tr>
+<td><code>...</code></td>
+<td>Style arguments, documented in [`set_style()`](../set_style/)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A ggplot2 object with applied colors, labels, shapes, and theme settings
+
+
+
 
 ## Examples
 
@@ -100,7 +82,8 @@ data_proc <- cqtkit_data_verapamil |> preprocess()
 )
 .p
 ```
-
 ### Output
 
-<img src={`${import.meta.env.BASE_URL}examples/style_plot.png`} alt="Example plot" style="max-width: 100%;" />
+![Example plot](/figures/reference/style_plot.png)
+
+

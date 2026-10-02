@@ -1,45 +1,101 @@
 ---
 title: "Compute Delta QTcB Baseline Mean"
-description: "Compute Delta QTcB Baseline Mean"
+description: "Adds a `deltaQTCBBL` column computed as `QTCBBL - QTCBBLM`. `QTCBBLM`, the population mean baseline Bazett-corrected QT, must already be on `data`; add it with."
+sidebar:
+  label: "compute_delta_qtcbblm"
 pagefind: true
 ---
 
 ## Description
 
-Compute Delta QTcB Baseline Mean
+Adds a `deltaQTCBBL` column computed as `QTCBBL - QTCBBLM`. `QTCBBLM`,
+the population mean baseline Bazett-corrected QT, must already be on
+`data`; add it with [`compute_blm()`](../compute_blm/).
+
+
+
+
+
 
 ## Usage
 
 ```r
 compute_delta_qtcbblm(
   data,
-  id_col = ID,
+  id_col = lifecycle::deprecated(),
   qtcbbl_col = QTCBBL,
-  deduplicate = TRUE
+  deduplicate = lifecycle::deprecated(),
+  qtcbblm_col = QTCBBLM
 )
 ```
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `id_col` | An unquoted column name for subject ID |
-| `qtcbbl_col` | An unquoted column name for baseline QTCB measurements, default is QTCBBL |
-| `deduplicate` | Logical, whether to remove duplicate baseline values before averaging |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>id_col</code></td>
+<td>[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated) An unquoted column name for subject ID. Only used when `options(cqtkit.override_preprocessing_error = TRUE)`.</td>
+</tr>
+<tr>
+<td><code>qtcbbl_col</code></td>
+<td>An unquoted column name for baseline QTCB measurements, default is QTCBBL</td>
+</tr>
+<tr>
+<td><code>deduplicate</code></td>
+<td>[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated) Logical, whether to remove duplicate baseline values before averaging. Only used when `options(cqtkit.override_preprocessing_error = TRUE)`.</td>
+</tr>
+<tr>
+<td><code>qtcbblm_col</code></td>
+<td>An unquoted column name for the population mean baseline QTCB, default is QTCBBLM</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A data frame with deltaQTCBBL column added
 
+
+
 ## Examples
 
 ```r
-compute_delta_qtcbblm(compute_qtcb_qtcf(cqtkit_data_verapamil))
+compute_delta_qtcbblm(dplyr::select(cqtkit_data_verapamil, -deltaQTCBBL))
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_delta_qtcbblm.txt?raw';
+```
+# A tibble: 660 × 37
+      ID SEX     AGE  HGHT  WGHT RACE       ETHNIC VISIT TRTG   DOSE DOSEU DOSEF
+   <int> <chr> <int> <dbl> <dbl> <chr>      <chr>  <chr> <fct> <dbl> <chr> <fct>
+ 1  1001 F        25  162.  54.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 2  1002 F        20  177   80.6 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 3  1003 F        30  167   71.3 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 4  1004 F        32  177.  60.7 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 5  1005 F        23  182.  78.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 6  1006 F        22  168.  69.6 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 7  1007 F        27  159   52   WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 8  1008 F        33  164.  69.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 9  1009 F        29  162   68   AFRICAN A… NOT H… PERI… Plac…     0 mg    0 mg 
+10  1010 F        21  166.  56.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+# ℹ 650 more rows
+# ℹ 25 more variables: NTLD <dbl>, TAFD <chr>, CONC <dbl>, CONCU <chr>,
+#   RR <dbl>, RRBL <dbl>, deltaRR <dbl>, HR <dbl>, HRBL <dbl>, HRBLM <dbl>,
+#   deltaHRBL <dbl>, deltaHR <dbl>, QT <dbl>, QTBL <dbl>, deltaQT <dbl>,
+#   QTCB <dbl>, QTCBBL <dbl>, QTCBBLM <dbl>, deltaQTCB <dbl>, QTCF <dbl>,
+#   QTCFBL <dbl>, QTCFBLM <dbl>, deltaQTCFBL <dbl>, deltaQTCF <dbl>,
+#   deltaQTCBBL <dbl>
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

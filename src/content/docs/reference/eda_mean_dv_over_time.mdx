@@ -1,12 +1,19 @@
 ---
 title: "EDA Mean DV Over Time"
 description: "Plots mean dependent variable over time."
+sidebar:
+  label: "eda_mean_dv_over_time"
 pagefind: true
 ---
 
 ## Description
 
 Plots mean dependent variable over time.
+
+
+
+
+
 
 ## Usage
 
@@ -31,26 +38,78 @@ eda_mean_dv_over_time(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `dv_col` | An unquoted column name for dependent variable |
-| `ntime_col` | An unquoted column name for nominal Time grouping |
-| `dosef_col` | An unquoted column name for Dose grouping |
-| `secondary_data_col` | Optional unquoted column name to overlay on secondary y-axis |
-| `group_col` | An unquoted column name for additional grouping column |
-| `reference_dose` | Reference dose value for comparison calculations |
-| `reference_threshold` | Optional - a numeric or vector of numerics to add dashed lines to plot |
-| `conf_int` | Numeric confidence interval level (default: 0.9) |
-| `scale_factor` | Optional scale factor for scaling secondary_data_col |
-| `shift_factor` | Optional additive factor for shifting secondary data |
-| `error_bars` | A string for setting which errorbars are shown, CI, SE, SD |
-| `sec_ylabel` | A string for secondary ylabel, default is Concentration (ng/mL) |
-| `style` | A named list of arguments passed to style_plot(). Shapes are mapped to grouping variables and can be controlled via the shapes parameter in style |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>dv_col</code></td>
+<td>An unquoted column name for dependent variable</td>
+</tr>
+<tr>
+<td><code>ntime_col</code></td>
+<td>An unquoted column name for nominal Time grouping</td>
+</tr>
+<tr>
+<td><code>dosef_col</code></td>
+<td>An unquoted column name for Dose grouping</td>
+</tr>
+<tr>
+<td><code>secondary_data_col</code></td>
+<td>Optional unquoted column name to overlay on secondary y-axis</td>
+</tr>
+<tr>
+<td><code>group_col</code></td>
+<td>An unquoted column name for additional grouping column</td>
+</tr>
+<tr>
+<td><code>reference_dose</code></td>
+<td>Reference dose value for comparison calculations</td>
+</tr>
+<tr>
+<td><code>reference_threshold</code></td>
+<td>Optional - a numeric or vector of numerics to add dashed lines to plot</td>
+</tr>
+<tr>
+<td><code>conf_int</code></td>
+<td>Numeric confidence interval level (default: 0.9)</td>
+</tr>
+<tr>
+<td><code>scale_factor</code></td>
+<td>Optional scale factor for scaling secondary_data_col</td>
+</tr>
+<tr>
+<td><code>shift_factor</code></td>
+<td>Optional additive factor for shifting secondary data</td>
+</tr>
+<tr>
+<td><code>error_bars</code></td>
+<td>A string for setting which errorbars are shown, CI, SE, SD</td>
+</tr>
+<tr>
+<td><code>sec_ylabel</code></td>
+<td>A string for secondary ylabel, default is Concentration (ng/mL)</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>A [`style_spec()`](../style_spec/), or a named list of arguments passed to `style_plot()`. The list form is deprecated.. Shapes are mapped to grouping variables and can be controlled via the shapes parameter in style</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A line plot of mean dependent variable over time with optional error bars, reference lines, and secondary axis
+
+
 
 ## Examples
 
@@ -67,7 +126,8 @@ eda_mean_dv_over_time(
   reference_threshold = 10,
   style = set_style(ylabel = bquote('Mean '~Delta~Delta~'QTc (ms)')))
 ```
-
 ### Output
 
-<img src={`${import.meta.env.BASE_URL}examples/eda_mean_dv_over_time.png`} alt="Example plot" style="max-width: 100%;" />
+![Example plot](/figures/reference/eda_mean_dv_over_time.png)
+
+

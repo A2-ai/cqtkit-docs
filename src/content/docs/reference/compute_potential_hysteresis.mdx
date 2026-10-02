@@ -1,12 +1,25 @@
 ---
 title: "Compute Potential Hysteresis"
 description: "Detects the presence of counter-clockwise hysteresis (effect lags concentration)."
+sidebar:
+  label: "compute_potential_hysteresis"
 pagefind: true
 ---
 
 ## Description
 
 Detects the presence of counter-clockwise hysteresis (effect lags concentration).
+
+## Details
+
+Hysteresis is flagged when both conditions are met:
+- The time of maximum QTc effect (Umax) occurs >= 1 hour after time of maximum concentration (Tmax)
+- More than 3 timepoints have mean deltaQTc > 5 ms (sustained elevation)
+
+
+
+
+
 
 ## Usage
 
@@ -22,29 +35,43 @@ compute_potential_hysteresis(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `ntime_col` | An unquoted column name for nominal timepoints |
-| `deltaqtc_col` | An unquoted column name for dQTC measurements |
-| `conc_col` | An unquoted column name for concentration measurements |
-| `group_col` | An unquoted column name for grouping column - usually DOSEF |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>ntime_col</code></td>
+<td>An unquoted column name for nominal timepoints</td>
+</tr>
+<tr>
+<td><code>deltaqtc_col</code></td>
+<td>An unquoted column name for dQTC measurements</td>
+</tr>
+<tr>
+<td><code>conc_col</code></td>
+<td>An unquoted column name for concentration measurements</td>
+</tr>
+<tr>
+<td><code>group_col</code></td>
+<td>An unquoted column name for grouping column - usually DOSEF</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-Hysteresis is flagged when both conditions are met:
-
-- The time of maximum QTc effect (Umax) occurs \>= 1 hour after time of maximum concentration (Tmax)
-
-- More than 3 timepoints have mean deltaQTc \> 5 ms (sustained elevation)
 
 ## Value
 
-Logical TRUE if hysteresis detected (Tmax-Umax lag \>= 1 hour with sustained QTc elevation), FALSE otherwise
+Logical TRUE if hysteresis detected (Tmax-Umax lag >= 1 hour with sustained QTc elevation), FALSE otherwise
 
-## See Also
 
-<a href={`${import.meta.env.BASE_URL}reference/eda_hysteresis_loop_plot`}><code>eda_hysteresis_loop_plot()</code></a> for visual inspection of hysteresis loops
+
 
 ## Examples
 
@@ -59,9 +86,15 @@ compute_potential_hysteresis(
   CONC,
   DOSEF)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_potential_hysteresis.txt?raw';
+```
+[1] FALSE
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+[`eda_hysteresis_loop_plot()`](../eda_hysteresis_loop_plot/) for visual inspection of hysteresis loops
+
+

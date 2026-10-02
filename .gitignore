@@ -12,15 +12,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
 .env.production
 
 # macOS-specific files
 .DS_Store
-
-.gh-pages-local
-bad_urls.json
-url_map.json
-

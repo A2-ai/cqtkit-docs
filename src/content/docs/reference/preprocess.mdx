@@ -1,12 +1,34 @@
 ---
 title: "Preprocess"
-description: "Computes QTcB, QTcF, deltaQTcF, deltaQTcB, deltaHR, deltaQTcB Baseline Mean, deltaQTcF Baseline Mean, deltaHR Baseline Mean."
+description: "Computes deltaQTcB, deltaQTcF, deltaHR, deltaQTcB Baseline Mean, deltaQTcF Baseline Mean, deltaHR Baseline Mean."
+sidebar:
+  label: "preprocess"
 pagefind: true
 ---
 
 ## Description
 
-Computes QTcB, QTcF, deltaQTcF, deltaQTcB, deltaHR, deltaQTcB Baseline Mean, deltaQTcF Baseline Mean, deltaHR Baseline Mean.
+Computes deltaQTcB, deltaQTcF, deltaHR, deltaQTcB Baseline Mean,
+deltaQTcF Baseline Mean, deltaHR Baseline Mean.
+
+## Details
+
+`QTCB`, `QTCF`, `QTCBBL` and `QTCFBL` must already be on `data`, and the
+population means `HRBLM`, `QTCBBLM` and `QTCFBLM` must be too. Corrected
+QT is nonlinear in RR, so deriving it from replicate-averaged `QT` and
+`RR` does not give the mean of the replicate corrected values. Compute
+the corrections per replicate with [`compute_qtcb_qtcf()`](../compute_qtcb_qtcf/) before
+averaging, and add the population means with [`compute_blm()`](../compute_blm/). See
+`vignette("data-assembly")`.
+
+Setting `options(cqtkit.override_preprocessing_error = TRUE)` restores
+the pre-1.2.0 behaviour, where `preprocess()` derived those columns from
+whatever `data` carried. It warns naming each value derived that way.
+
+
+
+
+
 
 ## Usage
 
@@ -23,41 +45,128 @@ preprocess(
   qtcfbl_col = QTCFBL,
   qtcb_col = QTCB,
   qtcbbl_col = QTCBBL,
-  id_col = ID,
-  deduplicate = TRUE
+  id_col = lifecycle::deprecated(),
+  deduplicate = lifecycle::deprecated(),
+  hrblm_col = HRBLM,
+  qtcbblm_col = QTCBBLM,
+  qtcfblm_col = QTCFBLM
 )
 ```
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `qt_col` | An unquoted column name for QT measurements |
-| `qtbl_col` | An unquoted column name for baseline QT measurements |
-| `rr_col` | An unquoted column name for RR measurements |
-| `rrbl_col` | An unquoted column name for baseline RR measurements |
-| `hr_col` | An unquoted column name for HR measurements, HR by default |
-| `hrbl_col` | An unquoted column name for baseline HR measurements, HRBL by default |
-| `qtcf_col` | An unquoted column name for QTCF measurements, QTCF by default |
-| `qtcfbl_col` | An unquoted column name for baseline QTCF measurements, QTCFBL by default |
-| `qtcb_col` | An unquoted column name for QTCB measurements, QTCB by default |
-| `qtcbbl_col` | An unquoted column name for baseline QTCB measurements, QTCBBL by default |
-| `id_col` | An unquoted column name for subject ID |
-| `deduplicate` | Logical, whether to remove duplicate baseline values before averaging |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>qt_col</code></td>
+<td>An unquoted column name for QT measurements</td>
+</tr>
+<tr>
+<td><code>qtbl_col</code></td>
+<td>An unquoted column name for baseline QT measurements</td>
+</tr>
+<tr>
+<td><code>rr_col</code></td>
+<td>An unquoted column name for RR measurements</td>
+</tr>
+<tr>
+<td><code>rrbl_col</code></td>
+<td>An unquoted column name for baseline RR measurements</td>
+</tr>
+<tr>
+<td><code>hr_col</code></td>
+<td>An unquoted column name for HR measurements, HR by default</td>
+</tr>
+<tr>
+<td><code>hrbl_col</code></td>
+<td>An unquoted column name for baseline HR measurements, HRBL by default</td>
+</tr>
+<tr>
+<td><code>qtcf_col</code></td>
+<td>An unquoted column name for QTCF measurements, QTCF by default</td>
+</tr>
+<tr>
+<td><code>qtcfbl_col</code></td>
+<td>An unquoted column name for baseline QTCF measurements, QTCFBL by default</td>
+</tr>
+<tr>
+<td><code>qtcb_col</code></td>
+<td>An unquoted column name for QTCB measurements, QTCB by default</td>
+</tr>
+<tr>
+<td><code>qtcbbl_col</code></td>
+<td>An unquoted column name for baseline QTCB measurements, QTCBBL by default</td>
+</tr>
+<tr>
+<td><code>id_col</code></td>
+<td>[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated) An unquoted column name for subject ID. Only used when `options(cqtkit.override_preprocessing_error = TRUE)`.</td>
+</tr>
+<tr>
+<td><code>deduplicate</code></td>
+<td>[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated) Logical, whether to remove duplicate baseline values before averaging. Only used when `options(cqtkit.override_preprocessing_error = TRUE)`.</td>
+</tr>
+<tr>
+<td><code>hrblm_col</code></td>
+<td>An unquoted column name for the population mean baseline HR, HRBLM by default. `NULL` skips the HR baseline delta.</td>
+</tr>
+<tr>
+<td><code>qtcbblm_col</code></td>
+<td>An unquoted column name for the population mean baseline QTCB, QTCBBLM by default. `NULL` skips the QTCB baseline delta.</td>
+</tr>
+<tr>
+<td><code>qtcfblm_col</code></td>
+<td>An unquoted column name for the population mean baseline QTCF, QTCFBLM by default. `NULL` skips the QTCF baseline delta.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A data frame with all delta columns computed from baseline
 
+
+
+
 ## Examples
 
 ```r
-preprocess(cqtkit_data_verapamil)
+preprocess(
+  dplyr::select(cqtkit_data_verapamil, -dplyr::starts_with("delta"))
+)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/preprocess.txt?raw';
+```
+# A tibble: 660 × 37
+      ID SEX     AGE  HGHT  WGHT RACE       ETHNIC VISIT TRTG   DOSE DOSEU DOSEF
+   <int> <chr> <int> <dbl> <dbl> <chr>      <chr>  <chr> <fct> <dbl> <chr> <fct>
+ 1  1001 F        25  162.  54.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 2  1002 F        20  177   80.6 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 3  1003 F        30  167   71.3 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 4  1004 F        32  177.  60.7 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 5  1005 F        23  182.  78.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 6  1006 F        22  168.  69.6 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 7  1007 F        27  159   52   WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 8  1008 F        33  164.  69.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+ 9  1009 F        29  162   68   AFRICAN A… NOT H… PERI… Plac…     0 mg    0 mg 
+10  1010 F        21  166.  56.8 WHITE      NOT H… PERI… Plac…     0 mg    0 mg 
+# ℹ 650 more rows
+# ℹ 25 more variables: NTLD <dbl>, TAFD <chr>, CONC <dbl>, CONCU <chr>,
+#   RR <dbl>, RRBL <dbl>, HR <dbl>, HRBL <dbl>, HRBLM <dbl>, QT <dbl>,
+#   QTBL <dbl>, QTCB <dbl>, QTCBBL <dbl>, QTCBBLM <dbl>, QTCF <dbl>,
+#   QTCFBL <dbl>, QTCFBLM <dbl>, deltaHRBL <dbl>, deltaQTCBBL <dbl>,
+#   deltaQTCFBL <dbl>, deltaQTCB <dbl>, deltaQTCF <dbl>, deltaRR <dbl>,
+#   deltaHR <dbl>, deltaQT <dbl>
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

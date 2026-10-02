@@ -1,0 +1,185 @@
+---
+title: "cqtkit: Comprehensive C-QT Analysis From Data to Deliverables"
+description: "An end-to-end toolkit for concentration-QT (C-QT) analysis in clinical pharmacology. Provides functions for ECG data preprocessing, exploratory data analysis, s"
+sidebar:
+  label: "cqtkit-package"
+pagefind: true
+---
+
+import { Icon } from '@astrojs/starlight/components';
+
+## Description
+
+An end-to-end toolkit for concentration-QT (C-QT) analysis in clinical
+pharmacology. Provides functions for ECG data preprocessing, exploratory
+data analysis, statistical modeling, goodness-of-fit evaluation, and
+exposure-response predictions. Generates publication-ready tables and
+figures for regulatory submissions.
+
+## Details
+
+cqtkit has seven main classes of functions for analyzing C-QT data:
+
+
+
+
+
+
+
+
+
+
+## Preprocessing
+
+These functions compute QT corrections and baseline means:
+- [`preprocess`](../preprocess/): Main preprocessing function that computes QTc corrections and baseline-corrected parameters
+- [`compute_hr`](../compute_hr/): Derive HR and baseline HR from RR intervals
+- [`compute_qtcb_qtcf`](../compute_qtcb_qtcf/): Compute Bazett's and Fridericia's QT corrections
+- [`compute_blm`](../compute_blm/): Add a population mean baseline value for an ECG parameter from a baseline dataset
+- [`compute_deltas`](../compute_deltas/): Compute change from baseline for ECG parameters
+- [`compute_delta_qtcfblm`](../compute_delta_qtcfblm/): Compute mean baseline QTcF difference
+- [`compute_delta_qtcbblm`](../compute_delta_qtcbblm/): Compute mean baseline QTcB difference
+- [`compute_delta_hrblm`](../compute_delta_hrblm/): Compute mean baseline HR difference
+
+
+
+## EDA
+
+These functions generate exploratory data analysis plots:
+- [`eda_scatter_with_regressions`](../eda_scatter_with_regressions/): Scatter plot with linear and loess regression lines
+- [`eda_qt_rr_plot`](../eda_qt_rr_plot/): QT vs RR relationship plot
+- [`eda_qtc_comparison_plot`](../eda_qtc_comparison_plot/): Compare QTcB and QTcF corrections
+- [`eda_mean_dv_over_time`](../eda_mean_dv_over_time/): Mean dependent variable over time
+- [`eda_quantiles_plot`](../eda_quantiles_plot/): Quantile-based visualization of C-QT data
+- [`eda_hysteresis_loop_plot`](../eda_hysteresis_loop_plot/): Detect and visualize hysteresis
+
+
+
+## Compute
+
+These functions compute various aspects of QT analyses:
+- [`compute_grouped_mean_sd`](../compute_grouped_mean_sd/): Compute grouped means and standard deviations
+- [`compute_ecg_param_summary`](../compute_ecg_param_summary/): Summarize ECG parameters
+- [`compute_pk_parameters`](../compute_pk_parameters/): Compute PK parameters (Cmax, Tmax, etc.)
+- [`compute_high_qtc_subjects`](../compute_high_qtc_subjects/): Count subjects with at least one observation exceeding QTc thresholds
+- [`compute_high_qtc_observations`](../compute_high_qtc_observations/): Count observations exceeding QTc thresholds
+- [`compute_high_qtc_sub`](../compute_high_qtc_sub/): Deprecated, use `compute_high_qtc_subjects()`
+- [`compute_study_summary`](../compute_study_summary/): Summarize study population
+- [`compute_fit_results`](../compute_fit_results/): Extract model fit results
+- [`compute_model_fit_parameters`](../compute_model_fit_parameters/): Extract model parameters
+- [`compute_lm_fit_df`](../compute_lm_fit_df/): Compute linear model fit data frame
+- [`compute_lme_slope_df`](../compute_lme_slope_df/): Extract slope from mixed-effects model
+- [`compute_loess_linear_r_squared`](../compute_loess_linear_r_squared/): Compare loess vs linear fit. Deprecated in 1.2.1
+- [`compute_quantiles_obs_df`](../compute_quantiles_obs_df/): Compute quantile-based summary
+- [`compute_potential_hysteresis`](../compute_potential_hysteresis/): Detect potential hysteresis
+- [`compute_hysteresis_labeller`](../compute_hysteresis_labeller/): Label hysteresis phases
+- [`compute_enGRI`](../compute_engri/): Compute generalized R-squared index
+- [`compute_contrast_observations`](../compute_contrast_observations/): Compute model contrasts
+- [`compute_dataset_simulation`](../compute_dataset_simulation/): Simulate datasets for VPC
+- [`compute_summary_statistics_of_simulations`](../compute_summary_statistics_of_simulations/): Summarize simulation results
+- [`compute_conc_for_upper_pred`](../compute_conc_for_upper_pred/): Find concentration for upper prediction bound
+- [`compute_exposure_predictions`](../compute_exposure_predictions/): Compute QTc predictions at specified concentrations
+
+
+
+## Tabulate
+
+These functions generate summary and analysis tables:
+- [`tabulate_study_summary`](../tabulate_study_summary/): Study population summary table
+- [`tabulate_ecg_param_summary`](../tabulate_ecg_param_summary/): ECG parameter summary table
+- [`tabulate_pk_parameters`](../tabulate_pk_parameters/): PK parameter summary table
+- [`tabulate_high_qtc_subjects`](../tabulate_high_qtc_subjects/): High QTc subject counts table
+- [`tabulate_high_qtc_observations`](../tabulate_high_qtc_observations/): High QTc observation counts table
+- [`tabulate_high_qtc_sub`](../tabulate_high_qtc_sub/): Deprecated, use `tabulate_high_qtc_subjects()`
+- [`tabulate_model_fit_parameters`](../tabulate_model_fit_parameters/): Model parameter estimates table
+- [`tabulate_exposure_predictions`](../tabulate_exposure_predictions/): Exposure-response predictions table
+
+
+
+## Fit
+
+These functions generate the prespecified linear mixed effects model:
+- [`fit_prespecified_model`](../fit_prespecified_model/): Fit the prespecified linear mixed-effects model per ICH E14/S7B guidelines
+- [`fit_qtc_linear_model`](../fit_qtc_linear_model/): Fit simple linear model for QTc
+
+
+
+## GoF
+
+These functions generate goodness-of-fit plots of a fitted model:
+- [`gof_plots`](../gof_plots/): Generate standard goodness-of-fit plots
+- [`gof_residuals_plots`](../gof_residuals_plots/): Residual diagnostic plots
+- [`gof_residuals_trt_boxplots`](../gof_residuals_trt_boxplots/): Residuals by treatment group
+- [`gof_residuals_time_boxplots`](../gof_residuals_time_boxplots/): Residuals over time
+- [`gof_qq_plots`](../gof_qq_plots/): Q-Q plots for normality assessment
+- [`gof_concordance_plots`](../gof_concordance_plots/): Observed vs predicted plots
+- [`gof_vpc_plot`](../gof_vpc_plot/): Visual predictive check plot
+
+
+
+## Predict
+
+These functions generate prediction plots:
+- [`predict_with_observations_plot`](../predict_with_observations_plot/): Plot predictions with observed data
+- [`predict_with_quantiles_plot`](../predict_with_quantiles_plot/): Plot predictions with quantile summaries
+- [`predict_with_exposure_plot`](../predict_with_exposure_plot/): Plot predictions at therapeutic exposures
+
+
+cqtkit also has plot manipulation functions:
+
+
+
+## Style
+
+Plots are styled with **ggstylekit**. Pass a
+`ggstylekit::style_spec()` to any plotting function's `style`
+argument. Multi-panel plots built with a style specification return an
+editable patchwork, so `restyle_plot()` and `reveal()` can update
+their panels. The deprecated list style retains the legacy ggpubr return
+value. See `vignette("styling")` for the complete styling workflow.
+This helper adds reference lines:
+- [`add_horizontal_references`](../add_horizontal_references/): Add reference lines to plots. Deprecated in 1.2.1; use the `reference_threshold` argument
+- [`style_spec`](https://rdrr.io/pkg/ggstylekit/man/style_spec.html)<span style = {{ display: 'inline-block', verticalAlign: 'middle' }}><Icon name="external" /></span>, [`legend_spec`](https://rdrr.io/pkg/ggstylekit/man/legend_spec.html)<span style = {{ display: 'inline-block', verticalAlign: 'middle' }}><Icon name="external" /></span>, [`reveal`](https://rdrr.io/pkg/ggstylekit/man/reveal.html)<span style = {{ display: 'inline-block', verticalAlign: 'middle' }}><Icon name="external" /></span>, [`restyle_plot`](https://rdrr.io/pkg/ggstylekit/man/restyle_plot.html)<span style = {{ display: 'inline-block', verticalAlign: 'middle' }}><Icon name="external" /></span>: Re-exported from **ggstylekit**
+- [`set_style`](../set_style/), [`style_plot`](../style_plot/): Deprecated in 1.2.0; use `style_spec()` and `restyle_plot()`
+
+
+cqtkit also has included datasets:
+
+
+
+## Datasets
+
+Baseline and on-treatment datasets ready for use with cqtkit. Example
+datasets from Johannesen et al. demonstrating a range of QTc effects:
+- [`cqtkit_data_verapamil`](../cqtkit_data_verapamil/): Verapamil on-treatment data (~8 ms QTc effect)
+- [`cqtkit_data_bl_verapamil`](../cqtkit_data_bl_verapamil/): Verapamil baseline data
+- [`cqtkit_data_dofetilide`](../cqtkit_data_dofetilide/): Dofetilide on-treatment data (~38 ms QTc effect)
+- [`cqtkit_data_bl_dofetilide`](../cqtkit_data_bl_dofetilide/): Dofetilide baseline data
+- [`cqtkit_data_ranolazine`](../cqtkit_data_ranolazine/): Ranolazine on-treatment data (~14 ms QTc effect)
+- [`cqtkit_data_bl_ranolazine`](../cqtkit_data_bl_ranolazine/): Ranolazine baseline data
+- [`cqtkit_data_quinidine`](../cqtkit_data_quinidine/): Quinidine on-treatment data (~50 ms QTc effect)
+- [`cqtkit_data_bl_quinidine`](../cqtkit_data_bl_quinidine/): Quinidine baseline data
+
+
+
+## See Also
+
+Useful links:
+- [https://a2-ai.github.io/cqtkit-docs](https://a2-ai.github.io/cqtkit-docs)
+
+
+## Author
+
+**Maintainer**: Matt Smith [matthews@a2-ai.com](mailto:matthews@a2-ai.com)
+
+Authors:
+- Matt Smith [matthews@a2-ai.com](mailto:matthews@a2-ai.com)
+- Devin Pastoor [devin@a2-ai.com](mailto:devin@a2-ai.com)
+
+
+Other contributors:
+- Mutaz Jaber [Mutaz.Jaber@gilead.com](mailto:Mutaz.Jaber@gilead.com) [contributor]
+- Ana Ruiz [Ana.Ruiz5@gilead.com](mailto:Ana.Ruiz5@gilead.com) [reviewer]
+
+
+

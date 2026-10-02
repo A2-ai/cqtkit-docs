@@ -1,12 +1,19 @@
 ---
 title: "EDA Quantiles Plot"
 description: "Plots the observed decile-decile scatter plot of x-data vs y-data with linear regression."
+sidebar:
+  label: "eda_quantiles_plot"
 pagefind: true
 ---
 
 ## Description
 
 Plots the observed decile-decile scatter plot of x-data vs y-data with linear regression.
+
+
+
+
+
 
 ## Usage
 
@@ -25,20 +32,54 @@ eda_quantiles_plot(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `xdata_col` | An unquoted column name for x data |
-| `ydata_col` | An unquoted column name for y data |
-| `trt_col` | An unquoted column name for treatment column to stratify the data by |
-| `plot_observations` | Logical, whether to include raw individual data points as background (default: FALSE) |
-| `conf_int` | Numeric confidence interval level (default: 0.9) |
-| `error_bars` | A string for setting which errorbars are shown, CI, SE, SD |
-| `style` | A named list of arguments passed to style_plot() |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>xdata_col</code></td>
+<td>An unquoted column name for x data</td>
+</tr>
+<tr>
+<td><code>ydata_col</code></td>
+<td>An unquoted column name for y data</td>
+</tr>
+<tr>
+<td><code>trt_col</code></td>
+<td>An unquoted column name for treatment column to stratify the data by</td>
+</tr>
+<tr>
+<td><code>plot_observations</code></td>
+<td>Logical, whether to include raw individual data points as background (default: FALSE)</td>
+</tr>
+<tr>
+<td><code>conf_int</code></td>
+<td>Numeric confidence interval level (default: 0.9)</td>
+</tr>
+<tr>
+<td><code>error_bars</code></td>
+<td>A string for setting which errorbars are shown, CI, SE, SD</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>A [`style_spec()`](../style_spec/), or a named list of arguments passed to `style_plot()`. The list form is deprecated.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A scatter plot of decile medians with linear regression and optional error bars
+
+
 
 ## Examples
 
@@ -59,7 +100,8 @@ eda_quantiles_plot(
  )
 )
 ```
-
 ### Output
 
-<img src={`${import.meta.env.BASE_URL}examples/eda_quantiles_plot.png`} alt="Example plot" style="max-width: 100%;" />
+![Example plot](/figures/reference/eda_quantiles_plot.png)
+
+

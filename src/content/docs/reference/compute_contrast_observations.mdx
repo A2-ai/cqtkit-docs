@@ -1,12 +1,19 @@
 ---
 title: "Compute Contrast Observations"
-description: "Compute Contrast Observations"
+description: "Compute Contrast Observations."
+sidebar:
+  label: "compute_contrast_observations"
 pagefind: true
 ---
 
 ## Description
 
 Compute Contrast Observations
+
+
+
+
+
 
 ## Usage
 
@@ -26,21 +33,58 @@ compute_contrast_observations(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `conc_col` | An unquoted column name for drug concentration measurements |
-| `dv_col` | An unquoted column name for dQTC measurements |
-| `id_col` | An unquoted column name for subject ID, used when control predictors is provided to compute delta delta dv |
-| `ntime_col` | An unquoted column name for Nominal time data, used when control predictors is provided to compute delta delta dv |
-| `trt_col` | An unquoted column name for Treatment group data, used when control predictors is provided to compute delta delta dv |
-| `treatment_predictors` | A list for predictions with model. Should contain a value for each predictor in the model. |
-| `control_predictors` | An optional list for contrast predictions |
-| `contrast_method` | A string specifying contrast method: "matched" for individual ID+time matching (crossover studies), "group" for group-wise subtraction (parallel studies) |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>conc_col</code></td>
+<td>An unquoted column name for drug concentration measurements</td>
+</tr>
+<tr>
+<td><code>dv_col</code></td>
+<td>An unquoted column name for dQTC measurements</td>
+</tr>
+<tr>
+<td><code>id_col</code></td>
+<td>An unquoted column name for subject ID, used when control predictors is provided to compute delta delta dv</td>
+</tr>
+<tr>
+<td><code>ntime_col</code></td>
+<td>An unquoted column name for Nominal time data, used when control predictors is provided to compute delta delta dv</td>
+</tr>
+<tr>
+<td><code>trt_col</code></td>
+<td>An unquoted column name for Treatment group data, used when control predictors is provided to compute delta delta dv</td>
+</tr>
+<tr>
+<td><code>treatment_predictors</code></td>
+<td>A list for predictions with model. Should contain a value for each predictor in the model.</td>
+</tr>
+<tr>
+<td><code>control_predictors</code></td>
+<td>An optional list for contrast predictions</td>
+</tr>
+<tr>
+<td><code>contrast_method</code></td>
+<td>A string specifying contrast method: "matched" for individual ID+time matching (crossover studies), "group" for group-wise subtraction (parallel studies)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
-A tibble with group labels, concentration, and dependent variable values (optionally contrast-adjusted)
+A tibble with group labels, concentration, and dependent variable values (optionally contrast-adjusted), followed by the remaining columns of `data`
+
+
 
 ## Examples
 
@@ -70,9 +114,49 @@ contrast_data <- compute_contrast_observations(
 )
 contrast_data
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/compute_contrast_observations.txt?raw';
+```
+# A tibble: 660 × 40
+   group      conc     dv    ID SEX     AGE  HGHT  WGHT RACE  ETHNIC VISIT TRTG 
+   <chr>     <dbl>  <dbl> <int> <chr> <int> <dbl> <dbl> <chr> <chr>  <chr> <fct>
+ 1 Observat…     0  -6.00  1001 F        25  162.  54.8 WHITE NOT H… PERI… Plac…
+ 2 Observat…     0 -12.1   1002 F        20  177   80.6 WHITE NOT H… PERI… Plac…
+ 3 Observat…     0  -5.54  1003 F        30  167   71.3 WHITE NOT H… PERI… Plac…
+ 4 Observat…     0 -22.5   1004 F        32  177.  60.7 WHITE NOT H… PERI… Plac…
+ 5 Observat…     0   1.33  1005 F        23  182.  78.8 WHITE NOT H… PERI… Plac…
+ 6 Observat…     0  -6.58  1006 F        22  168.  69.6 WHITE NOT H… PERI… Plac…
+ 7 Observat…     0 -12.4   1007 F        27  159   52   WHITE NOT H… PERI… Plac…
+ 8 Observat…     0 -11.1   1008 F        33  164.  69.8 WHITE NOT H… PERI… Plac…
+ 9 Observat…     0  -7.66  1009 F        29  162   68   AFRI… NOT H… PERI… Plac…
+10 Observat…     0  -2.73  1010 F        21  166.  56.8 WHITE NOT H… PERI… Plac…
+# ℹ 650 more rows
+# ℹ 28 more variables: DOSE <dbl>, DOSEU <chr>, DOSEF <fct>, NTLD <dbl>,
+#   TAFD <chr>, CONC <dbl>, CONCU <chr>, RR <dbl>, RRBL <dbl>, deltaRR <dbl>,
+#   HR <dbl>, HRBL <dbl>, HRBLM <dbl>, deltaHRBL <dbl>, deltaHR <dbl>,
+#   QT <dbl>, QTBL <dbl>, deltaQT <dbl>, QTCB <dbl>, QTCBBL <dbl>,
+#   QTCBBLM <dbl>, deltaQTCBBL <dbl>, deltaQTCB <dbl>, QTCF <dbl>,
+#   QTCFBL <dbl>, QTCFBLM <dbl>, deltaQTCFBL <dbl>, deltaQTCF <dbl>
+# A tibble: 330 × 40
+   group      conc     dv    ID SEX     AGE  HGHT  WGHT RACE  ETHNIC VISIT TRTG 
+   <fct>     <dbl>  <dbl> <int> <chr> <int> <dbl> <dbl> <chr> <chr>  <chr> <fct>
+ 1 Verapami… 180     1.57  1001 F        25  162.  54.8 WHITE NOT H… PERI… Vera…
+ 2 Verapami…  51.5   4.59  1002 F        20  177   80.6 WHITE NOT H… PERI… Vera…
+ 3 Verapami…  46.1   6.69  1003 F        30  167   71.3 WHITE NOT H… PERI… Vera…
+ 4 Verapami… 251    11.0   1004 F        32  177.  60.7 WHITE NOT H… PERI… Vera…
+ 5 Verapami…  41.2 -10.5   1005 F        23  182.  78.8 WHITE NOT H… PERI… Vera…
+ 6 Verapami…  72.6 -11.7   1006 F        22  168.  69.6 WHITE NOT H… PERI… Vera…
+ 7 Verapami… 201     1.36  1007 F        27  159   52   WHITE NOT H… PERI… Vera…
+ 8 Verapami…  91.1  -3.85  1008 F        33  164.  69.8 WHITE NOT H… PERI… Vera…
+ 9 Verapami…  50     1.43  1009 F        29  162   68   AFRI… NOT H… PERI… Vera…
+10 Verapami… 368     8.08  1010 F        21  166.  56.8 WHITE NOT H… PERI… Vera…
+# ℹ 320 more rows
+# ℹ 28 more variables: DOSE <dbl>, DOSEU <chr>, DOSEF <fct>, NTLD <dbl>,
+#   TAFD <chr>, CONC <dbl>, CONCU <chr>, RR <dbl>, RRBL <dbl>, deltaRR <dbl>,
+#   HR <dbl>, HRBL <dbl>, HRBLM <dbl>, deltaHRBL <dbl>, deltaHR <dbl>,
+#   QT <dbl>, QTBL <dbl>, deltaQT <dbl>, QTCB <dbl>, QTCBBL <dbl>,
+#   QTCBBLM <dbl>, deltaQTCBBL <dbl>, deltaQTCB <dbl>, QTCF <dbl>,
+#   QTCFBL <dbl>, QTCFBLM <dbl>, deltaQTCFBL <dbl>, deltaQTCF <dbl>
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+

@@ -1,12 +1,19 @@
 ---
 title: "GOF QQ Plots"
 description: "Plots QQ plot of WRES and IWRES."
+sidebar:
+  label: "gof_qq_plots"
 pagefind: true
 ---
 
 ## Description
 
 Plots QQ plot of WRES and IWRES.
+
+
+
+
+
 
 ## Usage
 
@@ -18,27 +25,61 @@ gof_qq_plots(
   conc_col,
   ntime_col,
   trt_col = NULL,
-  legend_location = c("top", "bottom", "left", "right", "none"),
+  legend_location = lifecycle::deprecated(),
   style = list()
 )
 ```
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | A data frame containing C-QT analysis dataset |
-| `fit` | An nlme::lme model object from model fitting |
-| `dv_col` | An unquoted column name for dependent variable measurements |
-| `conc_col` | An unquoted column name for drug concentration measurements |
-| `ntime_col` | An unquoted column name for nominal time since dose |
-| `trt_col` | An unquoted column name for treatment group" |
-| `legend_location` | String for legend position (top, bottom, left, right) |
-| `style` | A named list of arguments passed to style_plot() |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>A data frame containing C-QT analysis dataset</td>
+</tr>
+<tr>
+<td><code>fit</code></td>
+<td>An nlme::lme model object from model fitting</td>
+</tr>
+<tr>
+<td><code>dv_col</code></td>
+<td>An unquoted column name for dependent variable measurements</td>
+</tr>
+<tr>
+<td><code>conc_col</code></td>
+<td>An unquoted column name for drug concentration measurements</td>
+</tr>
+<tr>
+<td><code>ntime_col</code></td>
+<td>An unquoted column name for nominal time since dose</td>
+</tr>
+<tr>
+<td><code>trt_col</code></td>
+<td>An unquoted column name for treatment group"</td>
+</tr>
+<tr>
+<td><code>legend_location</code></td>
+<td>[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated) String for legend position (top, bottom, left, right). Set `legend.position` in [`style_spec()`](../style_spec/) instead.</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>A [`style_spec()`](../style_spec/), or a named list of arguments passed to `style_plot()`. The list form is deprecated.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 A 2-panel Q-Q plot comparing WRES and IWRES to normal distribution
+
+
 
 ## Examples
 
@@ -56,9 +97,10 @@ fit <- fit_prespecified_model(
   TRUE
 )
 
-gof_qq_plots(data_proc, fit, deltaQTCF, CONC, NTLD, TRTG, legend_location = "top")
+gof_qq_plots(data_proc, fit, deltaQTCF, CONC, NTLD, TRTG)
 ```
-
 ### Output
 
-<img src={`${import.meta.env.BASE_URL}examples/gof_qq_plots.png`} alt="Example plot" style="max-width: 100%;" />
+![Example plot](/figures/reference/gof_qq_plots.png)
+
+
