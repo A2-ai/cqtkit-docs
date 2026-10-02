@@ -1,0 +1,5 @@
+# A tibble: 1 × 10
+  group     N Tmax_median Tmax_max Tmax_min Cmax_gm Cmax_cv Cmax_median Cmax_max
+  <dbl> <int>       <dbl>    <dbl>    <dbl>   <dbl>   <dbl>       <dbl>    <dbl>
+1   120    21           1        2      0.5    114.    57.0         102      368
+# ℹ 1 more variable: Cmax_min <dbl> 

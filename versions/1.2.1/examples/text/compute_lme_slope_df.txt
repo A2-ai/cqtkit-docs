@@ -1,0 +1,4 @@
+# A tibble: 1 × 3
+  slope slope_ci_lower slope_ci_upper
+  <dbl>          <dbl>          <dbl>
+1 0.132          0.119          0.144 
